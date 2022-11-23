@@ -37,6 +37,7 @@ def user(id):
 
 
 # COMMENT ROUTES ----------------------------------------------------------------
+
 @user_routes.route('/<int:id>/comments/<int:commentId>', methods=['DELETE'])
 @login_required
 def delete_comment(commentId):

@@ -16,12 +16,13 @@ class User(db.Model, UserMixin):
     profile_img = db.Column(db.String(255), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    user_detail = db.relationship('UserDetail', back_populates='detail_user')
-    user_link = db.relationship('UserLink', back_populates='link_user')
+    user_detail = db.relationship('UserDetail', back_populates='detail_user', cascade='all, delete-orphan')
+    user_link = db.relationship('UserLink', back_populates='link_user', cascade='all, delete-orphan')
 
     user_blog_post = db.relationship(
-        'Annotation', back_populates='blog_post_user')
-    user_comment = db.relationship('Comment', back_populates='comment_user')
+        'BlogPost', back_populates='blog_post_user', cascade="all, delete")
+    user_comment = db.relationship(
+        'Comment', back_populates='comment_user', cascade="all, delete")
 
     requested_rels = db.relationship(
         "Friend_Request",

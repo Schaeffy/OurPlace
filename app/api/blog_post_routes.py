@@ -4,7 +4,7 @@ from app.models import User
 from ..models import db, User, BlogPost, Comment, Friendship, FriendRequest
 from ..forms import BlogPostForm
 
-blog_routes = Blueprint('blogs', __name__)
+blog_routes = Blueprint('blog', __name__)
 
 
 def validation_errors(validation_errors):
