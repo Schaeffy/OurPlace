@@ -18,14 +18,14 @@ class BlogPost(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True),
                            onupdate=func.current_timestamp())
 
-    blog_post_user = db.relationship('User', back_populates='user_annotation')
+    blog_post_user = db.relationship('User', back_populates='user_blog_post')
 
     def to_dict(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
             "blod_title": self.blog_title,
-            "blog_body": self.annotation_body,
+            "blog_body": self.blog_body,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
 

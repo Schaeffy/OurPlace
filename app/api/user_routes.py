@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, request, jsonify
 from flask_login import login_required, current_user
 from app.models import User
-from ..models import db, User, BlogPost, Comment, Friendship, FriendRequest
+from ..models import db, User, BlogPost, Comment
 from ..forms import CommentForm, BlogPostForm
 
 

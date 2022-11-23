@@ -16,36 +16,36 @@ class User(db.Model, UserMixin):
     profile_img = db.Column(db.String(255), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    user_detail = db.relationship(
-        'UserDetail', back_populates='detail_user', cascade='all, delete-orphan')
-    user_link = db.relationship(
-        'UserLink', back_populates='link_user', cascade='all, delete-orphan')
+    # user_detail = db.relationship(
+    #     'UserDetail', back_populates='detail_user', cascade='all, delete-orphan')
+    # user_link = db.relationship(
+    #     'UserLink', back_populates='link_user', cascade='all, delete-orphan')
 
     user_blog_post = db.relationship(
         'BlogPost', back_populates='blog_post_user', cascade="all, delete")
-    user_commenter = db.relationship(
-        'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='Comment.user1_id')
-    user_commented = db.relationship(
-        'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='Comment.user2_id')
+    # user_commenter = db.relationship(
+    #     'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='[Comment.commenter]')
+    # user_commented = db.relationship(
+    #     'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='[Comment.commented]')
 
-    requested_rels = db.relationship(
-        "Friend_Request",
-        foreign_key="Friend_Request.requesting_user_id",
-        back_populates='requesting_user'
-    )
-    received_rels = db.relationship(
-        'Friend_Request',
-        foreign_keys='Friend_Request.receiving_user_id',
-        back_populates='receiving_user'
-    )
+    # requested_rels = db.relationship(
+    #     "Friend_Request",
+    #     foreign_keys="Friend_Request.requesting_user_id",
+    #     back_populates='requesting_user'
+    # )
+    # received_rels = db.relationship(
+    #     'Friend_Request',
+    #     foreign_keys='Friend_Request.receiving_user_id',
+    #     back_populates='receiving_user'
+    # )
 
-    aspiring_friends = association_proxy('received_rels', 'requesting_user')
-    desired_friends = association_proxy('requested_rels', 'receiving_user')
+    # aspiring_friends = association_proxy('received_rels', 'requesting_user')
+    # desired_friends = association_proxy('requested_rels', 'receiving_user')
 
-    friend_1 = db.relationship(
-        'Friend', foreign_keys='Friend.user_1_id', back_populates='user_1')
-    friend_2 = db.relationship(
-        'Friend', foreign_keys='Friend.user_2_id', back_populates='user_2')
+    # friend_1 = db.relationship(
+    #     'Friend', foreign_keys='Friend.user_1_id', back_populates='user_1')
+    # friend_2 = db.relationship(
+    #     'Friend', foreign_keys='Friend.user_2_id', back_populates='user_2')
 
     @property
     def password(self):
