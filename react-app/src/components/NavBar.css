@@ -1,0 +1,55 @@
+.nav-container {
+    background-color: #003399;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-nav-bar {
+    display: flex;
+    flex-direction: row;
+    padding: 15px 10px 14px 10px;
+}
+
+.bottom-nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: #5FA4FA;
+    color: white;
+}
+
+.nav-right-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+    align-items: top;
+    flex-grow: 1;
+    color: white;
+}
+
+
+.nav-right-links {
+    display: inline-flex;
+
+}
+
+.nav-link > a{
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+    padding-left: 10px;
+}
+
+#login, #signup {
+    border-left: 1px solid white;
+}
+
+
+#logo {
+    width: auto;
+    height: 70px;
+    margin-top: 20px;
+    margin-left: 20px
+}
