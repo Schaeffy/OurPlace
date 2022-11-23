@@ -6,6 +6,7 @@ from ..forms import CommentForm
 
 comment_routes = Blueprint('comments', __name__)
 
+
 def validation_errors(validation_errors):
     errorMessages = []
     for field in validation_errors:

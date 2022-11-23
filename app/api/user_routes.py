@@ -82,7 +82,6 @@ def create_comment(id):
     return {'errors': validation_errors(form.errors)}, 401
 
 
-
 # BLOG ROUTES ----------------------------------------------------------------
 
 @user_routes.route('/<int:id>/blog', methods=['POST'])

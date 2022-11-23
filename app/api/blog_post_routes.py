@@ -6,6 +6,7 @@ from ..forms import BlogPostForm
 
 blog_routes = Blueprint('blogs', __name__)
 
+
 def validation_errors(validation_errors):
     errorMessages = []
     for field in validation_errors:
@@ -18,7 +19,6 @@ def validation_errors(validation_errors):
 def get_all_blogs():
     blogs = BlogPost.query.all()
     return {'blogs': [blog.to_dict() for blog in blogs]}
-
 
 
 @blog_routes.route('/<int:id>')

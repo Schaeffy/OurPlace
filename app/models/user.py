@@ -16,6 +16,13 @@ class User(db.Model, UserMixin):
     profile_img = db.Column(db.String(255), nullable=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    user_detail = db.relationship('UserDetail', back_populates='detail_user')
+    user_link = db.relationship('UserLink', back_populates='link_user')
+
+    user_blog_post = db.relationship(
+        'Annotation', back_populates='blog_post_user')
+    user_comment = db.relationship('Comment', back_populates='comment_user')
+
     requested_rels = db.relationship(
         "Friend_Request",
         foreign_key="Friend_Request.requesting_user_id",
@@ -30,12 +37,10 @@ class User(db.Model, UserMixin):
     aspiring_friends = association_proxy('received_rels', 'requesting_user')
     desired_friends = association_proxy('requested_rels', 'receiving_user')
 
-    friend_1 = db.relationship('Friend', foreign_keys='Friend.user_1_id', back_populates='user_1')
-    friend_2 = db.relationship('Friend', foreign_keys='Friend.user_2_id', back_populates='user_2')
-
-    user_blog_post = db.relationship(
-        'Annotation', back_populates='blog_post_user')
-    user_comment = db.relationship('Comment', back_populates='comment_user')
+    friend_1 = db.relationship(
+        'Friend', foreign_keys='Friend.user_1_id', back_populates='user_1')
+    friend_2 = db.relationship(
+        'Friend', foreign_keys='Friend.user_2_id', back_populates='user_2')
 
     @property
     def password(self):
