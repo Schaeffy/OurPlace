@@ -1,0 +1,16 @@
+.logout-button {
+    background: none ;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    /* border-style: none solid none none; */
+    border-left: 1px solid white;
+    padding-left: 10px;
+    padding-top: 0;
+    cursor: pointer;
+    font-family: revert;
+    color: white;
+    font-size: 100%;
+    height: 20%;
+    text-align: center;
+}

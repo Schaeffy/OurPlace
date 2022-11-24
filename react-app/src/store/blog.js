@@ -47,14 +47,26 @@ export const resetBlog = () => ({
 
 // THUNKS --------------------------------
 
-export const getBlogs = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/blogs/${userId}`, {
+export const getBlogs = () => async dispatch => {
+    const res = await fetch('/api/blogs', {
         method: 'GET',
     });
 
     if (res.ok) {
         const blogs = await res.json();
         dispatch(loadAll(blogs));
+        return blogs
+    }
+}
+
+export const getUserBlogs = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/blogs/${userId}`, {
+        method: 'GET',
+    });
+
+    if (res.ok) {
+        const blogs = await res.json();
+        dispatch(loadCurrent(blogs));
     }
 }
 
@@ -118,7 +130,7 @@ const blogReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL:
             newState = Object.assign({}, state);
-            action.blogs.forEach(blog => {
+            action.blogs.blogs.forEach(blog => {
                 newState.blogs[blog.id] = blog;
             });
             return newState;

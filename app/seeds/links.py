@@ -1,1 +1,1 @@
-# from app.models import db, User, BlogPost, Comment, Friendship, FriendRequest
+# from app.models import db, User, Blog, Comment, Friendship, FriendRequest

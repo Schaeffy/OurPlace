@@ -1,6 +1,11 @@
+body {
+    background-color: #E3E3E3;
+
+}
 /* TODO Add site wide styles */
 * {
     font-family: verdana, arial, sans-serif, helvetica;
     box-sizing: border-box;
     margin: 0;
+
 }

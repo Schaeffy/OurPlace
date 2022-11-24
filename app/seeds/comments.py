@@ -1,4 +1,4 @@
-from app.models import db, User, BlogPost, Comment
+from app.models import db, User, Blog, Comment
 
 
 def seed_comments():

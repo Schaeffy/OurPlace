@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template, redirect, request, jsonify
 from flask_login import login_required, current_user
 from app.models import User
-from ..models import db, User, BlogPost, Comment
-from ..forms import BlogPostForm
+from ..models import db, User, Blog, Comment
+from ..forms import BlogForm
 
-blog_routes = Blueprint('blog', __name__)
+blog_routes = Blueprint('blogs', __name__)
 
 
 def validation_errors(validation_errors):
@@ -17,11 +17,11 @@ def validation_errors(validation_errors):
 
 @blog_routes.route('/')
 def get_all_blogs():
-    blogs = BlogPost.query.all()
+    blogs = Blog.query.all()
     return {'blogs': [blog.to_dict() for blog in blogs]}
 
 
 @blog_routes.route('/<int:id>')
 def get_one_blog(id):
-    blog = BlogPost.query.get(id)
+    blog = Blog.query.get(id)
     return blog.to_dict()

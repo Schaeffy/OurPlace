@@ -1,11 +1,13 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 import ourplaceLogo from './images/ourplace3.png';
 import './NavBar.css';
 
 const NavBar = () => {
+  const sessionUser = useSelector(state => state.session.user);
   return (
 
     <div className='nav-container'>
@@ -24,6 +26,8 @@ const NavBar = () => {
                 Help
               </NavLink>
 
+            {sessionUser ? <LogoutButton /> : (
+              <div className='session-nav-links'>
               <NavLink id='login' to='/login' exact={true} activeClassName='active'>
                 LogIn
               </NavLink>
@@ -31,9 +35,8 @@ const NavBar = () => {
               <NavLink id='signup' to='/sign-up' exact={true} activeClassName='active'>
                 SignUp
               </NavLink>
-
-
-              <LogoutButton />
+              </div>
+              )}
             </div>
           </div>
         </div>
@@ -42,17 +45,19 @@ const NavBar = () => {
 
       <div className='bottom-nav-bar'>
 
-              <NavLink to='/' exact={true} activeClassName='active'>
-                Home
-              </NavLink>
+        <div className='nav-link' id='bot-nav-link'>
+          <NavLink id='home' to='/' exact={true} activeClassName='active'>
+            Home
+          </NavLink>
 
-              <NavLink to='/users' exact={true} activeClassName='active'>
-                Browse
-              </NavLink>
+          <NavLink id='browse' to='/users' exact={true} activeClassName='active'>
+            Browse
+          </NavLink>
 
-              <NavLink to='/blogs/' exact={true} activeClassName='active'>
-                Blogs
-              </NavLink>
+          <NavLink id='blogs' to='/blogs/' exact={true} activeClassName='active'>
+            Blogs
+          </NavLink>
+        </div>
 
 
       </div>

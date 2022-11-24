@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, request, jsonify
 from flask_login import login_required, current_user
 from app.models import User
-from ..models import db, User, BlogPost, Comment
-from ..forms import CommentForm, BlogPostForm
+from ..models import db, User, Blog, Comment
+from ..forms import CommentForm, BlogForm
 
 
 user_routes = Blueprint('users', __name__)
@@ -17,7 +17,6 @@ def validation_errors(validation_errors):
 
 
 @user_routes.route('/')
-@login_required
 def users():
     """
     Query for all users and returns them in a list of user dictionaries
@@ -27,7 +26,6 @@ def users():
 
 
 @user_routes.route('/<int:id>')
-@login_required
 def user(id):
     """
     Query for a user by id and returns that user in a dictionary
@@ -74,7 +72,7 @@ def create_comment(id):
     if form.validate_on_submit():
         comment = Comment(
             user_id=current_user.id,
-            blog_post_id=id,
+            blog_id=id,
             comment_body=form.data['comment_body']
         )
         db.session.add(comment)
@@ -88,25 +86,25 @@ def create_comment(id):
 @user_routes.route('/<int:id>/blog', methods=['POST'])
 @login_required
 def create_blogpost(id):
-    form = BlogPostForm()
+    form = BlogForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        blogpost = BlogPost(
+        blog = Blog(
             user_id=current_user.id,
             title=form.data['title'],
             body=form.data['body']
         )
-        db.session.add(blogpost)
+        db.session.add(blog)
         db.session.commit()
-        return blogpost.to_dict()
+        return blog.to_dict()
     return {'errors': validation_errors(form.errors)}, 401
 
 
 @user_routes.route('/<int:id>/blog/<int:blogId>', methods=['DELETE'])
 @login_required
 def delete_blogpost(id):
-    blogpost = BlogPost.query.get(id)
-    db.session.delete(blogpost)
+    blog = Blog.query.get(id)
+    db.session.delete(blog)
     db.session.commit()
     return {"message": "Blog post deleted"}
 
@@ -114,18 +112,18 @@ def delete_blogpost(id):
 @user_routes.route('/<int:id>/blog/<int:blogId>', methods=['PUT'])
 @login_required
 def edit_blogpost(id):
-    blogpost = BlogPost.query.get(id)
-    form = BlogPostForm()
+    blog = Blog.query.get(id)
+    form = BlogForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if current_user.id != blogpost.user_id:
+    if current_user.id != blog.user_id:
         return {"errors": "You can't edit this blog post"}
-    if not blogpost:
+    if not blog:
         return {"errors": "Blog post not found"}
 
     if form.validate_on_submit():
-        blogpost.title = form.data['title']
-        blogpost.body = form.data['body']
+        blog.title = form.data['title']
+        blog.body = form.data['body']
         db.session.commit()
-        return blogpost.to_dict()
+        return blog.to_dict()
     return {'errors': validation_errors(form.errors)}, 401

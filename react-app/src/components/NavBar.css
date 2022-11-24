@@ -1,19 +1,24 @@
 .nav-container {
-    background-color: #003399;
     display: flex;
     flex-direction: column;
+    background-color: #003399;
+    width: 900px;
+    max-width: 100%;
+    min-width: 900px;
+    margin: 0 auto;
 }
 
 .top-nav-bar {
     display: flex;
     flex-direction: row;
-    padding: 15px 10px 14px 10px;
+    padding: 15px 10px 0px 10px;
 }
 
 .bottom-nav-bar {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
     background-color: #5FA4FA;
     color: white;
 }
@@ -34,22 +39,61 @@
 
 }
 
+.nav-link {
+    display: inline-flex;
+}
+
 .nav-link > a{
     list-style: none;
     text-decoration: none;
     color: white;
-    margin-right: 20px;
+    margin-right: 10px;
     padding-left: 10px;
+}
+
+.session-nav-links > a{
+    list-style: none;
+    text-decoration: none;
+    color: white;
+    margin-right: 10px;
+    padding-left: 10px;
+}
+
+#bot-nav-link {
+    display: inline-flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.bot-nav-link > a {
+    margin-right: 20px;
+    padding-left: 500px;
+}
+
+#browse, #blogs {
+    border-left: 1px solid black;
+    padding-left: 20px;
+    margin: 0;
+}
+
+#home {
+    padding-right: 20px;
+    margin: 0;
+}
+
+#browse {
+    padding-right: 20px;
 }
 
 #login, #signup {
     border-left: 1px solid white;
+    padding-left: 10px;
 }
 
 
 #logo {
     width: auto;
     height: 70px;
-    margin-top: 20px;
-    margin-left: 20px
+    margin-top: 10px;
+    margin-left: 10px
 }

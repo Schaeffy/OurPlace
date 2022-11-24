@@ -21,7 +21,7 @@ class Comment(db.Model):
 
     # commenter = db.relationship('User', back_populates='user_commenter')
     # commented = db.relationship('User', back_populates='user_commented')
-    # blog_post_user = db.relationship('User', back_populates='user_blog_post')
+    # blog_user = db.relationship('User', back_populates='user_blog')
 
     def to_dict(self):
         return {
