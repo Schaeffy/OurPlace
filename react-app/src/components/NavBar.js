@@ -15,7 +15,9 @@ const NavBar = () => {
       <div className='top-nav-bar'>
         <div className='nav-left-container'>
           <div className='nav-left-image'>
+          <NavLink to={'/'} exact={true}>
             <img id='logo' src={ourplaceLogo} alt='logo' />
+          </NavLink>
           </div>
         </div>
 

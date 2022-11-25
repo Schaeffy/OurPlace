@@ -85,8 +85,19 @@
 }
 
 
+.login-container {
+    text-align: center;
+    border: 1px solid #039;
+    margin: 0 0 10px 0;
+    margin-left: 65px;
+    padding: 10px 20px 20px 20px;
+    color: #039;
+}
 
-
+.home-login {
+    /* padding-top: 10px; */
+    text-align: right;
+}
 
 
 
@@ -99,10 +110,10 @@
     background: #e3e3e3;
 }
 
-.footer > ul > li{
+.footer>ul>li {
     display: inline;
 }
 
-.footer > ul > li::after{
+.footer>ul>li::after {
     content: ' | ';
 }

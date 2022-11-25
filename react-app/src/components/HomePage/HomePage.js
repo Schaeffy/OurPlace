@@ -6,6 +6,7 @@ import './HomePage.css'
 import { getBlogs } from '../../store/blog';
 import { loadUsers } from '../../store/users';
 import '../images/divider.png'
+import LoginForm from '../auth/LoginForm';
 
 
 const HomePage = () => {
@@ -94,6 +95,13 @@ const HomePage = () => {
                         </div>
 
                         <div className='logged-out-right'>
+                            <div className='login-container'>
+                            <h4>Member Login</h4>
+                            <div className='home-login'>
+                                <LoginForm />
+                            </div>
+                            <div className='welcome'></div>
+                            </div>
 
                         </div>
                     </div>
