@@ -38,4 +38,13 @@
 .login-input {
     /* margin-top:5px */
     padding-top: 10px;
+    white-space: nowrap;
+}
+
+#repeat {
+    margin-left: 15px;
+    text-align: left;
+}
+#repeat_pass {
+    margin-top: 10px
 }

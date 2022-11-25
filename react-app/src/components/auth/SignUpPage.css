@@ -1,0 +1,21 @@
+.signup-wrapper {
+
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #039;
+    padding: 5px 5px 15px 5px;
+    color: #039;
+    width: 350px;
+    max-width: 100%;
+    margin: 0 auto;
+
+}
+
+#orange-logo-su {
+    box-sizing: border-box;
+    width: 350px;
+    height: 120px;
+    margin: 0 auto;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}

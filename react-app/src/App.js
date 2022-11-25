@@ -11,6 +11,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage/HomePage';
 import Blogs from './components/Blog/Blog';
+import SignUpPage from './components/auth/SignUpPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,7 +36,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route path='/sign-up' exact={true}>
-          <SignUpForm />
+          <SignUpPage />
         </Route>
         <Route path='/users' exact={true} >
           <UsersList />

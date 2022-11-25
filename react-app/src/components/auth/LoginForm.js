@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { login } from '../../store/session';
 import './LoginForm.css';
 
@@ -59,9 +59,10 @@ const LoginForm = () => {
         />
         <div className='button-container'>
           <button id='login-button' type='submit'>LOGIN</button>
-          <a href='/sign-up'>
+          <NavLink id='signup' to='/sign-up' exact={true} activeClassName='active'>
             <button id='signup-button' type='button'>SIGNUP</button>
-          </a>
+          </NavLink>
+
 
         </div>
       </div>

@@ -49,8 +49,8 @@ const SignUpForm = () => {
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label>User Name</label>
+      <div className='login-input'>
+        <label>User Name: </label>
         <input
           type='text'
           name='username'
@@ -58,8 +58,8 @@ const SignUpForm = () => {
           value={username}
         ></input>
       </div>
-      <div>
-        <label>Email</label>
+      <div className='login-input'>
+        <label>Email: </label>
         <input
           type='text'
           name='email'
@@ -67,8 +67,8 @@ const SignUpForm = () => {
           value={email}
         ></input>
       </div>
-      <div>
-        <label>Password</label>
+      <div className='login-input'>
+        <label>Password: </label>
         <input
           type='password'
           name='password'
@@ -76,8 +76,8 @@ const SignUpForm = () => {
           value={password}
         ></input>
       </div>
-      <div>
-        <label>Repeat Password</label>
+      <div className='login-input'>
+        <label id='repeat-pass'>Repeat Password: </label>
         <input
           type='password'
           name='repeat_password'
@@ -86,7 +86,9 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <div className='button-container'>
+        <button id='signup-button' type='submit'>SIGNUP</button>
+      </div>
     </form>
   );
 };
