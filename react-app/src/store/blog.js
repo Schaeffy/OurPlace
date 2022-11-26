@@ -60,7 +60,7 @@ export const getBlogs = () => async dispatch => {
 }
 
 export const getUserBlogs = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/blogs/${userId}`, {
+    const res = await fetch(`/api/users/${userId}`, {
         method: 'GET',
     });
 
@@ -136,8 +136,8 @@ const blogReducer = (state = initialState, action) => {
             return newState;
         case LOAD_CURRENT:
             newState = Object.assign({}, state);
-            action.blogs.forEach(blog => {
-                newState.blogs[blog.id] = blog;
+            action.blogs.blogs.forEach(blog => {
+                newState.user[blog.id] = blog;
             });
             return newState;
         case LOAD_ONE:

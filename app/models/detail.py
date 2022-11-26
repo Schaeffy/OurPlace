@@ -7,6 +7,7 @@ class UserDetail(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
+    profile_img = db.Column(db.String(255), nullable=True)
     profile_name = db.Column(db.String(100), nullable=False)
     status = db.Column(db.String(100))
     mood = db.Column(db.String(100))

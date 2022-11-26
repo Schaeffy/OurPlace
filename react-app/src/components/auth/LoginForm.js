@@ -59,11 +59,12 @@ const LoginForm = () => {
         />
         <div className='button-container'>
           <button id='login-button' type='submit'>LOGIN</button>
-          <NavLink id='signup' to='/sign-up' exact={true} activeClassName='active'>
+          <button id='demo-button' type='submit' onClick={()=> {
+            dispatch(login('demo@aa.io', 'password'));
+          }}>DEMO USER</button>
+          <NavLink to='/sign-up' exact={true} activeClassName='active'>
             <button id='signup-button' type='button'>SIGNUP</button>
           </NavLink>
-
-
         </div>
       </div>
     </form>

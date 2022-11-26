@@ -83,6 +83,12 @@ def create_comment(id):
 
 # BLOG ROUTES ----------------------------------------------------------------
 
+@user_routes.route('/<int:id>/blog')
+def get_user_blogs(id):
+    blogs = Blog.query.filter(id == Blog.user_id).desc().all()
+
+    return {"user": [blog.to_dict() for blog in blogs]}
+
 @user_routes.route('/<int:id>/blog', methods=['POST'])
 @login_required
 def create_blogpost(id):

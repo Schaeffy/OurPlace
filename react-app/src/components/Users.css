@@ -1,0 +1,41 @@
+.users-container {
+    width: 900px;
+    max-width: 100%;
+    min-width: 900px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+}
+
+.users-inner-container {
+    margin: 0 auto 30px auto;
+    width: 700px;
+    padding: 30px 8px;
+    max-width: 100%;
+
+}
+
+.users-list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #fab55f;
+    margin-top: 20px;
+}
+
+.users-list-top {
+    background-color: #fab55f;;
+    padding: 4px 8px;
+    font-weight: bold;
+}
+
+.users-list-bot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 4px 8px;
+}
+
+.users-cards > a {
+    text-decoration: none;
+    color:#1E40AF;
+}
