@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom';
-import { getUserBlogs, getBlogs } from '../store/blog'
+import { getUserBlogs, getBlogs, resetBlog } from '../store/blog'
+import { getComments, getUserComments, resetComment } from '../store/comments';
 import defaultPic from './images/user.png'
 import './User.css'
+import { loadUsers } from '../store/users';
 
 function User() {
   const [user, setUser] = useState({});
   const { userId } = useParams();
+  const [loaded, setLoaded] = useState(false);
 
   const blogs = useSelector(state => state.blogs.blogs)
   const userBlogs = Object.values(blogs).filter(blog => blog.user_id === +userId)
   const dispatch = useDispatch();
 
+  const comments = useSelector(state => state.comments.comments)
+  const userComments = Object.values(comments).filter(comment => comment.commented === +userId)
+
+  const users = useSelector(state => state.users.users)
+  const allUsers = Object.values(users)
+
   // console.log(userBlogs)
 
-  useEffect(() => {
-    dispatch(getBlogs())
-  }, [dispatch])
 
   // useEffect(() => {
   //     dispatch(getUserBlogs(userId))
@@ -36,12 +42,24 @@ function User() {
     })();
   }, [userId]);
 
+  useEffect(() => {
+    dispatch((loadUsers()))
+    dispatch(getBlogs())
+    dispatch(getComments()).then(() => setLoaded(true))
+  }, [dispatch])
+
+
+  // useEffect(() => {
+
+  // }, [dispatch])
+
+
   if (!user) {
     return null;
   }
 
   return (
-    <div className='profile-page-container'>
+    loaded && <div className='profile-page-container'>
 
       <div className='profile-page-left'>
         <div className='name'>
@@ -50,7 +68,7 @@ function User() {
 
         <div className='general'>
           <div className='profile-pic'>
-            <img src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+            <img id='profile-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
           </div>
           <div className='general-info'>
             info
@@ -75,7 +93,7 @@ function User() {
         </div>
 
         <div className='url-container'>
-          <p>OurPlace URL:</p>
+          <p id='profile-url'>OurPlace URL:</p>
           <p>{`https://ourplace.com/users/${user.id}`}</p>
         </div>
 
@@ -113,8 +131,8 @@ function User() {
             </div>
 
             <div className='general-interests'>
-              <div className='general-interests-left'>Heroes</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-left' id='very-bot'>Heroes</div>
+              <div className='general-interests-right' id='very-bot'> lorum ipsum </div>
 
             </div>
 
@@ -176,8 +194,8 @@ function User() {
             </div>
 
             <div className='general-interests'>
-              <div className='general-interests-left'>Github</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-left' id='very-bot'>Github</div>
+              <div className='general-interests-right' id='very-bot'> lorum ipsum </div>
             </div>
 
           </div>
@@ -191,22 +209,79 @@ function User() {
           <h4>{user.username}'s Latest Blog Entries</h4>
           {userBlogs.map((blog) => (
             <div>
-              {blog.blog_title} ({<NavLink to={`/blogs/${blog.id}`}>{`view more`}</NavLink>})
+              {blog.blog_title} ({<NavLink id='navlink' to={`/blogs/${blog.id}`}>{`view more`}</NavLink>})
             </div>
           ))}
         </div>
 
         <div className='profile-blurbs'>
+          <div className='blurbs-top'>
+            {`${user.username}'s Blurbs`}
+          </div>
 
+          <div className='blurbs-bot'>
+            <div className='section'>
+              <h4>About me:</h4>
+            </div>
+
+            <div className='section'>
+              <h4>Who I'd like to meet:</h4>
+            </div>
+          </div>
         </div>
 
         <div className='profile-friends'>
+          <div className='friends-top'>
+            {`${user.username}'s Friend Space`}
+          </div>
 
+          <div className='friends-bot'>
+            {allUsers.map(user => <div>{user.username}</div>)}
+          </div>
         </div>
 
         <div className='profile-comments'>
+          <div className='friends-top'>
+            {`${user.username}'s Friends Comments`}
+          </div>
 
+          <div className='comments-mid'>
+            Diplaying <span id='comments-length'>{userComments.length}</span> of <span id='comments-length'>{userComments.length}</span> comments ({<NavLink id='navlink' to={`/users/${user.id}/comments`}>View all</NavLink>} | {<NavLink id='navlink' to={`/users/${user.id}/comments/new`}>Add Comment</NavLink>})
+          </div>
+
+          {/* <div>{`Displaying ${userComments.filter(user => user.id === comment.commenter)}`}</div> */}
+
+          <div className='comments-bot'>
+            {/* {userComments?.map((comment) => (<div>{comment?.comment_body}</div>))} */}
+
+            {userComments?.map((comment) =>
+              allUsers.map((user) => user.id === comment.commenter ?
+                <div className='comments-rows'>
+                  <div className='comments-rows-left'>
+                    <div className='comment-username'>
+                    <NavLink className='comment-username' to={`/users/${user.id}`}>{user.username}</NavLink>
+                    </div>
+                    <div>image <br /> placeholder</div>
+                  </div>
+
+                  <div className='comments-rows-right'>
+                    <div className='comment-date'>
+                      {new Date(comment.created_at).toLocaleString()}
+                    </div>
+
+                    <div className='comment-body'>
+                      {comment.comment_body}
+                    </div>
+                  </div>
+
+                </div>
+
+                : null))}
+
+
+          </div>
         </div>
+
       </div>
 
     </div>

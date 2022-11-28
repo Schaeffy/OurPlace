@@ -1,7 +1,7 @@
-from app.models import db, User, Blog, Comment
+from app.models import db, User, Blog, Comment, environment, SCHEMA
 
 
-def seed_blog():
+def seed_blogs():
     blog1 = Blog(
         user_id=1,
         blog_title="My First Blog Post",
@@ -41,6 +41,14 @@ def seed_blog():
     db.session.add(blog6)
     db.session.commit()
 
-def undo_blog():
-    db.session.execute('TRUNCATE blog RESTART IDENTITY CASCADE;')
+# def undo_blogs():
+#     db.session.execute('TRUNCATE blogs RESTART IDENTITY CASCADE;')
+#     db.session.commit()
+
+def undo_blogs():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.blogs RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM blogs")
+
     db.session.commit()

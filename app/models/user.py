@@ -23,9 +23,9 @@ class User(db.Model, UserMixin):
     user_blog = db.relationship(
         'Blog', back_populates='blog_user', cascade="all, delete")
     # user_commenter = db.relationship(
-    #     'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='[Comment.commenter]')
+    #     'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='Comment.commenter')
     # user_commented = db.relationship(
-    #     'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='[Comment.commented]')
+    #     'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='Comment.commented')
 
     # requested_rels = db.relationship(
     #     "Friend_Request",

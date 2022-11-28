@@ -47,14 +47,15 @@ export const resetComment = () => ({
 
 // THUNKS --------------------------------
 
-export const getComments = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/${userId}/comments`, {
+export const getComments = () => async (dispatch) => {
+    const res = await fetch(`/api/comments`, {
         method: 'GET',
 });
 
     if (res.ok) {
         const comments = await res.json();
         dispatch(loadAll(comments));
+        return comments
     }
 }
 
@@ -125,7 +126,7 @@ const commentReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL:
             newState = Object.assign({}, state);
-            action.comments.forEach(comment => {
+            action.comments.comments.forEach(comment => {
                 newState.comments[comment.id] = comment;
             });
             return newState;

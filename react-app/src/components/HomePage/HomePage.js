@@ -96,11 +96,11 @@ const HomePage = () => {
 
                         <div className='logged-out-right'>
                             <div className='login-container'>
-                            <h4>Member Login</h4>
-                            <div className='home-login'>
-                                <LoginForm />
-                            </div>
-                            <div className='welcome'></div>
+                                <h4>Member Login</h4>
+                                <div className='home-login'>
+                                    <LoginForm />
+                                </div>
+                                <div className='welcome'></div>
                             </div>
 
                         </div>
