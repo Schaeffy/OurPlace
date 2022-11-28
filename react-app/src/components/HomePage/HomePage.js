@@ -18,20 +18,20 @@ const HomePage = () => {
     const dispatch = useDispatch()
     const blogs = useSelector(state => state.blogs.blogs)
     const allBlogs = Object.values(blogs)
-    const userBlogs = Object.values(blogs).filter(blog => blog.user_id === sessionUser.id)
+    const userBlogs = Object.values(blogs).filter(blog => blog.user_id === sessionUser?.id)
     const users = useSelector(state => state.users.users)
     const comments = useSelector(state => state.comments.comments)
-    const userComments = Object.values(comments).filter(comment => comment.commented === sessionUser.id)
+    const userComments = Object.values(comments).filter(comment => comment.commented === sessionUser?.id)
     const allUsers = Object.values(users)
     const [loaded, setLoaded] = useState(false);
     // console.log('uuuuuuuuuuuuuu', users)
 
     useEffect(() => {
         dispatch((loadUsers()))
-        dispatch(getOneUser(sessionUser.id))
+        dispatch(getOneUser(sessionUser?.id))
         dispatch(getBlogs())
         dispatch(getComments()).then(() => setLoaded(true))
-    }, [dispatch, sessionUser.id])
+    }, [dispatch, sessionUser?.id])
 
     // console.log('ooooooooooooooo', blogs)
     // console.log(allBlogs)
