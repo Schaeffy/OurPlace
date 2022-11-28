@@ -1,0 +1,15 @@
+.footer {
+    text-align: center;
+    font-size: 70%;
+    margin: 10px 0 10px;
+    padding: 10px 5px;
+    background: #e3e3e3;
+}
+
+.footer>ul>li {
+    display: inline;
+}
+
+.footer>ul>li::after {
+    content: ' | ';
+}

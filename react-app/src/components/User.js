@@ -208,10 +208,14 @@ function User() {
         <div className='profile-blog'>
           <h4>{user.username}'s Latest Blog Entries</h4>
           {userBlogs.map((blog) => (
-            <div>
+            <div className='blog-entry-link'>
               {blog.blog_title} ({<NavLink id='navlink' to={`/blogs/${blog.id}`}>{`view more`}</NavLink>})
             </div>
           ))}
+
+          <div className='blog-entries-link'>
+            [<NavLink id='navlink' to={`/users/${user.id}/blogs`}>View all blog entries</NavLink>]
+          </div>
         </div>
 
         <div className='profile-blurbs'>

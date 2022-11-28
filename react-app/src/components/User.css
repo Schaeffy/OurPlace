@@ -27,6 +27,14 @@
     padding-top: 20px;
 }
 
+.blog-entry-link  {
+    margin-top: 10px;
+}
+
+.blog-entries-link  {
+    margin-top: 10px;
+}
+
 .general {
     display: flex;
     flex-direction: row;

@@ -12,6 +12,9 @@ import { authenticate } from './store/session';
 import HomePage from './components/HomePage/HomePage';
 import Blogs from './components/Blog/Blog';
 import SignUpPage from './components/auth/SignUpPage';
+import UserBlog from './components/Blog/UserBlog';
+import BlogEntry from './components/Blog/BlogEntry';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -35,22 +38,37 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginPage />
         </Route>
+
         <Route path='/sign-up' exact={true}>
           <SignUpPage />
         </Route>
+
         <Route path='/users' exact={true} >
           <UsersList />
         </Route>
+
         <Route path='/users/:userId' exact={true} >
           <User />
         </Route>
+
+        <Route path='/users/:userId/blogs' exact={true} >
+          <UserBlog />
+        </Route>
+
         <Route path='/' exact={true} >
           <HomePage />
         </Route>
+
         <Route path='/blogs' exact={true} >
           <Blogs />
         </Route>
+
+        <Route path='/blogs/:blogId' exact={true} >
+          <BlogEntry />
+        </Route>
+
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

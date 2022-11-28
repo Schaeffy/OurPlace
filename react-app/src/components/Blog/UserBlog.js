@@ -3,46 +3,34 @@ import { useParams, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getBlogs } from '../../store/blog';
-import './Blog.css'
-import { loadUsers } from '../../store/users';
+import './UserBlog.css'
 
 
 
-const Blogs = () => {
+const UserBlog = () => {
     const sessionUser = useSelector(state => state.session.user);
     console.log(sessionUser)
     // const user = useSelector(state => state.user);
     const { userId } = useParams();
     const dispatch = useDispatch()
-
-    const [loaded, setLoaded] = useState(false);
-
     const blogs = useSelector(state => state.blogs.blogs)
-    const allBlogs = Object.values(blogs)
-
-    const users = useSelector(state => state.users.users)
-    const allUsers = Object.values(users)
+    const allBlogs = Object.values(blogs).filter(blog => blog.user_id === +userId)
 
     useEffect(() => {
         dispatch(getBlogs())
-        dispatch(loadUsers()).then(() => setLoaded(true))
     }, [dispatch])
 
 
     return (
-        loaded &&
-        <div className='blogs-container'>
+        <div className='user-blog-container'>
             <h1>Blogs</h1>
             {allBlogs.map(blog => {
                 return (
                     <div className='blog-entry-container' key={blog.id}>
-                        <div className='blog-info'>
-                            {new Date(blog.created_at).toLocaleDateString()} — by {allUsers.map(user => user.id === blog.user_id ? <NavLink id='navlink' to={`/users/${user.id}`}>{user.username}</NavLink> : null)}
-                        </div>
                         <div className='blog-title'>{blog.blog_title}</div>
                         <div className='blog-body'>
                             {blog.blog_body.length > 400 ? blog.blog_body.slice(0, 400) + '...' : blog.blog_body} <NavLink id='navlink' to={`/blogs/${blog.id}`}>» Continue Reading</NavLink>
-                            <div className='view-entry'><NavLink id='navlink' to={`/blogs/${blog.id}`}>» View Blog Entry</NavLink></div>
+                            <div><NavLink id='navlink' to={`/blogs/${blog.id}`}>» View Blog Entry</NavLink></div>
                         </div>
                     </div>
                 )
@@ -51,4 +39,4 @@ const Blogs = () => {
     )
 }
 
-export default Blogs
+export default UserBlog

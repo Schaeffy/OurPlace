@@ -14,6 +14,31 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profile_img = db.Column(db.String(255), nullable=True)
+    profile_name = db.Column(db.String(100))
+    status = db.Column(db.String(100))
+    mood = db.Column(db.String(100))
+    brief_you = db.Column(db.String(100))
+    here_for = db.Column(db.String(100))
+    hometown = db.Column(db.String(100))
+    ethnicity = db.Column(db.String(100))
+    occupation = db.Column(db.String(100))
+    about_me = db.Column(db.String)
+    music = db.Column(db.String)
+    movies = db.Column(db.String)
+    television = db.Column(db.String)
+    books = db.Column(db.String)
+    heroes = db.Column(db.String)
+    instagram = db.Column(db.String(100))
+    snapchat = db.Column(db.String(100))
+    github = db.Column(db.String(100))
+    twitter = db.Column(db.String(100))
+    youtube = db.Column(db.String(100))
+    twitch = db.Column(db.String(100))
+    tiktok = db.Column(db.String(100))
+    soundcloud = db.Column(db.String(100))
+    spotify = db.Column(db.String(100))
+    pintrest = db.Column(db.String(100))
 
     # user_detail = db.relationship(
     #     'UserDetail', back_populates='detail_user', cascade='all, delete-orphan')
@@ -62,4 +87,29 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'profile_img': self.profile_img,
+            "profile_name": self.profile_name,
+            "status": self.status,
+            "mood": self.mood,
+            "brief_you": self.brief_you,
+            "here_for": self.here_for,
+            "hometown": self.hometown,
+            "ethnicity": self.ethnicity,
+            "occupation": self.occupation,
+            "about_me": self.about_me,
+            "music": self.music,
+            "movies": self.movies,
+            "television": self.television,
+            "books": self.books,
+            "heroes": self.heroes,
+            "instagram": self.instagram,
+            "snapchat": self.snapchat,
+            "github": self.github,
+            "twitter": self.twitter,
+            "youtube": self.youtube,
+            "twitch": self.twitch,
+            "tiktok": self.tiktok,
+            "soundcloud": self.soundcloud,
+            "spotify": self.spotify,
+            "pintrest": self.pintrest,
         }

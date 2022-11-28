@@ -6,7 +6,12 @@ const LOAD_ONE = 'users/LOAD_ONE';
 const getUsers = (users) => ({
     type: LOAD_ALL,
     users
-  })
+})
+
+const getUser = (user) => ({
+    type: LOAD_ONE,
+    user
+})
 
 //   const initialState = { user: null };
 
@@ -23,6 +28,7 @@ const getUsers = (users) => ({
 
 const initialState = {
     users: {},
+    user: null,
 }
 
 export const loadUsers = () => async (dispatch) => {
@@ -33,7 +39,17 @@ export const loadUsers = () => async (dispatch) => {
         const users = await res.json();
         dispatch(getUsers(users));
     }
+}
+
+export const getOneUser = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/${userId}`, {
+        method: 'GET',
+    });
+    if (res.ok) {
+        const user = await res.json();
+        dispatch(getUser(user));
     }
+}
 
 export default function usersReducer(state = initialState, action) {
     let newState
@@ -46,6 +62,10 @@ export default function usersReducer(state = initialState, action) {
             return {
                 ...state
             };
+        case LOAD_ONE:
+            newState = Object.assign({}, state);
+            newState.user = action.user;
+            return newState;
         default:
             return state;
     }
