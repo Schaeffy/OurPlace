@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const RESET = 'session/RESET';
 
 
 
@@ -11,6 +12,10 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+})
+
+export const resetSession = () => ({
+  type: RESET
 })
 
 
@@ -109,6 +114,8 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case RESET:
+      return state
     default:
       return state;
   }

@@ -3,35 +3,56 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import './HomePage.css'
-import { getBlogs } from '../../store/blog';
-import { loadUsers, getOneUser } from '../../store/users';
+import { getBlogs, resetBlog } from '../../store/blog';
+import { loadUsers, getOneUser, resetUser } from '../../store/users';
 import '../images/divider.png'
 import LoginForm from '../auth/LoginForm';
 import defaultPic from '../images/user.png'
-import { getComments } from '../../store/comments';
+import { getComments, resetComment } from '../../store/comments';
+import { resetSession } from '../../store/session';
 
 
 const HomePage = () => {
     const sessionUser = useSelector(state => state.session.user);
 
+    const user = useSelector(state => state.users.user);
+
     // const user = useSelector(state => state.user);
     const dispatch = useDispatch()
     const blogs = useSelector(state => state.blogs.blogs)
     const allBlogs = Object.values(blogs)
-    const userBlogs = Object.values(blogs).filter(blog => blog.user_id === sessionUser?.id)
+    const userBlogs = Object.values(blogs).filter(blog => blog?.user_id === sessionUser?.id)
     const users = useSelector(state => state.users.users)
     const comments = useSelector(state => state.comments.comments)
-    const userComments = Object.values(comments).filter(comment => comment.commented === sessionUser?.id)
+    const userComments = Object.values(comments).filter(comment => comment?.commented === sessionUser?.id)
     const allUsers = Object.values(users)
     const [loaded, setLoaded] = useState(false);
     // console.log('uuuuuuuuuuuuuu', users)
 
     useEffect(() => {
-        dispatch((loadUsers()))
+        dispatch(loadUsers())
         dispatch(getOneUser(sessionUser?.id))
-        dispatch(getBlogs())
-        dispatch(getComments()).then(() => setLoaded(true))
-    }, [dispatch, sessionUser?.id])
+        dispatch(getBlogs()).then(() => setLoaded(true))
+        // dispatch(getComments()).then(() => setLoaded(true))
+
+        return () => {
+            dispatch(resetUser())
+            dispatch(resetBlog())
+            // dispatch(resetComment())
+        }
+    }, [dispatch, sessionUser])
+
+
+    // useEffect(()=> {
+    //     dispatch(getBlogs()).then(() => setLoaded(true))
+    // },[dispatch])
+
+    // useEffect(() => {
+    //     dispatch(getComments()).then(() => setLoaded(true))
+    // }, [dispatch])
+    // useEffect(()=> {
+    //     dispatch(getOneUser(sessionUser?.id)).then(() => setLoaded(true))
+    // },[dispatch, sessionUser?.id])
 
     // console.log('ooooooooooooooo', blogs)
     // console.log(allBlogs)
@@ -125,30 +146,50 @@ const HomePage = () => {
 
                 :
 
-                <div className='profile-page-container'>
+                loaded && <div className='profile-page-container'>
 
                     <div className='profile-page-left'>
-                        <div className='name'>
-                            <h1>{sessionUser.username}</h1>
-                        </div>
-
-                        <div className='general'>
-                            <div className='profile-pic'>
-                                <img id='profile-pic' src={sessionUser.profile_pic ? sessionUser.profile_pic : defaultPic} alt='profile-pic' />
+                        <div className='profile-page-left-top'>
+                            <div className='name'>
+                                <h2>Hello, {user.username}!</h2>
                             </div>
-                            <div className='general-info'>
-                                info
+
+                            <div className='general'>
+                                <div className='profile-pic'>
+                                    <img id='profile-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                                </div>
+                                <div className='general-info'>
+                                    <div className='profile-edits'>
+                                        <NavLink to={`/users/${user.id}/edit`} id='navlink'>Edit Profile</NavLink>
+                                    </div>
+                                    <div className='profile-edits'>
+                                        <NavLink to={`/users/${user.id}/edit-status`} id='navlink'>Edit Status</NavLink>
+                                    </div>
+                                    <div className='profile-edits'>
+                                        <NavLink to={`/users/${user.id}/edit-links`} id='navlink'>Edit Links</NavLink>
+                                    </div>
+                                    <div className='profile-edits'>
+                                        <NavLink to={`/users/${user.id}/blogs`} id='navlink'>Manage Blog</NavLink>
+                                    </div>
+                                </div>
                             </div>
+
+                            <div className='mood'>
+                                <div className='view-my'>
+                                    <span>View My: </span>
+                                    <NavLink to={`/users/${user.id}`} id='navlink'>Profile</NavLink> | <NavLink to={`/users/${user.id}/blogs`} id='navlink'>Blogs</NavLink> | <NavLink to={`/users/${user.id}/comments`} id='navlink'>Comments</NavLink>
+                                </div>
+                                <div className='my-url'>
+                                    {/* <span>My URL: </span> */}
+                                    {/* <NavLink to={`/users/${user.id}`} id='navlink'>{`https://ourplace.com/users/${user.id}`}</NavLink> */}
+                                </div>
+                            </div>
+
                         </div>
 
-                        <div className='mood'>
-                            <p>Mood: </p>
-                            <p>View my: </p>
-                        </div>
-
-                        <div className='contact'>
+                        {/* <div className='contact'>
                             <div className='contact-top'>
-                                {`Contacting ${sessionUser.username}`}
+                                {`Contacting ${user.username}`}
                             </div>
                             <div className='contact-bot'>
                                 <div>Some stuff</div>
@@ -156,34 +197,34 @@ const HomePage = () => {
                                 <div>Some stuff</div>
                                 <div>Some stuff</div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className='url-container'>
                             <p id='profile-url'>OurPlace URL:</p>
-                            <p>{`https://ourplace.com/users/${sessionUser.id}`}</p>
+                            <p>{`https://ourplace.com/users/${user.id}`}</p>
                         </div>
 
-                        <div className='interests'>
+                        {/* <div className='interests'>
 
                             <div className='interests-top'>
-                                {`${sessionUser.username}'s Interests`}
+                                {`${user.username}'s Interests`}
                             </div>
 
                             <div className='interests-bot'>
 
                                 <div className='general-interests'>
                                     <div className='general-interests-left'>General</div>
-                                    <div className='general-interests-right'> lorum ipsum </div>
+                                    <div className='general-interests-right'>{user.general} </div>
                                 </div>
 
                                 <div className='general-interests'>
                                     <div className='general-interests-left'>Movies</div>
-                                    <div className='general-interests-right'> lorum ipsum </div>
+                                    <div className='general-interests-right'> {user.movies} </div>
                                 </div>
 
                                 <div className='general-interests'>
                                     <div className='general-interests-left'>Music</div>
-                                    <div className='general-interests-right'> lorum ipsum </div>
+                                    <div className='general-interests-right'> {user.music} </div>
                                 </div>
 
                                 <div className='general-interests'>
@@ -204,12 +245,12 @@ const HomePage = () => {
 
                             </div>
 
-                        </div>
+                        </div> */}
 
-                        <div className='interests'>
+                        {/* <div className='interests'>
 
                             <div className='interests-top'>
-                                {`${sessionUser.username}'s Links`}
+                                {`${user.username}'s Links`}
                             </div>
 
                             <div className='interests-bot'>
@@ -266,27 +307,29 @@ const HomePage = () => {
 
                             </div>
 
-                        </div>
+                        </div> */}
 
                     </div>
 
                     <div className='profile-page-right'>
                         <div className='profile-blog'>
-                            <h4>{sessionUser.username}'s Latest Blog Entries</h4>
+                            <div className='latest-blog'>
+                                Your Latest Blog Entries [<NavLink to={`/users/${user.id}/blogs/new`} id='navlink'><span id='view-more'>New Entry</span></NavLink>]
+                            </div>
                             {userBlogs.map((blog) => (
-                                <div className='blog-entry-link'>
-                                    {blog.blog_title} ({<NavLink id='navlink' to={`/blogs/${blog.id}`}>{`view more`}</NavLink>})
+                                <div className='blog-entry-link' key={blog.id}>
+                                    {blog.blog_title} ({<NavLink id='navlink' to={`/blogs/${blog.id}`}><span id='view-more'>{`view more`}</span></NavLink>})
                                 </div>
                             ))}
 
                             <div className='blog-entries-link'>
-                                [<NavLink id='navlink' to={`/users/${sessionUser.id}/blogs`}>View all blog entries</NavLink>]
+                                [<NavLink id='navlink' to={`/users/${user.id}/blogs`}><span id='view-more'>View all blog entries</span></NavLink>]
                             </div>
                         </div>
 
-                        <div className='profile-blurbs'>
+                        {/* <div className='profile-blurbs'>
                             <div className='blurbs-top'>
-                                {`${sessionUser.username}'s Blurbs`}
+                                {`${user.username}'s Blurbs`}
                             </div>
 
                             <div className='blurbs-bot'>
@@ -298,35 +341,32 @@ const HomePage = () => {
                                     <h4>Who I'd like to meet:</h4>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className='profile-friends'>
                             <div className='friends-top'>
-                                {`${sessionUser.username}'s Friend Space`}
+                                Cool New People
                             </div>
 
                             <div className='friends-bot'>
-                                {allUsers.map(user => <div>{user.username}</div>)}
+                                {allUsers?.map(user => <div key={user.id}>{user.username}</div>)}
                             </div>
                         </div>
 
-                        <div className='profile-comments'>
+                        {/* <div className='profile-comments'>
                             <div className='friends-top'>
-                                {`${sessionUser.username}'s Friends Comments`}
+                                {`${user.username}'s Friends Comments`}
                             </div>
 
                             <div className='comments-mid'>
                                 Diplaying <span id='comments-length'>{userComments.length}</span> of <span id='comments-length'>{userComments.length}</span> comments ({<NavLink id='navlink' to={`/users/${sessionUser.id}/comments`}>View all</NavLink>} | {<NavLink id='navlink' to={`/users/${sessionUser.id}/comments/new`}>Add Comment</NavLink>})
                             </div>
 
-                            {/* <div>{`Displaying ${userComments.filter(user => user.id === comment.commenter)}`}</div> */}
-
                             <div className='comments-bot'>
-                                {/* {userComments?.map((comment) => (<div>{comment?.comment_body}</div>))} */}
 
                                 {userComments?.map((comment) =>
                                     allUsers.map((user) => user.id === comment.commenter ?
-                                        <div className='comments-rows'>
+                                        <div className='comments-rows' key={user.id}>
                                             <div className='comments-rows-left'>
                                                 <div className='comment-username'>
                                                     <NavLink className='comment-username' to={`/users/${user.id}`}>{user.username}</NavLink>
@@ -349,7 +389,7 @@ const HomePage = () => {
                                         : null))}
 
                             </div>
-                        </div>
+                        </div> */}
 
                     </div>
 

@@ -5,12 +5,13 @@ import { getUserBlogs, getBlogs, resetBlog } from '../store/blog'
 import { getComments, getUserComments, resetComment } from '../store/comments';
 import defaultPic from './images/user.png'
 import './User.css'
-import { loadUsers } from '../store/users';
+import { loadUsers, resetUser, getOneUser } from '../store/users';
 
 function User() {
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const { userId } = useParams();
   const [loaded, setLoaded] = useState(false);
+  const user = useSelector(state => state.users.user);
 
   const blogs = useSelector(state => state.blogs.blogs)
   const userBlogs = Object.values(blogs).filter(blog => blog.user_id === +userId)
@@ -31,22 +32,38 @@ function User() {
   // console.log('ooooooooooooooo',blogs)
 
 
-  useEffect(() => {
-    if (!userId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
-      setUser(user);
-    })();
-  }, [userId]);
+  // useEffect(() => {
+  //   if (!userId) {
+  //     return;
+  //   }
+  //   (async () => {
+  //     const response = await fetch(`/api/users/${userId}`);
+  //     const user = await response.json();
+  //     setUser(user);
+  //   })();
+  // }, [userId]);
 
   useEffect(() => {
+    dispatch(getOneUser(userId))
     dispatch((loadUsers()))
     dispatch(getBlogs())
     dispatch(getComments()).then(() => setLoaded(true))
-  }, [dispatch])
+
+    return () => {
+      dispatch(resetUser())
+      dispatch(resetBlog())
+      dispatch(resetComment())
+  }
+  }, [dispatch, userId])
+
+
+// useEffect(()=> {
+//     dispatch(getBlogs())
+// },[dispatch])
+
+// useEffect(() => {
+//     dispatch(getComments()).then(() => setLoaded(true))
+// }, [dispatch])
 
 
   // useEffect(() => {
@@ -112,12 +129,12 @@ function User() {
 
             <div className='general-interests'>
               <div className='general-interests-left'>Movies</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.movies} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>Music</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.music} </div>
             </div>
 
             <div className='general-interests'>
@@ -208,7 +225,7 @@ function User() {
         <div className='profile-blog'>
           <h4>{user.username}'s Latest Blog Entries</h4>
           {userBlogs.map((blog) => (
-            <div className='blog-entry-link'>
+            <div className='blog-entry-link' key={blog.id}>
               {blog.blog_title} ({<NavLink id='navlink' to={`/blogs/${blog.id}`}>{`view more`}</NavLink>})
             </div>
           ))}

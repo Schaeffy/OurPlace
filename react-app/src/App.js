@@ -15,6 +15,7 @@ import SignUpPage from './components/auth/SignUpPage';
 import UserBlog from './components/Blog/UserBlog';
 import BlogEntry from './components/Blog/BlogEntry';
 import Footer from './components/Footer/Footer';
+import EditProfile from './components/UserEditForms/EditProfile';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -65,6 +66,10 @@ function App() {
 
         <Route path='/blogs/:blogId' exact={true} >
           <BlogEntry />
+        </Route>
+
+        <Route path='/users/:userId/edit' exact={true} >
+          <EditProfile />
         </Route>
 
       </Switch>

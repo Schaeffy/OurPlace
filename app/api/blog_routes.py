@@ -25,3 +25,48 @@ def get_all_blogs():
 def get_one_blog(id):
     blog = Blog.query.get(id)
     return blog.to_dict()
+
+@blog_routes.route('/new', methods=['POST'])
+@login_required
+def create_blogpost(id):
+    form = BlogForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        blog = Blog(
+            user_id=current_user.id,
+            title=form.data['title'],
+            body=form.data['body']
+        )
+        db.session.add(blog)
+        db.session.commit()
+        return blog.to_dict()
+    return {'errors': validation_errors(form.errors)}, 401
+
+
+@blog_routes.route('/<int:blogId>', methods=['DELETE'])
+@login_required
+def delete_blogpost(id):
+    blog = Blog.query.get(id)
+    db.session.delete(blog)
+    db.session.commit()
+    return {"message": "Blog post deleted"}
+
+
+@blog_routes.route('blogs/<int:blogId>', methods=['PUT'])
+@login_required
+def edit_blogpost(id):
+    blog = Blog.query.get(id)
+    form = BlogForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if current_user.id != blog.user_id:
+        return {"errors": "You can't edit this blog post"}
+    if not blog:
+        return {"errors": "Blog post not found"}
+
+    if form.validate_on_submit():
+        blog.title = form.data['title']
+        blog.body = form.data['body']
+        db.session.commit()
+        return blog.to_dict()
+    return {'errors': validation_errors(form.errors)}, 401

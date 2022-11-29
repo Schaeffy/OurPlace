@@ -98,3 +98,45 @@
     /* padding-top: 10px; */
     text-align: right;
 }
+
+
+.profile-page-left-top {
+
+    border: 1px solid #1E40AF;
+    color: #1E40AF;
+}
+
+.name {
+    background-color: #5FA4FA;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px
+}
+
+.general {
+    padding: 5px;
+}
+
+.mood {
+    padding: 5px;
+}
+
+.profile-edits {
+    padding: 5px 0;
+    font-weight: bold;
+    font-size: 80%;
+}
+
+#view-more{
+    font-weight: bold;
+    font-size: 80%;
+}
+
+.view-my {
+    font-weight: bold;
+    font-size: 80%;
+}
+
+.latest-blog {
+    font-weight: bold;
+}

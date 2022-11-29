@@ -81,7 +81,7 @@ export const getOneBlog = (blogId) => async (dispatch) => {
 }
 
 export const createBlog = (blog, userId) => async (dispatch) => {
-    const res = await fetch(`/api/blogs/${userId}`, {
+    const res = await fetch(`/api/blogs/new`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

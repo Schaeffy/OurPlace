@@ -1,0 +1,33 @@
+.edit-profile-container {
+    width: 900px;
+    max-width: 100%;
+    min-width: 900px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+}
+
+.edit-profile-form-container {
+    padding: 20px;
+}
+
+.edit-profile-textarea {
+    width: 80%;
+    height: 200px;
+    resize: none;
+}
+
+#form-label {
+    font-weight: bold;
+    padding: 15px 0;
+}
+
+#category {
+    padding-top: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 20px;
+}
+
+.edit-profile-form-button {
+    padding-top: 15px;
+}

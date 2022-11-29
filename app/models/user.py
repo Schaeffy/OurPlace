@@ -24,6 +24,7 @@ class User(db.Model, UserMixin):
     ethnicity = db.Column(db.String(100))
     occupation = db.Column(db.String(100))
     about_me = db.Column(db.Text)
+    general = db.Column(db.Text)
     music = db.Column(db.Text)
     movies = db.Column(db.Text)
     television = db.Column(db.Text)
@@ -97,6 +98,7 @@ class User(db.Model, UserMixin):
             "ethnicity": self.ethnicity,
             "occupation": self.occupation,
             "about_me": self.about_me,
+            "general": self.general,
             "music": self.music,
             "movies": self.movies,
             "television": self.television,

@@ -4,47 +4,47 @@ from wtforms.validators import DataRequired, ValidationError
 
 
 class ProfileForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired()])
-    profile_img = StringField('profile_img', validators=[DataRequired()])
-    profile_name = StringField('profile_name', validators=[DataRequired()])
-    status = StringField('status', validators=[DataRequired()])
-    mood = StringField('mood', validators=[DataRequired()])
-    brief_you = StringField('brief_you', validators=[DataRequired()])
-    hometown = StringField('hometown', validators=[DataRequired()])
-    ethnicity = StringField('ethnicity', validators=[DataRequired()])
-    occupation = StringField('occupation', validators=[DataRequired()])
-    about_me = TextAreaField('about_me', validators=[DataRequired()])
-    music = TextAreaField('music', validators=[DataRequired()])
-    movies = TextAreaField('movies', validators=[DataRequired()])
-    television = TextAreaField('television', validators=[DataRequired()])
-    books = TextAreaField('books', validators=[DataRequired()])
-    heroes = TextAreaField('heroes', validators=[DataRequired()])
-    instagram = StringField('instagram', validators=[DataRequired()])
-    snapchat = StringField('snapchat', validators=[DataRequired()])
-    github = StringField('github', validators=[DataRequired()])
-    twitter = StringField('twitter', validators=[DataRequired()])
-    youtube = StringField('youtube', validators=[DataRequired()])
-    twitch = StringField('twitch', validators=[DataRequired()])
-    tiktok = StringField('tiktok', validators=[DataRequired()])
-    soundcloud = StringField('soundcloud', validators=[DataRequired()])
-    spotify = StringField('spotify', validators=[DataRequired()])
-    pintrest = StringField('pintrest', validators=[DataRequired()])
+    profile_img = StringField('profile_img')
+    profile_name = StringField('profile_name')
+    status = StringField('status')
+    mood = StringField('mood')
+    brief_you = StringField('brief_you')
+    here_for = StringField('here_for')
+    hometown = StringField('hometown')
+    ethnicity = StringField('ethnicity')
+    occupation = StringField('occupation')
+    about_me = TextAreaField('about_me')
+    general = TextAreaField('general')
+    music = TextAreaField('music')
+    movies = TextAreaField('movies')
+    television = TextAreaField('television')
+    books = TextAreaField('books')
+    heroes = TextAreaField('heroes')
+    instagram = StringField('instagram')
+    snapchat = StringField('snapchat')
+    github = StringField('github')
+    twitter = StringField('twitter')
+    youtube = StringField('youtube')
+    twitch = StringField('twitch')
+    tiktok = StringField('tiktok')
+    soundcloud = StringField('soundcloud')
+    spotify = StringField('spotify')
+    pintrest = StringField('pintrest')
     submit = SubmitField('Submit')
 
     def to_dict(self):
         return {
-            'username': self.username.data,
-            'email': self.email.data,
             'profile_img': self.profile_img.data,
             'profile_name': self.profile_name.data,
             'status': self.status.data,
             'mood': self.mood.data,
             'brief_you': self.brief_you.data,
+            'here_for': self.here_for.data,
             'hometown': self.hometown.data,
             'ethnicity': self.ethnicity.data,
             'occupation': self.occupation.data,
             'about_me': self.about_me.data,
+            'general': self.general.data,
             'music': self.music.data,
             'movies': self.movies.data,
             'television': self.television.data,

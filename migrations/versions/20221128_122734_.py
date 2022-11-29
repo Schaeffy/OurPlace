@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 2d46c1b32141
+Revision ID: e87fc6f10d40
 Revises: 
-Create Date: 2022-11-27 17:22:16.980727
+Create Date: 2022-11-28 12:27:34.900989
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2d46c1b32141'
+revision = 'e87fc6f10d40'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,12 +32,13 @@ def upgrade():
     sa.Column('hometown', sa.String(length=100), nullable=True),
     sa.Column('ethnicity', sa.String(length=100), nullable=True),
     sa.Column('occupation', sa.String(length=100), nullable=True),
-    sa.Column('about_me', sa.String(), nullable=True),
-    sa.Column('music', sa.String(), nullable=True),
-    sa.Column('movies', sa.String(), nullable=True),
-    sa.Column('television', sa.String(), nullable=True),
-    sa.Column('books', sa.String(), nullable=True),
-    sa.Column('heroes', sa.String(), nullable=True),
+    sa.Column('about_me', sa.Text(), nullable=True),
+    sa.Column('general', sa.Text(), nullable=True),
+    sa.Column('music', sa.Text(), nullable=True),
+    sa.Column('movies', sa.Text(), nullable=True),
+    sa.Column('television', sa.Text(), nullable=True),
+    sa.Column('books', sa.Text(), nullable=True),
+    sa.Column('heroes', sa.Text(), nullable=True),
     sa.Column('instagram', sa.String(length=100), nullable=True),
     sa.Column('snapchat', sa.String(length=100), nullable=True),
     sa.Column('github', sa.String(length=100), nullable=True),
