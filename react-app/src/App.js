@@ -16,6 +16,8 @@ import UserBlog from './components/Blog/UserBlog';
 import BlogEntry from './components/Blog/BlogEntry';
 import Footer from './components/Footer/Footer';
 import EditProfile from './components/UserEditForms/EditProfile';
+import CreateBlogEntry from './components/Blog/BlogForm';
+import EditBlogEntry from './components/Blog/EditBlog';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -60,12 +62,22 @@ function App() {
           <HomePage />
         </Route>
 
+
         <Route path='/blogs' exact={true} >
           <Blogs />
         </Route>
 
+        {/* <Switch> */}
+        <Route path='/blogs/new' exact >
+          <CreateBlogEntry />
+        </Route>
         <Route path='/blogs/:blogId' exact={true} >
           <BlogEntry />
+        </Route>
+        {/* </Switch> */}
+
+        <Route path='/blogs/:blogId/edit' exact={true} >
+          <EditBlogEntry />
         </Route>
 
         <Route path='/users/:userId/edit' exact={true} >

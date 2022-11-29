@@ -1,0 +1,21 @@
+.blog-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    max-width: 100%;
+    min-width: 900px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 20px;
+}
+
+.blog-title-input, .blog-body-input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 60%;
+    resize: none;
+}
+
+.blog-body-input {
+    height: 300px;
+}

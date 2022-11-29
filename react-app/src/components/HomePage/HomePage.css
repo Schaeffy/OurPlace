@@ -140,3 +140,8 @@
 .latest-blog {
     font-weight: bold;
 }
+
+
+#navlink:hover {
+    color: #FF6600;
+}

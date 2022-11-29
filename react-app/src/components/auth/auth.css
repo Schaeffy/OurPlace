@@ -14,3 +14,7 @@
     height: 20%;
     text-align: center;
 }
+
+.logout-button:hover {
+    text-decoration: underline;
+}

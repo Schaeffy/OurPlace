@@ -24,10 +24,9 @@ const loadOne = (blog) => ({
     blog,
 });
 
-const create = (blog, userId) => ({
+const create = (blog) => ({
     type: CREATE,
     blog,
-    userId,
 });
 
 const update = (blog) => ({
@@ -80,7 +79,7 @@ export const getOneBlog = (blogId) => async (dispatch) => {
     }
 }
 
-export const createBlog = (blog, userId) => async (dispatch) => {
+export const createBlog = (blog) => async (dispatch) => {
     const res = await fetch(`/api/blogs/new`, {
         method: 'POST',
         headers: {
@@ -90,12 +89,13 @@ export const createBlog = (blog, userId) => async (dispatch) => {
     });
     if (res.ok) {
         const blog = await res.json();
-        dispatch(create(blog, userId));
+        dispatch(create(blog));
+        return blog
     }
 }
 
-export const updateBlog = (blog) => async (dispatch) => {
-    const res = await fetch(`/api/blogs/${blog.id}`, {
+export const updateBlog = (blog, blogId) => async (dispatch) => {
+    const res = await fetch(`/api/blogs/${blogId}/edit`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -105,6 +105,7 @@ export const updateBlog = (blog) => async (dispatch) => {
     if (res.ok) {
         const blog = await res.json();
         dispatch(update(blog));
+        return blog
     }
 }
 

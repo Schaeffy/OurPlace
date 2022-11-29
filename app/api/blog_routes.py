@@ -28,14 +28,14 @@ def get_one_blog(id):
 
 @blog_routes.route('/new', methods=['POST'])
 @login_required
-def create_blogpost(id):
+def create_blogpost():
     form = BlogForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         blog = Blog(
             user_id=current_user.id,
-            title=form.data['title'],
-            body=form.data['body']
+            blog_title=form.data['blog_title'],
+            blog_body=form.data['blog_body']
         )
         db.session.add(blog)
         db.session.commit()
@@ -52,7 +52,7 @@ def delete_blogpost(id):
     return {"message": "Blog post deleted"}
 
 
-@blog_routes.route('blogs/<int:blogId>', methods=['PUT'])
+@blog_routes.route('blogs/<int:blogId>/edit', methods=['PUT'])
 @login_required
 def edit_blogpost(id):
     blog = Blog.query.get(id)
@@ -65,8 +65,8 @@ def edit_blogpost(id):
         return {"errors": "Blog post not found"}
 
     if form.validate_on_submit():
-        blog.title = form.data['title']
-        blog.body = form.data['body']
+        blog.title = form.data['blog_title']
+        blog.body = form.data['blog_body']
         db.session.commit()
         return blog.to_dict()
     return {'errors': validation_errors(form.errors)}, 401

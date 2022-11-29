@@ -10,7 +10,7 @@ import defaultPic from '../images/user.png'
 
 
 const BlogEntry = () => {
-    // const sessionUser = useSelector(state => state.session.user);
+    const sessionUser = useSelector(state => state.session.user);
     const { blogId } = useParams()
     const [loaded, setLoaded] = useState(false);
     const users = useSelector(state => state.users.users);
@@ -30,11 +30,11 @@ const BlogEntry = () => {
         <div className='blog-container'>
             <div className='blog-profile'>
                 <div className='blog-profile-pic'>
-                    <img className='blog-profile-img' src={blogUser.profile_img ? blogUser.profile_img : defaultPic} alt='' />
+                    <img className='blog-profile-img' src={blogUser?.profile_img ? blogUser?.profile_img : defaultPic} alt='' />
                 </div>
                 <div className='blog-profile-info'>
                     <div className='published'>
-                        Published by <NavLink id='navlink' to={`/users/${blogUser.id}`}>{blogUser.username}</NavLink>
+                        Published by <NavLink id='navlink' to={`/users/${blogUser?.id}`}>{blogUser?.username}</NavLink>
                     </div>
                     <div className='published-date'>
                         Published: {new Date(blog.created_at).toLocaleDateString()}
@@ -44,16 +44,26 @@ const BlogEntry = () => {
                     </div>
 
                     <div className='view'>
-                        <NavLink id='navlink' to={`/users/${blogUser.id}/blogs`}>View Blog</NavLink>
+                        <NavLink id='navlink' to={`/users/${blogUser?.id}/blogs`}>View Blog</NavLink>
                     </div>
 
                     <div className='view'>
-                        <NavLink id='navlink' to={`/users/${blogUser.id}/`}>View Profile</NavLink>
+                        <NavLink id='navlink' to={`/users/${blogUser?.id}/`}>View Profile</NavLink>
                     </div>
                 </div>
             </div>
             <div className='blog-entry'>
                 <div className='blog-entry-title'>{blog.blog_title}</div>
+                {blog.user_id === sessionUser?.id &&
+                    <div className='blog-edit-delete'>
+                        [<NavLink id='navlink' to={`/blogs/${blog.id}/edit`}>Edit Blog</NavLink>]
+
+                        [<NavLink id='navlink' to={`/blogs/${blog.id}/delete`}>Delete Blog</NavLink>]
+                    </div>
+                }
+
+                {/* {blog.user_id === sessionUser.id ? ([<NavLink id='navlink' to={`/blogs/${blog.id}/edit`}>Edit Blog</NavLink>]) : null}
+                {blog.user_id === sessionUser.id ? <NavLink id='navlink' to={`/blogs/${blog.id}/delete`}>Delete Blog</NavLink> : null} */}
                 <div className='blog-entry-body'>{blog.blog_body}</div>
             </div>
         </div>
