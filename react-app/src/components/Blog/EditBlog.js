@@ -20,9 +20,9 @@ const EditBlogEntry = () => {
     useEffect(() => {
         dispatch(getOneBlog(blogId)).then(() => setLoaded(true))
 
-        return () => {
-            dispatch(resetBlog())
-        }
+        // return () => {
+        //     dispatch(resetBlog())
+        // }
     }, [dispatch, blogId])
 
     const handleSubmit = async (e) => {
@@ -32,17 +32,15 @@ const EditBlogEntry = () => {
             blog_title: title,
             blog_body: body
         }
-        const updatedBlog = await dispatch(createBlog(payload))
+        const updatedBlog = await dispatch(updateBlog(payload, blog.id))
         if (updatedBlog) {
-            history.push(`/blogs/${updatedBlog.id}`)
+            history.push(`/blogs/${blog.id}`)
             // return <Redirect to={`/blogs/${updatedBlog.id}`} />;
         }
     }
 
 
     return (
-
-        loaded &&
             <div className="blog-form-container">
                 <div className="blog-form">
                     <h2>Create a Blog Entry</h2>

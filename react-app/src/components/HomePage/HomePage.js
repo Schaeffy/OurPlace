@@ -314,9 +314,9 @@ const HomePage = () => {
                     <div className='profile-page-right'>
                         <div className='profile-blog'>
                             <div className='latest-blog'>
-                                Your Latest Blog Entries [<NavLink to={`/users/${user.id}/blogs/new`} id='navlink'><span id='view-more'>New Entry</span></NavLink>]
+                                Your Latest Blog Entries [<NavLink to={`/blogs/new`} id='navlink'><span id='view-more'>New Entry</span></NavLink>]
                             </div>
-                            {userBlogs.map((blog) => (
+                            {userBlogs.reverse().slice(0,5).map((blog) => (
                                 <div className='blog-entry-link' key={blog.id}>
                                     {blog.blog_title} ({<NavLink id='navlink' to={`/blogs/${blog.id}`}><span id='view-more'>{`view more`}</span></NavLink>})
                                 </div>

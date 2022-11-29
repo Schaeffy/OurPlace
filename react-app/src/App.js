@@ -18,6 +18,7 @@ import Footer from './components/Footer/Footer';
 import EditProfile from './components/UserEditForms/EditProfile';
 import CreateBlogEntry from './components/Blog/BlogForm';
 import EditBlogEntry from './components/Blog/EditBlog';
+import DeleteBlogEntry from './components/Blog/DeleteBlog';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -76,11 +77,15 @@ function App() {
         </Route>
         {/* </Switch> */}
 
-        <Route path='/blogs/:blogId/edit' exact={true} >
+        <Route path='/blogs/:blogId/edit' exact >
           <EditBlogEntry />
         </Route>
 
-        <Route path='/users/:userId/edit' exact={true} >
+        <Route path='/blogs/:blogId/delete' exact >
+          <DeleteBlogEntry />
+        </Route>
+
+        <Route path='/users/:userId/edit' exact >
           <EditProfile />
         </Route>
 

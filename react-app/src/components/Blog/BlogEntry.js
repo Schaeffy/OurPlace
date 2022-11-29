@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { getBlogs, getOneBlog } from '../../store/blog';
+import { getBlogs, getOneBlog, resetBlog } from '../../store/blog';
 import './BlogEntry.css'
-import { loadUsers } from '../../store/users';
+import { loadUsers, resetUser } from '../../store/users';
 import defaultPic from '../images/user.png'
 
 
@@ -16,13 +16,18 @@ const BlogEntry = () => {
     const users = useSelector(state => state.users.users);
     const dispatch = useDispatch()
     const blog = useSelector(state => state.blogs.singleBlog)
-    const blogUser = Object.values(users).filter(user => user.id === blog.user_id)[0]
+    const blogUser = Object.values(users).filter(user => user.id === blog?.user_id)[0]
     console.log('blogUser', blogUser)
     // const allBlogs = Object.values(blogs)
 
     useEffect(() => {
-        dispatch(loadUsers())
-        dispatch(getOneBlog(blogId)).then(() => setLoaded(true))
+        dispatch(loadUsers()).then(
+        dispatch(getOneBlog(blogId))).then(() => setLoaded(true))
+
+        // return () => {
+        //     dispatch(resetBlog())
+        //     dispatch(resetUser())
+        // }
     }, [dispatch, blogId])
 
 

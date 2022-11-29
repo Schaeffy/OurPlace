@@ -43,16 +43,17 @@ def create_blogpost():
     return {'errors': validation_errors(form.errors)}, 401
 
 
-@blog_routes.route('/<int:blogId>', methods=['DELETE'])
+@blog_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_blogpost(id):
     blog = Blog.query.get(id)
     db.session.delete(blog)
     db.session.commit()
-    return {"message": "Blog post deleted"}
+    return blog.to_dict()
+# return {"message": "Blog post deleted"}
 
 
-@blog_routes.route('blogs/<int:blogId>/edit', methods=['PUT'])
+@blog_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def edit_blogpost(id):
     blog = Blog.query.get(id)
@@ -65,8 +66,8 @@ def edit_blogpost(id):
         return {"errors": "Blog post not found"}
 
     if form.validate_on_submit():
-        blog.title = form.data['blog_title']
-        blog.body = form.data['blog_body']
+        blog.blog_title = form.data['blog_title']
+        blog.blog_body = form.data['blog_body']
         db.session.commit()
         return blog.to_dict()
     return {'errors': validation_errors(form.errors)}, 401

@@ -37,6 +37,9 @@
     /* font-size: 90%; */
     margin-top: 20px;
     margin-left: 10px;
+    white-space: wrap;
+    line-break: auto;
+    word-break: break-all;
 }
 
 .published {

@@ -14,6 +14,9 @@
     background-color: #BFDBFE;
     margin-top: 15px;
     padding: 15px;
+    white-space: normal;
+    line-break: normal;
+    word-break: break-all;
 }
 
 .blog-title {

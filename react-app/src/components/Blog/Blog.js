@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { getBlogs } from '../../store/blog';
+import { getBlogs, resetBlog } from '../../store/blog';
 import './Blog.css'
 import { loadUsers } from '../../store/users';
 
@@ -10,7 +10,7 @@ import { loadUsers } from '../../store/users';
 
 const Blogs = () => {
     const sessionUser = useSelector(state => state.session.user);
-    console.log(sessionUser)
+    // console.log(sessionUser)
     // const user = useSelector(state => state.user);
     const { userId } = useParams();
     const dispatch = useDispatch()
@@ -24,20 +24,25 @@ const Blogs = () => {
     const allUsers = Object.values(users)
 
     useEffect(() => {
-        dispatch(getBlogs())
-        dispatch(loadUsers()).then(() => setLoaded(true))
+
+        dispatch(loadUsers()).then(
+        dispatch(getBlogs())).then(() => setLoaded(true))
+
+        return () => {
+            dispatch(resetBlog())
+        }
     }, [dispatch])
 
 
     return (
-        loaded &&
+        loaded &&(
         <div className='blogs-container'>
             <h1>Blogs</h1>
-            {allBlogs.map(blog => {
+            {allBlogs?.map(blog => {
                 return (
                     <div className='blog-entry-container' key={blog.id}>
                         <div className='blog-info'>
-                            {new Date(blog.created_at).toLocaleDateString()} — by {allUsers.map(user => user.id === blog.user_id ? <NavLink id='navlink' to={`/users/${user.id}`}>{user.username}</NavLink> : null)}
+                            {new Date(blog.created_at).toLocaleDateString()} — by {allUsers?.map(user => user.id === blog.user_id ? <NavLink id='navlink' to={`/users/${user.id}`}>{user?.username}</NavLink> : null)}
                         </div>
                         <div className='blog-title'>{blog.blog_title}</div>
                         <div className='blog-body'>
@@ -47,7 +52,7 @@ const Blogs = () => {
                     </div>
                 )
             })}
-        </div>
+        </div>)
     )
 }
 

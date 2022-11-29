@@ -34,9 +34,9 @@ const update = (blog) => ({
     blog,
 });
 
-const remove = (blogId) => ({
+const remove = (blog) => ({
     type: REMOVE,
-    blogId,
+    blog,
 });
 
 export const resetBlog = () => ({
@@ -95,7 +95,7 @@ export const createBlog = (blog) => async (dispatch) => {
 }
 
 export const updateBlog = (blog, blogId) => async (dispatch) => {
-    const res = await fetch(`/api/blogs/${blogId}/edit`, {
+    const res = await fetch(`/api/blogs/${blogId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -103,9 +103,9 @@ export const updateBlog = (blog, blogId) => async (dispatch) => {
         body: JSON.stringify(blog),
     });
     if (res.ok) {
-        const blog = await res.json();
-        dispatch(update(blog));
-        return blog
+        const editedBlog = await res.json();
+        dispatch(update(editedBlog));
+        return editedBlog
     }
 }
 
@@ -114,7 +114,9 @@ export const deleteBlog = (blogId) => async (dispatch) => {
         method: 'DELETE',
     });
     if (res.ok) {
-        dispatch(remove(blogId));
+        const deleted = await res.json();
+        dispatch(remove(deleted));
+        return deleted
     }
 }
 
@@ -155,7 +157,11 @@ const blogReducer = (state = initialState, action) => {
             return newState;
         case REMOVE:
             newState = Object.assign({}, state);
-            delete newState.blogs[action.blogId];
+            // console.log('-----------',action.blog)
+            delete newState.blogs[action.blog];
+            if (newState.singleBlog.id === action.blog.id) {
+                newState.singleBlog = {};
+            }
             return newState;
         case RESET:
             return initialState;
