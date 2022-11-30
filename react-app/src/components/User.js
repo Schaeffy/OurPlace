@@ -264,7 +264,7 @@ function User() {
           </div>
 
           <div className='friends-bot'>
-            {allUsers.map(user => <div>{user.username}</div>)}
+            {allUsers?.map(user => <div key={user.id}>{user.username}</div>)}
           </div>
         </div>
 
@@ -284,7 +284,7 @@ function User() {
 
             {userComments?.reverse().map((comment) =>
               allUsers.map((user) => user.id === comment.commenter ?
-                <div className='comments-rows'>
+                <div className='comments-rows' key={comment.id}>
                   <div className='comments-rows-left'>
                     <div className='comment-username'>
                       <NavLink className='comment-username' to={`/users/${user.id}`}>{user.username}</NavLink>

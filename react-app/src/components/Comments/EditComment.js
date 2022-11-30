@@ -37,24 +37,33 @@ const EditComment = () => {
         }
     }
 
+    const handleCancel = async (e) => {
+        e.preventDefault()
+        history.goBack()
+    }
+
+
 
     return (
         loaded &&
-            <div className="blog-form-container">
-                <div className="blog-form">
-                    <h2>Edit Comment</h2>
-                    <br />
-                    <form onSubmit={handleSubmit}>
-                        <div className="">
-                            <div>
-                                <label id='blog-form-title'>Content: </label>
-                            </div>
-                            <textarea className='blog-body-input' value={body} onChange={(e) => setBody(e.target.value)} />
+        <div className="blog-form-container">
+            <div className="blog-form">
+                <h2>Edit Comment</h2>
+                <br />
+                <form onSubmit={handleSubmit}>
+                    <div className="">
+                        <div>
+                            <label id='blog-form-title'>Content: </label>
                         </div>
-                        <button className='blog-submit-button' type="submit">Update Blog Entry</button>
-                    </form>
-                </div>
+                        <textarea className='blog-body-input' value={body} onChange={(e) => setBody(e.target.value)} />
+                    </div>
+                    <div className='blog-form-buttons'>
+                        <button className='blog-submit-button' type="submit">Update Comment</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div>
+                </form>
             </div>
+        </div>
     )
 }
 

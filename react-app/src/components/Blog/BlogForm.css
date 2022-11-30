@@ -19,3 +19,13 @@
 .blog-body-input {
     height: 300px;
 }
+
+.blog-form-buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+}
+
+#delete-message{
+    padding-bottom: 20px;
+}

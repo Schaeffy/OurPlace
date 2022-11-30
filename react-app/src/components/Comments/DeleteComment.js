@@ -48,10 +48,13 @@ const DeleteComment = () => {
                 <h2>Delete Comment</h2>
                 <br />
                 <form onSubmit={handleSubmit}>
-                    <p>Are you sure you want to delete this comment?</p>
-                    <button type="submit">Delete Comment</button>
+                    <div id='delete-message'>Are you sure you want to delete this comment?</div>
+                    <div className='blog-form-buttons'>
+                        <button type="submit">Delete Comment</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div>
+
                 </form>
-                <button onClick={handleCancel}>Cancel</button>
             </div>
         </div>
     )

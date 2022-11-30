@@ -63,9 +63,11 @@ const EditBlogEntry = () => {
                             </div>
                             <textarea className='blog-body-input' value={body} onChange={(e) => setBody(e.target.value)} />
                         </div>
+                        <div className='blog-form-buttons'>
                         <button className='blog-submit-button' type="submit">Update Blog Entry</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                        </div>
                     </form>
-                    <button onClick={handleCancel}>Cancel</button>
                 </div>
             </div>
     )
