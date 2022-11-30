@@ -1,0 +1,39 @@
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    max-width: 100%;
+    min-width: 900px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    /* padding: 10px; */
+    justify-content: center;
+    align-items: center;
+}
+
+.comments-inner {
+    padding-bottom: 40px;
+}
+
+#comments-page-username{
+    padding: 20px 0 10px 0;
+}
+
+#comments-page-pic {
+    padding-bottom: 10px;
+}
+
+#comments-profile-pic {
+    padding-top: 20px;
+    max-width: 120px;
+    max-height: 120px;
+}
+
+.comments-inner > h3 {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+#comments-navlink {
+    padding-bottom: 30px;
+}

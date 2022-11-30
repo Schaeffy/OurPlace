@@ -72,8 +72,8 @@ export const getOneComment = (commentId) => async (dispatch) => {
 
 
 
-export const createComment = (userId, comment) => async (dispatch) => {
-    const res = await fetch(`/api/comments/${userId}`, {
+export const createComment = (comment, userId) => async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}/comments/new`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

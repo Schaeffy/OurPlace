@@ -113,11 +113,13 @@
     padding: 5px 10px
 }
 
-.general {
+.home-general {
+    display: flex;
+    flex-direction: row;
     padding: 5px;
 }
 
-.mood {
+.home-mood {
     padding: 5px;
 }
 

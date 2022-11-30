@@ -1,0 +1,18 @@
+.create-comment-container {
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    max-width: 100%;
+    min-width: 900px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 20px;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.create-comment-form-input {
+    width: 80%;
+    resize: none;
+    height: 200px;
+}

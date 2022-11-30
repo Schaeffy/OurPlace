@@ -154,7 +154,7 @@ const HomePage = () => {
                                 <h2>Hello, {user.username}!</h2>
                             </div>
 
-                            <div className='general'>
+                            <div className='home-general'>
                                 <div className='profile-pic'>
                                     <img id='profile-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
                                 </div>
@@ -174,7 +174,7 @@ const HomePage = () => {
                                 </div>
                             </div>
 
-                            <div className='mood'>
+                            <div className='home-mood'>
                                 <div className='view-my'>
                                     <span>View My: </span>
                                     <NavLink to={`/users/${user.id}`} id='navlink'>Profile</NavLink> | <NavLink to={`/users/${user.id}/blogs`} id='navlink'>Blogs</NavLink> | <NavLink to={`/users/${user.id}/comments`} id='navlink'>Comments</NavLink>
@@ -313,8 +313,8 @@ const HomePage = () => {
 
                     <div className='profile-page-right'>
                         <div className='profile-blog'>
-                            <div className='latest-blog'>
-                                Your Latest Blog Entries [<NavLink to={`/blogs/new`} id='navlink'><span id='view-more'>New Entry</span></NavLink>]
+                            <div>
+                                <span className='latest-blog'>Your Latest Blog Entries</span> [<NavLink to={`/blogs/new`} id='navlink'><span id='view-more'>New Entry</span></NavLink>]
                             </div>
                             {userBlogs.reverse().slice(0,5).map((blog) => (
                                 <div className='blog-entry-link' key={blog.id}>

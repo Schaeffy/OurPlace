@@ -31,17 +31,23 @@ const UserBlog = () => {
     return (
         loaded &&
         <div className='user-blog-container'>
-        <div className='blog-profile'>
+            <div className='blog-entry-profile'>
+                <div className='blog-username'>
+                    {user?.username}
+                </div>
                 <div className='blog-profile-pic'>
                     <img className='blog-profile-img' src={user?.profile_img ? user?.profile_img : defaultPic} alt='' />
                 </div>
                 <div className='blog-profile-info'>
-                    <div className='published'>
-                        Published by <NavLink id='navlink' to={`/users/${user?.id}`}>{user?.username}</NavLink>
+                    <div className='blog-profile-details'>
+                        {user?.status}
+                    </div>
+                    <div className='blog-profile-details'>
+                        Mood: {user?.mood}
                     </div>
 
-                    <div className='view'>
-                        <NavLink id='navlink' to={`/users/${user?.id}/blogs`}>View Blog</NavLink>
+                    <div className='blog-profile-details'>
+                        {user?.brief_you}
                     </div>
 
                     <div className='view'>
@@ -49,18 +55,20 @@ const UserBlog = () => {
                     </div>
                 </div>
             </div>
-            <h1>Blogs</h1>
-            {allBlogs.map(blog => {
-                return (
-                    <div className='blog-entry-container' key={blog.id}>
-                        <div className='blog-title'>{blog.blog_title}</div>
-                        <div className='blog-body'>
-                            {blog.blog_body.length > 400 ? blog.blog_body.slice(0, 400) + '...' : blog.blog_body} <NavLink id='navlink' to={`/blogs/${blog.id}`}>» Continue Reading</NavLink>
-                            <div><NavLink id='navlink' to={`/blogs/${blog.id}`}>» View Blog Entry</NavLink></div>
+            <div className='blog-entry-outer'>
+                <h1>Blogs</h1>
+                {allBlogs.map(blog => {
+                    return (
+                        <div className='blog-entry-container' key={blog.id}>
+                            <div className='blog-title'>{blog.blog_title}</div>
+                            <div className='blog-body'>
+                                {blog.blog_body.length > 400 ? blog.blog_body.slice(0, 400) + '...' : blog.blog_body} <NavLink id='navlink' to={`/blogs/${blog.id}`}>» Continue Reading</NavLink>
+                                <div><NavLink id='navlink' to={`/blogs/${blog.id}`}>» View Blog Entry</NavLink></div>
+                            </div>
                         </div>
-                    </div>
-                )
-            })}
+                    )
+                })}
+            </div>
         </div>
     )
 }

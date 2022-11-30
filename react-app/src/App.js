@@ -19,6 +19,8 @@ import EditProfile from './components/UserEditForms/EditProfile';
 import CreateBlogEntry from './components/Blog/BlogForm';
 import EditBlogEntry from './components/Blog/EditBlog';
 import DeleteBlogEntry from './components/Blog/DeleteBlog';
+import Comments from './components/Comments/Comments';
+import CreateComment from './components/Comments/CommentForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -87,6 +89,14 @@ function App() {
 
         <Route path='/users/:userId/edit' exact >
           <EditProfile />
+        </Route>
+
+        <Route path='/users/:userId/comments' exact >
+          <Comments />
+        </Route>
+
+        <Route path='/users/:userId/comments/new' exact >
+          <CreateComment />
         </Route>
 
       </Switch>

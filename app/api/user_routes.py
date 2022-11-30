@@ -110,15 +110,15 @@ def edit_comment(commentId):
     return {'errors': validation_errors(form.errors)}, 401
 
 
-@user_routes.route('/<int:id>/comments', methods=['POST'])
+@user_routes.route('/<int:id>/comments/new', methods=['POST'])
 @login_required
 def create_comment(id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         comment = Comment(
-            user_id=current_user.id,
-            blog_id=id,
+            commenter=current_user.id,
+            commented=id,
             comment_body=form.data['comment_body']
         )
         db.session.add(comment)

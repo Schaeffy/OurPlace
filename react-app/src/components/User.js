@@ -13,6 +13,8 @@ function User() {
   const [loaded, setLoaded] = useState(false);
   const user = useSelector(state => state.users.user);
 
+  const sessionUser = useSelector(state => state.session.user);
+
   const blogs = useSelector(state => state.blogs.blogs)
   const userBlogs = Object.values(blogs).filter(blog => blog.user_id === +userId)
   const dispatch = useDispatch();
@@ -53,17 +55,17 @@ function User() {
       dispatch(resetUser())
       dispatch(resetBlog())
       dispatch(resetComment())
-  }
+    }
   }, [dispatch, userId])
 
 
-// useEffect(()=> {
-//     dispatch(getBlogs())
-// },[dispatch])
+  // useEffect(()=> {
+  //     dispatch(getBlogs())
+  // },[dispatch])
 
-// useEffect(() => {
-//     dispatch(getComments()).then(() => setLoaded(true))
-// }, [dispatch])
+  // useEffect(() => {
+  //     dispatch(getComments()).then(() => setLoaded(true))
+  // }, [dispatch])
 
 
   // useEffect(() => {
@@ -79,8 +81,8 @@ function User() {
     loaded && <div className='profile-page-container'>
 
       <div className='profile-page-left'>
-        <div className='name'>
-          <h1>{user.username}</h1>
+        <div className='profile-name'>
+          <h2>{user.username}</h2>
         </div>
 
         <div className='general'>
@@ -280,7 +282,7 @@ function User() {
                 <div className='comments-rows'>
                   <div className='comments-rows-left'>
                     <div className='comment-username'>
-                    <NavLink className='comment-username' to={`/users/${user.id}`}>{user.username}</NavLink>
+                      <NavLink className='comment-username' to={`/users/${user.id}`}>{user.username}</NavLink>
                     </div>
                     <div>image <br /> placeholder</div>
                   </div>
@@ -292,6 +294,19 @@ function User() {
 
                     <div className='comment-body'>
                       {comment.comment_body}
+                    </div>
+
+                    <div>
+                      {sessionUser.id === comment.commenter ?
+                        <div>
+                          <NavLink to={`/users/${user.id}/comments/${comment.id}/edit`}>
+                            <button className='comment-edit-button'>Edit</button>
+                          </NavLink>
+                          <NavLink to={`/users/${user.id}/comments/${comment.id}/delete`} id='delete-comment'>
+                            <button className='comment-delete-button'>Delete</button>
+                          </NavLink>
+                        </div>
+                        : null}
                     </div>
                   </div>
 

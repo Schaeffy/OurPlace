@@ -1,6 +1,6 @@
 .user-blog-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 900px;
     max-width: 100%;
     min-width: 900px;
@@ -9,6 +9,11 @@
     padding: 10px;
 }
 
+.blog-entry-outer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
 
 .blog-entry-container {
     background-color: #BFDBFE;
@@ -31,4 +36,22 @@
 
 #blog-form-title {
     font-weight: bold;
+}
+
+.blog-username {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.blog-entry-profile{
+    /* margin: 0 0 10px 0; */
+    /* padding: 10px 20px 20px 20px; */
+    padding: 10px;
+    width: 20%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.blog-profile-details {
+    padding-top: 10px;
 }
