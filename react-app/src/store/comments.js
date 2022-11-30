@@ -67,6 +67,7 @@ export const getOneComment = (commentId) => async (dispatch) => {
     if (res.ok) {
         const comment = await res.json();
         dispatch(loadOne(comment));
+        return comment
     }
 }
 
@@ -87,9 +88,9 @@ export const createComment = (comment, userId) => async (dispatch) => {
     }
 }
 
-export const editComment = (userId, comment) => {
+export const editComment = (comment, commentId) => {
     return async (dispatch) => {
-        const res = await fetch(`/api/comments/${userId}`, {
+        const res = await fetch(`/api/comments/${commentId}/edit`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,6 +100,7 @@ export const editComment = (userId, comment) => {
         if (res.ok) {
             const data = await res.json();
             dispatch(update(data));
+            return data;
         }
     };
 }
@@ -108,7 +110,9 @@ export const deleteComment = (commentId) => async dispatch => {
         method: 'DELETE',
     });
     if (res.ok) {
+        const deleted = await res.json();
         dispatch(remove(commentId));
+        return deleted;
     }
 }
 
@@ -151,6 +155,9 @@ const commentReducer = (state = initialState, action) => {
         case REMOVE:
             newState = Object.assign({}, state);
             delete newState.comments[action.commentId];
+            if (newState.singleComment.id === action.commentId) {
+                newState.singleComment = {};
+            }
             return newState;
         case RESET:
             return initialState;

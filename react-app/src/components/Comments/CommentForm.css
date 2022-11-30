@@ -16,3 +16,15 @@
     resize: none;
     height: 200px;
 }
+
+.add-comment {
+    padding-top: 50px;
+}
+
+#comment-body{
+    font-weight: bold;
+}
+
+.comment-textarea {
+   padding-top: 20px;
+}

@@ -71,7 +71,7 @@ const Comments = () => {
 
                                 <div>
                                     {sessionUser.id === comment.commented ?
-                                    <NavLink to={`/users/${user.id}/comments/${comment.id}/delete`} id='delete-comment'>
+                                    <NavLink to={`/comments/${comment.id}/delete`} id='delete-comment'>
                                     <button>Delete</button>
                                     </NavLink>
                                     : null}

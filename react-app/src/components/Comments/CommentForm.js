@@ -46,15 +46,14 @@ const CreateComment = () => {
                         <div className="create-comment-form">
                             <div className="create-comment-form-input">
                                 <div>
-                                    <label htmlFor="body">Body: </label>
+                                    <label id='comment-body'>Your Comment: </label>
                                 </div>
-                                <div>
-                                <textarea className='create-comment-form-input' value={body} onChange={(e) => setBody(e.target.value)} />
+                                <div className='comment-textarea'>
+                                    <textarea className='create-comment-form-input' value={body} onChange={(e) => setBody(e.target.value)} />
                                 </div>
                             </div>
-                            <div>
-
-                            <button className='create-comment-form-submit-button' type="submit">Add Comment</button>
+                            <div className='add-comment'>
+                                <button className='create-comment-form-submit-button' type="submit">Add Comment</button>
                             </div>
                         </div>
                     </form>

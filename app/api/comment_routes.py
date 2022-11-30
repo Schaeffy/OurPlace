@@ -30,3 +30,30 @@ def get_current_user_comments():
 def get_comment(id):
     comment = Comment.query.get(id)
     return comment.to_dict()
+
+@comment_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_comment(id):
+    comment = Comment.query.get(id)
+    db.session.delete(comment)
+    db.session.commit()
+    return comment.to_dict()
+
+
+@comment_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_comment(id):
+    comment = Comment.query.get(id)
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if current_user.id != comment.commenter:
+        return {"errors": "You can't edit this comment"}
+    if not comment:
+        return {"errors": "Comment not found"}
+
+    if form.validate_on_submit():
+        comment.comment_body = form.data['comment_body']
+        db.session.commit()
+        return comment.to_dict()
+    return {'errors': validation_errors(form.errors)}, 401

@@ -82,34 +82,6 @@ def edit_profile(id):
 
 # COMMENT ROUTES ----------------------------------------------------------------
 
-@user_routes.route('/<int:id>/comments/<int:commentId>', methods=['DELETE'])
-@login_required
-def delete_comment(commentId):
-    comment = Comment.query.get(commentId)
-    db.session.delete(comment)
-    db.session.commit()
-    return {"message": "Comment deleted"}
-
-
-@user_routes.route('/<int:id>/comments/<int:commentId>', methods=['PUT'])
-@login_required
-def edit_comment(commentId):
-    comment = Comment.query.get(commentId)
-    form = CommentForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
-    if current_user.id != comment.user_id:
-        return {"errors": "You can't edit this comment"}
-    if not comment:
-        return {"errors": "Comment not found"}
-
-    if form.validate_on_submit():
-        comment.comment_body = form.data['comment_body']
-        db.session.commit()
-        return comment.to_dict()
-    return {'errors': validation_errors(form.errors)}, 401
-
-
 @user_routes.route('/<int:id>/comments/new', methods=['POST'])
 @login_required
 def create_comment(id):

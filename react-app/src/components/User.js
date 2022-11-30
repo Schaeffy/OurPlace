@@ -299,10 +299,10 @@ function User() {
                     <div>
                       {sessionUser.id === comment.commenter ?
                         <div>
-                          <NavLink to={`/users/${user.id}/comments/${comment.id}/edit`}>
+                          <NavLink to={`/comments/${comment.id}/edit`}>
                             <button className='comment-edit-button'>Edit</button>
                           </NavLink>
-                          <NavLink to={`/users/${user.id}/comments/${comment.id}/delete`} id='delete-comment'>
+                          <NavLink to={`/comments/${comment.id}/delete`} id='delete-comment'>
                             <button className='comment-delete-button'>Delete</button>
                           </NavLink>
                         </div>

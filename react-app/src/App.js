@@ -21,6 +21,8 @@ import EditBlogEntry from './components/Blog/EditBlog';
 import DeleteBlogEntry from './components/Blog/DeleteBlog';
 import Comments from './components/Comments/Comments';
 import CreateComment from './components/Comments/CommentForm';
+import DeleteComment from './components/Comments/DeleteComment';
+import EditComment from './components/Comments/EditComment';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -97,6 +99,14 @@ function App() {
 
         <Route path='/users/:userId/comments/new' exact >
           <CreateComment />
+        </Route>
+
+        <Route path='/comments/:commentId/edit' exact >
+          <EditComment />
+        </Route>
+
+        <Route path='/comments/:commentId/delete' exact >
+          <DeleteComment />
         </Route>
 
       </Switch>
