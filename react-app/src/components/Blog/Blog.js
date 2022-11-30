@@ -38,7 +38,16 @@ const Blogs = () => {
         loaded &&(
         <div className='blogs-container'>
             <h1>Blogs</h1>
-            {allBlogs?.map(blog => {
+
+            <div id='blog-links'>
+                [<NavLink  className='blog-links' to={`/users/${sessionUser.id}/blogs`} id='navlink'>View Your Blog</NavLink>]
+            </div>
+
+            <div id='blog-links'>
+                [<NavLink  className='blog-links' to={`/blogs/new`} id='navlink'>Create a New Blog Entry</NavLink>]
+            </div>
+
+            {allBlogs?.reverse().map(blog => {
                 return (
                     <div className='blog-entry-container' key={blog.id}>
                         <div className='blog-info'>

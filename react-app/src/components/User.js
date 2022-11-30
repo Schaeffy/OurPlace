@@ -90,13 +90,18 @@ function User() {
             <img id='profile-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
           </div>
           <div className='general-info'>
-            info
+            <div id='profile-status'>
+              "{user.status}"
+            </div>
+            <div id='profile-brief'>
+              {user.brief_you}
+            </div>
           </div>
         </div>
 
         <div className='mood'>
-          <p>Mood: </p>
-          <p>View my: </p>
+          <span id='profile-mood'>Mood: </span>{user.mood}
+          {/* <div id='profile-view-my'>View my: </div> */}
         </div>
 
         <div className='contact'>
@@ -226,14 +231,14 @@ function User() {
       <div className='profile-page-right'>
         <div className='profile-blog'>
           <h4>{user.username}'s Latest Blog Entries</h4>
-          {userBlogs.map((blog) => (
+          {userBlogs.reverse().map((blog) => (
             <div className='blog-entry-link' key={blog.id}>
               {blog.blog_title} ({<NavLink id='navlink' to={`/blogs/${blog.id}`}>{`view more`}</NavLink>})
             </div>
           ))}
 
           <div className='blog-entries-link'>
-            [<NavLink id='navlink' to={`/users/${user.id}/blogs`}>View all blog entries</NavLink>]
+            [<NavLink className='view-entries' id='navlink' to={`/users/${user.id}/blogs`}>View all blog entries</NavLink>]
           </div>
         </div>
 
@@ -277,7 +282,7 @@ function User() {
           <div className='comments-bot'>
             {/* {userComments?.map((comment) => (<div>{comment?.comment_body}</div>))} */}
 
-            {userComments?.map((comment) =>
+            {userComments?.reverse().map((comment) =>
               allUsers.map((user) => user.id === comment.commenter ?
                 <div className='comments-rows'>
                   <div className='comments-rows-left'>
@@ -298,7 +303,7 @@ function User() {
 
                     <div>
                       {sessionUser.id === comment.commenter ?
-                        <div>
+                        <div className='comment-buttons'>
                           <NavLink to={`/comments/${comment.id}/edit`}>
                             <button className='comment-edit-button'>Edit</button>
                           </NavLink>

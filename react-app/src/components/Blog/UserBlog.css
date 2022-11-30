@@ -30,7 +30,7 @@
 }
 
 .blog-body {
-    font-size: 90%;
+    font-size: 80%;
     margin-top: 10px;
 }
 
@@ -54,4 +54,17 @@
 
 .blog-profile-details {
     padding-top: 10px;
+}
+
+#view-blog-entry {
+    padding-top: 20px;
+    font-size: 90%;
+}
+
+#blog-date {
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 70%;
+    margin-left: -10px;
+    margin-top: -10px;
 }

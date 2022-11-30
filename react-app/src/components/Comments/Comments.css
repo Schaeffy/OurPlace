@@ -37,3 +37,12 @@
 #comments-navlink {
     padding-bottom: 30px;
 }
+
+
+.comment-buttons {
+    display: flex;
+    flex-direction: row;
+    column-gap: 5px;
+    padding-bottom: 10px;
+
+}

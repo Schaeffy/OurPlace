@@ -23,6 +23,7 @@ import Comments from './components/Comments/Comments';
 import CreateComment from './components/Comments/CommentForm';
 import DeleteComment from './components/Comments/DeleteComment';
 import EditComment from './components/Comments/EditComment';
+import EditStatus from './components/UserEditForms/EditStatus';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -91,6 +92,10 @@ function App() {
 
         <Route path='/users/:userId/edit' exact >
           <EditProfile />
+        </Route>
+
+        <Route path='/users/:userId/edit-status' exact >
+          <EditStatus />
         </Route>
 
         <Route path='/users/:userId/comments' exact >

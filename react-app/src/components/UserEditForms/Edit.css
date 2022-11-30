@@ -31,3 +31,38 @@
 .edit-profile-form-button {
     padding-top: 15px;
 }
+
+#status-label {
+    padding: 15px 0;
+}
+
+.examples {
+    padding-top: 15px;
+    padding-bottom: 50px;
+}
+
+#examples {
+    font-weight: bold;
+}
+
+#examples-example {
+    font-style: italic;
+}
+
+.edit-profile-input {
+    width: 40%;
+    /* height: 50px; */
+}
+
+#profile-brief {
+    padding-top: 30px;
+}
+
+#profile-mood {
+    font-weight: bold;
+}
+
+#profile-view-my {
+    font-weight: bold;
+    padding-top: 10px;
+}

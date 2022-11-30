@@ -57,13 +57,14 @@ const UserBlog = () => {
             </div>
             <div className='blog-entry-outer'>
                 <h1>Blogs</h1>
-                {allBlogs.map(blog => {
+                {allBlogs.reverse().map(blog => {
                     return (
                         <div className='blog-entry-container' key={blog.id}>
+                            <div id='blog-date'>{new Date(blog.created_at).toLocaleDateString()}</div>
                             <div className='blog-title'>{blog.blog_title}</div>
                             <div className='blog-body'>
                                 {blog.blog_body.length > 400 ? blog.blog_body.slice(0, 400) + '...' : blog.blog_body} <NavLink id='navlink' to={`/blogs/${blog.id}`}>» Continue Reading</NavLink>
-                                <div><NavLink id='navlink' to={`/blogs/${blog.id}`}>» View Blog Entry</NavLink></div>
+                                <div id='view-blog-entry'><NavLink id='navlink' to={`/blogs/${blog.id}`}>» View Blog Entry</NavLink></div>
                             </div>
                         </div>
                     )

@@ -33,7 +33,13 @@
 }
 
 .blog-entries-link  {
-    margin-top: 10px;
+    margin-top: 20px;
+    font-size: 80%;
+}
+
+.view-entries {
+    font-weight: bold;
+
 }
 
 .general {

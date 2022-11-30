@@ -34,13 +34,13 @@ const Comments = () => {
         <div className='comments-container'>
 
             <div className='comments-inner'>
-                <h3>{user.username}'s Friend's Comments'</h3>
+                <h3>{user.username}'s Friend's Comments</h3>
                 <div id='comments-navlink'>
-                <NavLink to={`/users/{user.id}`} id='navlink'>« Back to {user.username}'s Profile</NavLink>
+                <NavLink to={`/users/${user.id}`} id='navlink'>« Back to {user.username}'s Profile</NavLink>
                 </div>
                 {/* {userComments?.map((comment) => (<div>{comment?.comment_body}</div>))} */}
 
-                {allComments?.map((comment) =>
+                {allComments?.reverse().map((comment) =>
                     user.id === comment.commented ?
                         <div className='comments-rows'>
                             <div className='comments-rows-left'>

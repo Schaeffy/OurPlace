@@ -25,3 +25,18 @@
     font-size: 90%;
     margin-top: 10px;
 }
+
+
+.blog-links {
+    font-weight: bold;
+}
+
+
+#blog-links {
+    padding-top: 15px;
+}
+
+.view-entry {
+    padding-top: 15px;
+    /* font-size: 110%; */
+}
