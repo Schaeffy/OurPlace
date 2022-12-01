@@ -1,0 +1,41 @@
+.about-container {
+    width: 900px;
+    max-width: 100%;
+    min-width: 900px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    padding: 50px;
+}
+
+.about-content {
+    border: 1px solid #AAAAAA;
+    padding: 20px;
+}
+
+.about-us-body {
+    margin-top: 10px;
+}
+
+.thanks {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+#thanks {
+    width: 250px;
+    height: 300px;
+    margin-top: 10px;
+    border-radius: 50px;
+}
+
+#github {
+    text-decoration: none;
+    color:#1E40AF;
+}
+
+#github:hover {
+    color: #FF6600;
+}

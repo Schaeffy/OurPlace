@@ -1,8 +1,14 @@
 .footer {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     font-size: 70%;
-    margin: 10px 0 10px;
-    padding: 10px 5px;
+    width: 900px;
+    max-width: 100%;
+    min-width: 900px;
+    margin: 20px auto;
+    /* margin: 10px 0 10px;
+    padding: 10px 5px; */
     background: #e3e3e3;
 }
 
@@ -10,6 +16,11 @@
     display: inline;
 }
 
-.footer>ul>li::after {
-    content: ' | ';
+
+.footer-links{
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    justify-content: center;
+    padding-bottom: 10px;
 }

@@ -47,7 +47,7 @@ function User() {
 
   useEffect(() => {
     dispatch(getOneUser(userId))
-    dispatch((loadUsers()))
+    dispatch(loadUsers())
     dispatch(getBlogs())
     dispatch(getComments()).then(() => setLoaded(true))
 
@@ -78,7 +78,7 @@ function User() {
   }
 
   return (
-    loaded && <div className='profile-page-container'>
+     <div className='profile-page-container'>
 
       <div className='profile-page-left'>
         <div className='profile-name'>
@@ -104,7 +104,7 @@ function User() {
           {/* <div id='profile-view-my'>View my: </div> */}
         </div>
 
-        <div className='contact'>
+        {/* <div className='contact'>
           <div className='contact-top'>
             {`Contacting ${user.username}`}
           </div>
@@ -114,11 +114,11 @@ function User() {
             <div>Some stuff</div>
             <div>Some stuff</div>
           </div>
-        </div>
+        </div> */}
 
         <div className='url-container'>
-          <p id='profile-url'>OurPlace URL:</p>
-          <p>{`https://ourplace.com/users/${user.id}`}</p>
+          <div id='profile-url'>OurPlace URL:</div>
+          <div id='profile-url-url'>{`https://ourplace.com/users/${user.id}`}</div>
         </div>
 
         <div className='interests'>
@@ -263,8 +263,21 @@ function User() {
             {`${user.username}'s Friend Space`}
           </div>
 
+          <div className='friend-count'>
+            <span id='friend-count-username'>{user.username}</span> has <span id='friend-count'>{allUsers.length}</span> friends.
+          </div>
+
           <div className='friends-bot'>
-            {allUsers?.map(user => <div key={user.id}>{user.username}</div>)}
+            {allUsers?.slice(0,8).map(user =>
+              <div key={user.id} className='profile-friend-card'>
+                <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
+                  <div>
+                    {user.username}
+                  </div>
+                  <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                </NavLink>
+              </div>)}
+
           </div>
         </div>
 
@@ -283,26 +296,26 @@ function User() {
             {/* {userComments?.map((comment) => (<div>{comment?.comment_body}</div>))} */}
 
             {userComments?.reverse().map((comment) =>
-              allUsers.map((user) => user.id === comment.commenter ?
+              allUsers?.map((user) => user.id === comment.commenter ?
                 <div className='comments-rows' key={comment.id}>
                   <div className='comments-rows-left'>
                     <div className='comment-username'>
-                      <NavLink className='comment-username' to={`/users/${user.id}`}>{user.username}</NavLink>
+                      <NavLink className='comment-username' to={`/users/${user.id}`}>{user?.username}</NavLink>
                     </div>
-                    <div>image <br /> placeholder</div>
+                    <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
                   </div>
 
                   <div className='comments-rows-right'>
                     <div className='comment-date'>
-                      {new Date(comment.created_at).toLocaleString()}
+                      {new Date(comment?.created_at).toLocaleString()}
                     </div>
 
                     <div className='comment-body'>
-                      {comment.comment_body}
+                      {comment?.comment_body}
                     </div>
 
                     <div>
-                      {sessionUser.id === comment.commenter ?
+                      {sessionUser?.id === comment?.commenter ?
                         <div className='comment-buttons'>
                           <NavLink to={`/comments/${comment.id}/edit`}>
                             <button className='comment-edit-button'>Edit</button>

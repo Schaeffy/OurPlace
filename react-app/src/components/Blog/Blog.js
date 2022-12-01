@@ -39,13 +39,13 @@ const Blogs = () => {
         <div className='blogs-container'>
             <h1>Blogs</h1>
 
-            <div id='blog-links'>
-                [<NavLink  className='blog-links' to={`/users/${sessionUser.id}/blogs`} id='navlink'>View Your Blog</NavLink>]
-            </div>
+            {sessionUser && <div id='blog-links'>
+                [<NavLink  className='blog-links' to={`/users/${sessionUser?.id}/blogs`} id='navlink'>View Your Blog</NavLink>]
+            </div>}
 
-            <div id='blog-links'>
+            {sessionUser && <div id='blog-links'>
                 [<NavLink  className='blog-links' to={`/blogs/new`} id='navlink'>Create a New Blog Entry</NavLink>]
-            </div>
+            </div>}
 
             {allBlogs?.reverse().map(blog => {
                 return (

@@ -30,9 +30,17 @@
 
 .users-list-bot {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
     padding: 4px 8px;
+    height: 100%;
+    width: 100%;
+}
+
+.users-cards {
+    flex: 0 0 20%;
 }
 
 .users-cards > a {

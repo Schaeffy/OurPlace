@@ -19,3 +19,11 @@
     padding-top: 10px;
     margin-bottom: 10px;
 }
+
+.errors {
+    color: red;
+    font-size: 80%;
+    margin-top: 10px;
+    text-align: left;
+
+}

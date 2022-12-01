@@ -34,9 +34,9 @@ const update = (blog) => ({
     blog,
 });
 
-const remove = (blog) => ({
+const remove = (blogId) => ({
     type: REMOVE,
-    blog,
+    blogId,
 });
 
 export const resetBlog = () => ({
@@ -115,7 +115,7 @@ export const deleteBlog = (blogId) => async (dispatch) => {
     });
     if (res.ok) {
         const deleted = await res.json();
-        dispatch(remove(deleted));
+        dispatch(remove(blogId));
         return deleted
     }
 }
@@ -157,9 +157,9 @@ const blogReducer = (state = initialState, action) => {
             return newState;
         case REMOVE:
             newState = Object.assign({}, state);
-            // console.log('-----------',action.blog)
-            delete newState.blogs[action.blog];
-            if (newState.singleBlog.id === action.blog.id) {
+            // console.log('-----------',action.blogId)
+            delete newState.blogs[action.blogId];
+            if (newState.singleBlog.id === action.blogId) {
                 newState.singleBlog = {};
             }
             return newState;

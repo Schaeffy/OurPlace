@@ -33,11 +33,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
+
       <div className='login-input'>
         <label htmlFor='email'>E-Mail: </label>
         <input
@@ -57,10 +53,16 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
+
+        <div className='errors'>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
         <div className='button-container'>
           <button id='login-button' type='submit'>LOGIN</button>
-          <button id='demo-button' type='submit' onClick={()=> {
-            dispatch(login('demo@aa.io', 'password'));
+          <button id='demo-button' type='submit' onClick={() => {
+            dispatch(login('tom@aa.io', 'password'));
           }}>DEMO USER</button>
           <NavLink to='/sign-up' exact={true} activeClassName='active'>
             <button id='signup-button' type='button'>SIGNUP</button>

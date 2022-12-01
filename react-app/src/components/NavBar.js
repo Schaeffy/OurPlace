@@ -24,9 +24,9 @@ const NavBar = () => {
         <div className='nav-right-container'>
           <div className='nav-right-links'>
             <div className='nav-link'>
-              <NavLink to='/help' exact={true} activeClassName='active'>
+              <a href='https://github.com/Schaeffy/OurPlace' activeClassName='active'>
                 Help
-              </NavLink>
+              </a>
 
             {sessionUser ? <LogoutButton /> : (
               <div className='session-nav-links'>

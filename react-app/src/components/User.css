@@ -60,6 +60,7 @@
 
 .profile-name {
     /* padding-left: 5px; */
+    padding-bottom: 10px;
 }
 
 .general-info {
@@ -91,13 +92,19 @@
 
 .url-container {
     margin-top: 10px;
-    border: 2px solid #5FA4FA;
+    border: 1px solid #5FA4FA;
     padding: 5px;
 }
 
 #profile-url {
+    font-size: 90%;
     font-weight: bold;
     padding-bottom: 5px;
+}
+
+#profile-url-url {
+    font-size: 90%;
+    margin-left: 10px;
 }
 
 .interests {
@@ -187,6 +194,42 @@
     padding: 2px 15px;
     margin-top: 20px;
     /* margin-bottom: 10px; */
+}
+
+.friends-bot {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    text-align: center;
+    align-items: center;
+}
+
+.friend-count {
+   margin-left: 15px;
+   padding-top: 10px;
+   font-weight: bold;
+   font-size: 90%;
+}
+
+#friend-count-username{
+
+}
+
+#friend-count{
+    color: #FF6600;
+}
+
+.profile-friend-card {
+    /* flex: 1 1 25%; */
+    margin-top: 10px;
+}
+
+#profile-friend-pic {
+
+    max-width: 100px;
+    max-height: 100px;
+    margin: 10px;
 }
 
 .comments-mid {

@@ -32,7 +32,7 @@
     display: flex;
     flex-direction: column;
     border: 1px solid #F9C56C;
-    height: 150px;
+    height: auto;
 }
 
 .cool-people-top {
@@ -51,6 +51,8 @@
     height: 150px;
     padding-top: 10px;
     padding-bottom: 10px;
+    /* box-sizing: border-box; */
+    /* align-items: baseline; */
 }
 
 .another-top {
@@ -58,8 +60,25 @@
 }
 
 .another-bottom {
+
     display: flex;
     flex-direction: row;
+    align-items: center;
+    padding: 0 10px 10px 10px;
+
+}
+
+#cat-thumb {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.announcement-message {
+
+    height: auto;
+    width: auto;
+    padding: 20px;
+    font-size: 90%;
 }
 
 .logged-out-bottom {
@@ -77,11 +96,28 @@
     border-left: 1px solid #1E40AF;
     border-top: 1px solid #1E40AF;
     border-bottom: 1px solid #1E40AF;
+    padding: 5px
     ;
+}
+
+#box-title {
+    padding: 3px;
+    margin-left: 5px;
 }
 
 #last-box {
     border-right: 1px solid #1E40AF;
+}
+
+#bot-box-title {
+    font-weight: bold;
+    font-size: 90%;
+    color: #003399;
+}
+
+#bot-box-body {
+    padding-top: 10px;
+    font-size: 90%;
 }
 
 
@@ -146,4 +182,13 @@
 
 #navlink:hover {
     color: #FF6600;
+}
+
+#friends-bot{
+    border: 1px solid #ffcc99;
+    justify-content: center;
+}
+
+.cool-username {
+    font-weight: bold;
 }

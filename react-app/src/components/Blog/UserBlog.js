@@ -57,7 +57,7 @@ const UserBlog = () => {
             </div>
             <div className='blog-entry-outer'>
                 <h1>Blogs</h1>
-                {allBlogs.reverse().map(blog => {
+                {allBlogs?.reverse().map(blog => {
                     return (
                         <div className='blog-entry-container' key={blog.id}>
                             <div id='blog-date'>{new Date(blog.created_at).toLocaleDateString()}</div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Users.css'
+import defaultPic from './images/user.png'
 
 function UsersList() {
   const [users, setUsers] = useState([]);
@@ -16,8 +17,18 @@ function UsersList() {
 
   const userComponents = users.map((user) => {
     return (
-      <div className='users-cards' key={user.id}>
-        <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
+      // <div className='users-cards' key={user.id}>
+      //   <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
+      // </div>
+
+
+      <div key={user.id} className='users-cards'>
+        <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
+          <div>
+            {user.username}
+          </div>
+          <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+        </NavLink>
       </div>
     );
   });

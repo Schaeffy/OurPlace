@@ -10,6 +10,7 @@ import LoginForm from '../auth/LoginForm';
 import defaultPic from '../images/user.png'
 import { getComments, resetComment } from '../../store/comments';
 import { resetSession } from '../../store/session';
+import catThumb from '../images/cat-thumbs.png'
 
 
 const HomePage = () => {
@@ -30,9 +31,9 @@ const HomePage = () => {
     // console.log('uuuuuuuuuuuuuu', users)
 
     useEffect(() => {
-        dispatch(loadUsers())
         dispatch(getOneUser(sessionUser?.id))
-        dispatch(getBlogs()).then(() => setLoaded(true))
+        dispatch(getBlogs())
+        dispatch(loadUsers()).then(() => setLoaded(true))
         // dispatch(getComments()).then(() => setLoaded(true))
 
         return () => {
@@ -60,31 +61,40 @@ const HomePage = () => {
 
     return (loaded ? (
         <div className='home-page-container'>
-            {!sessionUser ?
+            {loaded && !sessionUser ?
 
                 <div className='logged-out-container'>
                     <div className='logged-out-top'>
                         <div className='logged-out-left'>
                             <div className='cool-people-container'>
                                 <div className='cool-people-top'>
-                                    <h4>
+                                    <h4 id='box-title'>
                                         Cool New People
                                     </h4>
                                 </div>
 
-                                <div className='cool-people-bottom'>
-                                    {allUsers.map(user => {
-                                        return (
-                                            <div className='person' key={user.id}>
-                                                <a href={`/users/${user.id}`}>{user.username}</a>
+                                <div className='friends-bot'>
+                                    {allUsers?.reverse().slice(0, 4)?.map(user =>
+                                        <div key={user.id}>
+                                            <div key={user.id} className='profile-friend-card'>
+                                                <div>
+                                                    <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
+                                                        <div>
+                                                            {user?.username}
+                                                        </div>
+                                                        <img id='profile-friend-pic' src={user?.profile_pic ? user?.profile_pic : defaultPic} alt='profile-pic' />
+                                                    </NavLink>
+                                                </div>
+                                                {/* <div>
+                                                <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                                            </div> */}
                                             </div>
-                                        )
-                                    })}
+                                        </div>)}
                                 </div>
 
                             </div>
 
-                            <div className='another-container'>
+                            {/* <div className='another-container'>
                                 <div className='another-top'>
                                     <h4>
                                         Cool New People
@@ -100,23 +110,21 @@ const HomePage = () => {
                                         )
                                     })}
                                 </div>
-                            </div>
+                            </div> */}
 
                             <div className='another-container'>
                                 <div className='another-top'>
-                                    <h4>
+                                    <h4 id='box-title'>
                                         OurSpace Announcements
                                     </h4>
                                 </div>
 
                                 <div className='another-bottom'>
-                                    {allUsers.map(user => {
-                                        return (
-                                            <div className='person' key={user.id}>
-                                                <a href={`/users/${user.id}`}>{user.username}</a>
-                                            </div>
-                                        )
-                                    })}
+                                    <img id='cat-thumb' src={catThumb} alt='cat-thumb' />
+                                    <div className='announcement-message'>
+                                        Hey! Thanks for visiting my site! <br />
+                                        <span style={{ fontWeight: 'bold', color:'#1E40AF' }}>OurPlace</span> is a nostalgia fueled social networking site that I built using an assortment of tools such as React, Redux, Flask, etc. I hope you enjoy it!
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -134,10 +142,33 @@ const HomePage = () => {
                     </div>
 
                     <div className='logged-out-bottom'>
-                        <div className='bot-box'>one</div>
-                        <div className='bot-box'>one</div>
-                        <div className='bot-box'>one</div>
-                        <div className='bot-box' id='last-box'>one</div>
+                        <div className='bot-box'>
+                            <div id='bot-box-title'>Nostalgia Timemachine!</div>
+                            <div id='bot-box-body'>
+                                Explore how social networking sites looked and felt like in the early 2000s.
+                            </div>
+                        </div>
+
+                        <div className='bot-box'>
+                            <div id='bot-box-title'>Get Started on OurPlace!</div>
+                            <div id='bot-box-body'>
+                                Join for free, create your profile, start a blog, and much more!
+                            </div>
+                        </div>
+
+                        <div className='bot-box'>
+                            <div id='bot-box-title'>Your Space is Your Own!</div>
+                            <div id='bot-box-body'>
+                                No trackers, no algorithms, no ads. Just you and your friends.
+                            </div>
+                        </div>
+
+                        <div className='bot-box' id='last-box'>
+                            <div id='bot-box-title'>More Features to Come</div>
+                            <div id='bot-box-body'>
+                                OurPlace is being continually updated and developed. Many more features are on the way!
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -316,7 +347,7 @@ const HomePage = () => {
                             <div>
                                 <span className='latest-blog'>Your Latest Blog Entries</span> [<NavLink to={`/blogs/new`} id='navlink'><span id='view-more'>New Entry</span></NavLink>]
                             </div>
-                            {userBlogs.reverse().slice(0,5).map((blog) => (
+                            {userBlogs.reverse().slice(0, 5).map((blog) => (
                                 <div className='blog-entry-link' key={blog.id}>
                                     {blog.blog_title} ({<NavLink id='navlink' to={`/blogs/${blog.id}`}><span id='view-more'>{`view more`}</span></NavLink>})
                                 </div>
@@ -344,12 +375,27 @@ const HomePage = () => {
                         </div> */}
 
                         <div className='profile-friends'>
-                            <div className='friends-top'>
+                            <div className='friends-top' id='friends-bot'>
                                 Cool New People
                             </div>
 
-                            <div className='friends-bot'>
-                                {allUsers?.map(user => <div key={user.id}>{user.username}</div>)}
+                            <div className='friends-bot' id='friends-bot'>
+                                {allUsers.reverse().slice(0, 4)?.map(user =>
+                                    <div key={user.id}>
+                                        <div key={user.id} className='profile-friend-card'>
+                                            <div>
+                                                <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
+                                                    <div>
+                                                        {user.username}
+                                                    </div>
+                                                    <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                                                </NavLink>
+                                            </div>
+                                            {/* <div>
+                                                <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                                            </div> */}
+                                        </div>
+                                    </div>)}
                             </div>
                         </div>
 

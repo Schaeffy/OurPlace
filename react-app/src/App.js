@@ -24,6 +24,7 @@ import CreateComment from './components/Comments/CommentForm';
 import DeleteComment from './components/Comments/DeleteComment';
 import EditComment from './components/Comments/EditComment';
 import EditStatus from './components/UserEditForms/EditStatus';
+import AboutPage from './components/About';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -67,6 +68,10 @@ function App() {
         <Route path='/' exact={true} >
           <HomePage />
         </Route>
+
+        <Route path='/about' exact={true} >
+          <AboutPage />
+          </Route>
 
 
         <Route path='/blogs' exact={true} >
