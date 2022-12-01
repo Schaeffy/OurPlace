@@ -87,7 +87,7 @@ function User() {
 
         <div className='general'>
           <div className='profile-pic'>
-            <img id='profile-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+            <img id='profile-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
           </div>
           <div className='general-info'>
             <div id='profile-status'>
@@ -131,7 +131,7 @@ function User() {
 
             <div className='general-interests'>
               <div className='general-interests-left'>General</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.general} </div>
             </div>
 
             <div className='general-interests'>
@@ -146,17 +146,17 @@ function User() {
 
             <div className='general-interests'>
               <div className='general-interests-left'>Television</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.television} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>Books</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.books} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left' id='very-bot'>Heroes</div>
-              <div className='general-interests-right' id='very-bot'> lorum ipsum </div>
+              <div className='general-interests-right' id='very-bot'> {user.heroes} </div>
 
             </div>
 
@@ -174,52 +174,52 @@ function User() {
 
             <div className='general-interests'>
               <div className='general-interests-left'>Instagram</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.instagram} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>Snapchat</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.snapchat} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>Twitter</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.twitter} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>Youtube</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.youtube} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>Twitch</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.twitch} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>TickTok</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.tiktok} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>Soundcloud</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.soundcloud} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>Spotify</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.spotify} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left'>Pintrest</div>
-              <div className='general-interests-right'> lorum ipsum </div>
+              <div className='general-interests-right'> {user.pintrest} </div>
             </div>
 
             <div className='general-interests'>
               <div className='general-interests-left' id='very-bot'>Github</div>
-              <div className='general-interests-right' id='very-bot'> lorum ipsum </div>
+              <div className='general-interests-right' id='very-bot'> {user.github} </div>
             </div>
 
           </div>
@@ -250,10 +250,12 @@ function User() {
           <div className='blurbs-bot'>
             <div className='section'>
               <h4>About me:</h4>
+              <div className='blurb'>{user.about_me}</div>
             </div>
 
             <div className='section'>
               <h4>Who I'd like to meet:</h4>
+              <div className='blurb'>{user.here_for}</div>
             </div>
           </div>
         </div>
@@ -274,7 +276,7 @@ function User() {
                   <div>
                     {user.username}
                   </div>
-                  <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                  <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
                 </NavLink>
               </div>)}
 
@@ -302,7 +304,7 @@ function User() {
                     <div className='comment-username'>
                       <NavLink className='comment-username' to={`/users/${user.id}`}>{user?.username}</NavLink>
                     </div>
-                    <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                    <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
                   </div>
 
                   <div className='comments-rows-right'>

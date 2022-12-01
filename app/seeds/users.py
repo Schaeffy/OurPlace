@@ -3,10 +3,20 @@ from app.models import db, User, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
+    tom = User(
         username='Tom',
         email='tom@aa.io',
-        password='password'
+        password='password',
+        profile_img='https://i.imgur.com/4R76U4M.jpg',
+        status=':-)',
+        mood='chillin',
+        brief_you=
+        '''Male
+        30 years old
+        Santa Monica, CA''',
+        about_me='Hey my name is Tom and I am your friend!',
+        here_for="I'd like to meet people who educate, inspire or entertain me... I have a few close friends I've known all my life. I'd like to make more.",
+        general= "Internet, Movies, Reading, Dancing, Karaoke, Baseball, Language, Culture, History of Communism, Philosophy, Singing/Writing Music, Running, Finding New Food, Weight Lifting, Hiking, WWI Aviation, Travel, Building alternate communities"
         )
     marnie = User(
         username='marnie',
@@ -34,7 +44,7 @@ def seed_users():
         password='password'
         )
 
-    db.session.add(demo)
+    db.session.add(tom)
     db.session.add(marnie)
     db.session.add(bobbie)
     db.session.add(kelly)

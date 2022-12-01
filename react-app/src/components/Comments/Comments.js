@@ -51,7 +51,7 @@ const Comments = () => {
                                         <div>
                                             <NavLink className='comment-username' to={`/users/${user.id}`}>{user?.username}</NavLink>
                                             <div className='profile-pic' id='comments-page-pic'>
-                                                <img id='comments-profile-pic' src={user?.profile_pic ? user?.profile_pic : defaultPic} alt='profile-pic' />
+                                                <img id='comments-profile-pic' src={user?.profile_img ? user?.profile_img : defaultPic} alt='profile-pic' />
                                             </div>
                                         </div>
                                         : null)}

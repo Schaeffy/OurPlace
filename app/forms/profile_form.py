@@ -9,12 +9,12 @@ class ProfileForm(FlaskForm):
     status = StringField('status')
     mood = StringField('mood')
     brief_you = StringField('brief_you')
-    here_for = StringField('here_for')
     hometown = StringField('hometown')
     ethnicity = StringField('ethnicity')
     occupation = StringField('occupation')
     about_me = TextAreaField('about_me')
     general = TextAreaField('general')
+    here_for = TextAreaField('here_for')
     music = TextAreaField('music')
     movies = TextAreaField('movies')
     television = TextAreaField('television')
@@ -39,11 +39,11 @@ class ProfileForm(FlaskForm):
             'status': self.status.data,
             'mood': self.mood.data,
             'brief_you': self.brief_you.data,
-            'here_for': self.here_for.data,
             'hometown': self.hometown.data,
             'ethnicity': self.ethnicity.data,
             'occupation': self.occupation.data,
             'about_me': self.about_me.data,
+            'here_for': self.here_for.data,
             'general': self.general.data,
             'music': self.music.data,
             'movies': self.movies.data,

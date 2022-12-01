@@ -27,7 +27,7 @@ function UsersList() {
           <div>
             {user.username}
           </div>
-          <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+          <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
         </NavLink>
       </div>
     );

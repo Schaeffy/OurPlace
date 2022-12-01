@@ -82,11 +82,11 @@ const HomePage = () => {
                                                         <div>
                                                             {user?.username}
                                                         </div>
-                                                        <img id='profile-friend-pic' src={user?.profile_pic ? user?.profile_pic : defaultPic} alt='profile-pic' />
+                                                        <img id='profile-friend-pic' src={user?.profile_img ? user?.profile_img : defaultPic} alt='profile-pic' />
                                                     </NavLink>
                                                 </div>
                                                 {/* <div>
-                                                <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                                                <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
                                             </div> */}
                                             </div>
                                         </div>)}
@@ -187,7 +187,7 @@ const HomePage = () => {
 
                             <div className='home-general'>
                                 <div className='profile-pic'>
-                                    <img id='profile-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                                    <img id='profile-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
                                 </div>
                                 <div className='general-info'>
                                     <div className='profile-edits'>
@@ -388,11 +388,11 @@ const HomePage = () => {
                                                     <div>
                                                         {user.username}
                                                     </div>
-                                                    <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                                                    <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
                                                 </NavLink>
                                             </div>
                                             {/* <div>
-                                                <img id='profile-friend-pic' src={user.profile_pic ? user.profile_pic : defaultPic} alt='profile-pic' />
+                                                <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
                                             </div> */}
                                         </div>
                                     </div>)}
