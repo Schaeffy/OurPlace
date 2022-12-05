@@ -1,7 +1,9 @@
 .button-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+    justify-content: center;
+    column-gap: 20px;
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -46,6 +48,7 @@
     /* margin-top:5px */
     padding-top: 10px;
     white-space: nowrap;
+    text-align: right;
 }
 
 #repeat {
@@ -54,4 +57,9 @@
 }
 #repeat_pass {
     margin-top: 10px
+}
+
+.demo-user {
+text-align: center;
+padding-top: 5px;
 }

@@ -12,7 +12,8 @@
 }
 
 .comments-inner {
-    padding-bottom: 40px;
+    padding: 50px;
+    width: 100%;
 }
 
 #comments-page-username{
@@ -30,8 +31,9 @@
 }
 
 .comments-inner > h3 {
-    padding-top: 30px;
+    /* padding-top: 30px; */
     padding-bottom: 20px;
+
 }
 
 #comments-navlink {

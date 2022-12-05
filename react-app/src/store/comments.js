@@ -151,6 +151,7 @@ const commentReducer = (state = initialState, action) => {
         case UPDATE:
             newState = Object.assign({}, state);
             newState.comments[action.comment.id] = action.comment;
+            newState.singleComment = action.comment;
             return newState;
         case REMOVE:
             newState = Object.assign({}, state);

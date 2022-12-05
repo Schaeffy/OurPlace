@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 19fe0f9ea573
+Revision ID: dd4d23e37794
 Revises: 
-Create Date: 2022-12-01 08:54:52.677912
+Create Date: 2022-12-03 23:31:34.363806
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '19fe0f9ea573'
+revision = 'dd4d23e37794'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -28,9 +28,6 @@ def upgrade():
     sa.Column('status', sa.String(length=100), nullable=True),
     sa.Column('mood', sa.String(length=100), nullable=True),
     sa.Column('brief_you', sa.String(length=100), nullable=True),
-    sa.Column('hometown', sa.String(length=100), nullable=True),
-    sa.Column('ethnicity', sa.String(length=100), nullable=True),
-    sa.Column('occupation', sa.String(length=100), nullable=True),
     sa.Column('about_me', sa.Text(), nullable=True),
     sa.Column('here_for', sa.Text(), nullable=True),
     sa.Column('general', sa.Text(), nullable=True),
@@ -57,7 +54,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('blog_title', sa.String(length=100), nullable=False),
-    sa.Column('blog_body', sa.String(length=500), nullable=False),
+    sa.Column('blog_body', sa.String(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),

@@ -69,7 +69,7 @@ const BlogEntry = () => {
 
                 {/* {blog.user_id === sessionUser.id ? ([<NavLink id='navlink' to={`/blogs/${blog.id}/edit`}>Edit Blog</NavLink>]) : null}
                 {blog.user_id === sessionUser.id ? <NavLink id='navlink' to={`/blogs/${blog.id}/delete`}>Delete Blog</NavLink> : null} */}
-                <div className='blog-entry-body'>{blog.blog_body}</div>
+                <div className='blog-entry-body'>{blog.blog_body.split('\n').map((line, idx) => <div key={idx}>{line}<br/></div>)}</div>
             </div>
         </div>
     )

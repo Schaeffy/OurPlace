@@ -25,6 +25,8 @@ import DeleteComment from './components/Comments/DeleteComment';
 import EditComment from './components/Comments/EditComment';
 import EditStatus from './components/UserEditForms/EditStatus';
 import AboutPage from './components/About';
+import EditLinks from './components/UserEditForms/EditLinks';
+import EditPhoto from './components/UserEditForms/EditPhoto';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -101,6 +103,14 @@ function App() {
 
         <Route path='/users/:userId/edit-status' exact >
           <EditStatus />
+        </Route>
+
+        <Route path='/users/:userId/edit-links' exact >
+          <EditLinks />
+        </Route>
+
+        <Route path ='/users/:userId/edit-photo' exact >
+          <EditPhoto />
         </Route>
 
         <Route path='/users/:userId/comments' exact >

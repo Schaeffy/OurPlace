@@ -169,6 +169,8 @@
     /* margin-bottom: 2px; */
     width: 80%;
     max-width: 100%;
+    word-break: break-word;
+    white-space: normal;
 }
 
 
@@ -284,6 +286,8 @@
     border-bottom: 1px solid #AAAAAA;
     width: 65%;
     padding: 3px;
+    word-break: break-word;
+    /* white-space: wrap; */
 }
 
 .comment-username {

@@ -66,3 +66,112 @@
     font-weight: bold;
     padding-top: 10px;
 }
+
+
+.links-form {
+    display: flex;
+    flex-direction: row;
+    column-gap: 50px;
+}
+
+.links-form-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-links-input {
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.links-front {
+    font-size: 90%;
+}
+
+.profile-img-edit {
+    max-width: 90%;
+    max-height: 90%;
+
+}
+
+.profile-img-edit-container {
+    display: flex;
+    justify-content: left;
+    width: 70%;
+    height: 70%;
+}
+
+.edit-image-input {
+    width: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#add-link-text {
+    margin-top: 20px;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+
+.edit-pic-form-container {
+    padding: 20px;
+
+}
+
+.edit-pic-button {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    margin-top: 50px
+}
+
+#edit-pic-form {
+    display: flex;
+    flex-direction: row;
+    /* height: 500px; */
+}
+
+
+.pic-rules-container {
+    padding-left: 20px;
+    display: flex;
+
+}
+
+.right-side-container {
+    width: 50%;
+}
+
+.pic-rules {
+    border: 1px solid #5FA4FA;
+    width: 70%;
+    background-color: #BFDBFE;
+    padding: 10px;
+
+}
+
+.pic-rules > div {
+    padding: 5px;
+}
+
+
+.pics-form-left {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    row-gap: 10px;
+}
+
+.remove-profile-pic {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    row-gap: 10px;
+}
+
+#remove {
+    width: fit-content;
+}

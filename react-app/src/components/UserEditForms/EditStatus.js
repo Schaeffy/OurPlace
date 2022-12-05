@@ -52,7 +52,7 @@ const EditStatus = () => {
                     <p>All fields are optional and can be left empty if you want.</p>
                     <form onSubmit={handleSubmit}>
                         <div className="edit-profile-form-button">
-                            <button type="submit">Save</button>
+                            <button id='button' type="submit">Save</button>
                         </div>
                         <div className="edit-profile-form-input">
                             <div id='category'>
@@ -105,7 +105,7 @@ const EditStatus = () => {
 
 
                         <div className="edit-profile-form-button">
-                            <button type="submit">Save</button>
+                            <button id='button' type="submit">Save</button>
                         </div>
                     </form>
                 </div>

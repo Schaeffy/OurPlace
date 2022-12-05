@@ -19,9 +19,6 @@ class User(db.Model, UserMixin):
     status = db.Column(db.String(100))
     mood = db.Column(db.String(100))
     brief_you = db.Column(db.String(100))
-    hometown = db.Column(db.String(100))
-    ethnicity = db.Column(db.String(100))
-    occupation = db.Column(db.String(100))
     about_me = db.Column(db.Text)
     here_for = db.Column(db.Text)
     general = db.Column(db.Text)
@@ -94,9 +91,6 @@ class User(db.Model, UserMixin):
             "mood": self.mood,
             "brief_you": self.brief_you,
             "here_for": self.here_for,
-            "hometown": self.hometown,
-            "ethnicity": self.ethnicity,
-            "occupation": self.occupation,
             "about_me": self.about_me,
             "general": self.general,
             "music": self.music,

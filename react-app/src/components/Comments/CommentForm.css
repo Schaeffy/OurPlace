@@ -1,24 +1,65 @@
 .create-comment-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 900px;
     max-width: 100%;
     min-width: 900px;
     margin: 0 auto;
     background-color: #FFFFFF;
     padding: 20px;
+    height: 400px;
     /* justify-content: center;
     align-items: center; */
 }
+.create-comment-form-container {
+    width: 500px;
+    height: 100%;
+}
+
+.create-comment-form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 100px;
+}
+
+.rules-container {
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.right-side-container {
+    width: 50%;
+}
+
+.rules {
+    border: 1px solid #5FA4FA;
+    width: 60%;
+    background-color: #BFDBFE;
+    padding: 10px;
+
+}
+
+.rules > h3{
+    background-color: #5FA4FA;
+    color: white;
+    padding: 5px 0 2px 5px;
+}
+
+.rules > div {
+    padding: 5px;
+}
 
 .create-comment-form-input {
-    width: 80%;
+    width: 100%;
     resize: none;
     height: 200px;
 }
 
 .add-comment {
-    padding-top: 50px;
+    padding-top: 10px;
 }
 
 #comment-body{

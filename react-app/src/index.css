@@ -9,3 +9,61 @@ body {
     margin: 0;
 
 }
+
+
+.comment-edit-button,
+.comment-delete-button {
+    font-size: 80%;
+    /* font-weight: bold; */
+    cursor: pointer;
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+.comment-edit-button:hover,
+.comment-delete-button:hover {
+    background-color: #5FA4FA;
+    color: white;
+}
+
+
+#button {
+    font-size: 80%;
+    /* font-weight: bold; */
+    cursor: pointer;
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+#button:hover {
+    background-color: #FF6600;
+    color: white;
+}
+
+
+#button2 {
+    font-size: 80%;
+    /* font-weight: bold; */
+    cursor: pointer;
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+#button2:hover {
+    background-color: #5FA4FA;
+    /* background-color: #003399; */
+    color: white;
+}
+
+.button {
+    font-size: 80%;
+    /* font-weight: bold; */
+    cursor: pointer;
+    border: 1px solid gray;
+    padding: 5px;
+}
+
+.button:hover {
+    background-color: #FF6600;
+    color: white;
+}

@@ -24,17 +24,17 @@ const NavBar = () => {
         <div className='nav-right-container'>
           <div className='nav-right-links'>
             <div className='nav-link'>
-              <a href='https://github.com/Schaeffy/OurPlace' activeClassName='active'>
+              <a href='https://github.com/Schaeffy/OurPlace'>
                 Help
               </a>
 
             {sessionUser ? <LogoutButton /> : (
               <div className='session-nav-links'>
-              <NavLink id='login' to='/login' exact={true} activeClassName='active'>
+              <NavLink id='login' to='/login' exact={true} >
                 LogIn
               </NavLink>
 
-              <NavLink id='signup' to='/sign-up' exact={true} activeClassName='active'>
+              <NavLink id='signup' to='/sign-up' exact={true} >
                 SignUp
               </NavLink>
               </div>
@@ -48,15 +48,15 @@ const NavBar = () => {
       <div className='bottom-nav-bar'>
 
         <div className='nav-link' id='bot-nav-link'>
-          <NavLink id='home' to='/' exact={true} activeClassName='active'>
+          <NavLink id='home' to='/' exact={true}>
             Home
           </NavLink>
 
-          <NavLink id='browse' to='/users' exact={true} activeClassName='active'>
+          <NavLink id='browse' to='/users' exact={true}>
             Browse
           </NavLink>
 
-          <NavLink id='blogs' to='/blogs/' exact={true} activeClassName='active'>
+          <NavLink id='blogs' to='/blogs/' exact={true}>
             Blog
           </NavLink>
         </div>

@@ -25,8 +25,8 @@ const Blogs = () => {
 
     useEffect(() => {
 
-        dispatch(loadUsers()).then(
-        dispatch(getBlogs())).then(() => setLoaded(true))
+        dispatch(loadUsers())
+         dispatch(getBlogs()).then(() => setLoaded(true))
 
         return () => {
             dispatch(resetBlog())
@@ -55,7 +55,7 @@ const Blogs = () => {
                         </div>
                         <div className='blog-title'>{blog.blog_title}</div>
                         <div className='blog-body'>
-                            {blog.blog_body.length > 400 ? blog.blog_body.slice(0, 400) + '...' : blog.blog_body} <NavLink id='navlink' to={`/blogs/${blog.id}`}>» Continue Reading</NavLink>
+                            {blog?.blog_body?.length > 400 ? blog.blog_body.slice(0, 400) + '...' : blog.blog_body} <NavLink id='navlink' to={`/blogs/${blog.id}`}>» Continue Reading</NavLink>
                             <div className='view-entry'><NavLink id='navlink' to={`/blogs/${blog.id}`}>» View Blog Entry</NavLink></div>
                         </div>
                     </div>

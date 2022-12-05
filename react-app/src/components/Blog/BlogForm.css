@@ -1,6 +1,6 @@
 .blog-form-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 900px;
     max-width: 100%;
     min-width: 900px;
@@ -9,10 +9,16 @@
     padding: 20px;
 }
 
+.blog-form {
+    display: flex;
+    flex-direction: column;
+    width: 500px
+}
+
 .blog-title-input, .blog-body-input {
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 60%;
+    width: 100%;
     resize: none;
 }
 
@@ -28,4 +34,18 @@
 
 #delete-message{
     padding-bottom: 20px;
+}
+
+.blog-title {
+    margin-top: 10px;
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
+}
+
+#errors-container {
+    padding: 10px 10px 10px 20px;
+}
+
+#error-message {
+    padding-bottom: 10px;
 }

@@ -15,9 +15,9 @@ const LoginPage = () => {
             <img id='orange-logo' src={ourplaceO} alt='logo' />
         </div>
             <div className='login-wrapper'>
-                <div className='login-box'>
+                {/* <div className='login-box'> */}
                     <LoginForm />
-                </div>
+                {/* </div> */}
                 <div className='welcome'></div>
             </div>
         </div>
