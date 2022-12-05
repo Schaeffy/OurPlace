@@ -133,7 +133,7 @@ def seed_users():
     kelly = User(
         username='Kelly',
         email='kelly@aa.io',
-        password='alldaybedge',
+        password='sleepykitty',
         profile_img='https://i.imgur.com/0W1cRiK.png',
         status='on bed',
         mood='sleepy',
