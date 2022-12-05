@@ -66,11 +66,11 @@ const Comments = () => {
                                 </div>
 
                                 <div className='comment-body'>
-                                    {comment?.comment_body.split('\n').map((line, idx) => <div key={idx}>{line}<br/></div>)}
+                                    {comment?.comment_body}
                                 </div>
 
                                 <div>
-                                    {sessionUser.id === comment.commented ?
+                                    {sessionUser && sessionUser.id === comment.commented ?
                                     <NavLink to={`/comments/${comment.id}/delete`} id='delete-comment'>
                                     <button id='button2'>Delete</button>
                                     </NavLink>

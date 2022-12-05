@@ -24,6 +24,7 @@
 .blog-body {
     font-size: 90%;
     margin-top: 10px;
+    white-space: pre-line;
 }
 
 

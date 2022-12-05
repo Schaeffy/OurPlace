@@ -10,7 +10,7 @@ function UsersList() {
     async function fetchData() {
       const response = await fetch('/api/users/');
       const responseData = await response.json();
-      setUsers(responseData.users);
+      setUsers(responseData.users?.reverse());
     }
     fetchData();
   }, []);
@@ -27,7 +27,9 @@ function UsersList() {
           <div>
             {user.username}
           </div>
-          <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
+          <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+            onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
+          />
         </NavLink>
       </div>
     );

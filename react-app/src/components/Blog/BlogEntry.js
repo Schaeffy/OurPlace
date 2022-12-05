@@ -59,7 +59,7 @@ const BlogEntry = () => {
             </div>
             <div className='blog-entry'>
                 <div className='blog-entry-title'>{blog.blog_title}</div>
-                {blog.user_id === sessionUser?.id &&
+                {sessionUser && blog.user_id === sessionUser?.id &&
                     <div className='blog-edit-delete'>
                         [<NavLink id='navlink' to={`/blogs/${blog.id}/edit`}>Edit Blog</NavLink>]
 
@@ -69,7 +69,7 @@ const BlogEntry = () => {
 
                 {/* {blog.user_id === sessionUser.id ? ([<NavLink id='navlink' to={`/blogs/${blog.id}/edit`}>Edit Blog</NavLink>]) : null}
                 {blog.user_id === sessionUser.id ? <NavLink id='navlink' to={`/blogs/${blog.id}/delete`}>Delete Blog</NavLink> : null} */}
-                <div className='blog-entry-body'>{blog.blog_body.split('\n').map((line, idx) => <div key={idx}>{line}<br/></div>)}</div>
+                <div className='blog-entry-body'>{blog.blog_body}</div>
             </div>
         </div>
     )

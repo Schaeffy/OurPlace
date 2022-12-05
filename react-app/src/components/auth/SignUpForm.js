@@ -13,11 +13,13 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const regex = new RegExp(`^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$`)
+
   let validate = () => {
     let validationErrors = [];
 
-    if (username.length < 4) {
-      validationErrors.push("Username must be at least 4 characters long");
+    if (username.length < 2) {
+      validationErrors.push("Username must be at least 2 characters long");
     }
     if (username.length > 40) {
       validationErrors.push("Username must be less than 40 characters long");
@@ -31,10 +33,10 @@ const SignUpForm = () => {
     if (password !== repeatPassword) {
       validationErrors.push("Passwords must match");
     }
-    if (email.length < 3 || email.length > 256) {
-      validationErrors.push("Email must be between 3 and 256 characters long");
+    if (email.length < 3 || email.length > 50) {
+      validationErrors.push("Email must be between 3 and 50 characters long");
     }
-    if (!email.includes("@")) {
+    if (!regex.test(email)) {
       validationErrors.push("Email must be a valid email address");
     }
     setErrors(validationErrors);

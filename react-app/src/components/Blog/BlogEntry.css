@@ -39,7 +39,7 @@
     width: 700px;
     margin-top: 20px;
     margin-left: 10px;
-    white-space: wrap;
+    white-space: pre-line;
     line-break: auto;
     word-break: break-word;
 }

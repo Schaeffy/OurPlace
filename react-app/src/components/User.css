@@ -54,8 +54,8 @@
 } */
 
 #profile-pic {
-    max-width: 160px;
-    max-height: 160px;
+    max-width: 200px;
+    max-height: 300px;
 }
 
 .profile-name {
@@ -170,7 +170,7 @@
     width: 80%;
     max-width: 100%;
     word-break: break-word;
-    white-space: normal;
+    white-space: pre-line;
 }
 
 
@@ -187,11 +187,13 @@
     color: #FF6600;
     padding-top: 10px;
     padding-left: 15px;
+    white-space: pre-line;
 }
 
 .blurb {
     color: black;
     font-size: 90%;
+    white-space: pre-line;
 }
 
 .friends-top {
@@ -302,5 +304,17 @@
 }
 
 .comment-body {
-    margin: 15px 0px
+    margin: 15px 0px;
+    white-space: pre-line;
+}
+
+
+.general-interests-right > a {
+    color: #1E40AF;
+    text-decoration: none;
+}
+
+.general-interests-right > a:hover {
+    color: #FF6600;
+    text-decoration: underline;
 }

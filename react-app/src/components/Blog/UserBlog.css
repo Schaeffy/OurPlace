@@ -54,6 +54,7 @@
 
 .blog-profile-details {
     padding-top: 10px;
+    white-space: pre-line;
 }
 
 #view-blog-entry {

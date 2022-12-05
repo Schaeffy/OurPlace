@@ -57,6 +57,10 @@ const UserBlog = () => {
             </div>
             <div className='blog-entry-outer'>
                 <h1>Blogs</h1>
+
+                {sessionUser && sessionUser?.id ===userId && <div id='blog-links'>
+                [<NavLink  className='blog-links' to={`/blogs/new`} id='navlink'>Create a New Blog Entry</NavLink>]
+                </div>}
                 {allBlogs?.reverse().map(blog => {
                     return (
                         <div className='blog-entry-container' key={blog.id}>

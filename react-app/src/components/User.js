@@ -88,14 +88,19 @@ function User() {
 
           <div className='general'>
             <div className='profile-pic'>
-              <img id='profile-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
+              <img id='profile-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = defaultPic;
+                }}
+              />
             </div>
             <div className='general-info'>
               <div id='profile-status'>
                 "{user.status}"
               </div>
               <div id='profile-brief'>
-                {user.brief_you?.split('\n').map((line, idx) => <div key={idx}>{line}<br /></div>)}
+                {user.brief_you}
               </div>
             </div>
           </div>
@@ -132,17 +137,17 @@ function User() {
 
               <div className='general-interests'>
                 <div className='general-interests-left'>General</div>
-                <div className='general-interests-right'> {user.general?.split('\n').map((line, idx) => <div key={idx}>{line}<br /></div>)} </div>
+                <div className='general-interests-right'> {user.general} </div>
               </div>
 
               <div className='general-interests'>
                 <div className='general-interests-left'>Movies</div>
-                <div className='general-interests-right'> {user.movies?.split('\n').map((line, idx) => <div key={idx}>{line}<br /></div>)} </div>
+                <div className='general-interests-right'> {user.movies} </div>
               </div>
 
               <div className='general-interests'>
                 <div className='general-interests-left'>Music</div>
-                <div className='general-interests-right'> {user.music?.split('\n').map((line, idx) => <div key={idx}>{line}<br /></div>)} </div>
+                <div className='general-interests-right'> {user.music} </div>
               </div>
 
               <div className='general-interests'>
@@ -176,52 +181,52 @@ function User() {
 
               {user.instagram && <div className='general-interests'>
                 <div className='general-interests-left'>Instagram</div>
-                <div className='general-interests-right'> {user.instagram} </div>
+                <div className='general-interests-right'> <a href={`https://www.instagram.com/${user.instagram}`} target="_blank" rel="noreferrer">{user.instagram}</a> </div>
               </div>}
 
               {user.snapchat && <div className='general-interests'>
                 <div className='general-interests-left'>Snapchat</div>
-                <div className='general-interests-right'> {user.snapchat} </div>
+                <div className='general-interests-right'> <a href={`https://www.snapchat.com/add/${user.snapchat}`} target="_blank" rel="noreferrer">{user.snapchat}</a> </div>
               </div>}
 
               {user.twitter && <div className='general-interests'>
                 <div className='general-interests-left'>Twitter</div>
-                <div className='general-interests-right'> {user.twitter} </div>
+                <div className='general-interests-right'> <a href={`https://www.twitter.com/${user.twitter}`} target="_blank" rel="noreferrer">{user.twitter}</a> </div>
               </div>}
 
               {user.youtube && <div className='general-interests'>
                 <div className='general-interests-left'>Youtube</div>
-                <div className='general-interests-right'> {user.youtube} </div>
+                <div className='general-interests-right'> <a href={`https://www.youtube.com/@${user.youtube}`} target="_blank" rel="noreferrer">{user.youtube}</a> </div>
               </div>}
 
               {user.twitch && <div className='general-interests'>
                 <div className='general-interests-left'>Twitch</div>
-                <div className='general-interests-right'> {user.twitch} </div>
+                <div className='general-interests-right'> <a href={`https://www.twitch.tv/${user.twitch}`} target="_blank" rel="noreferrer">{user.twitch}</a> </div>
               </div>}
 
               {user.tiktok && <div className='general-interests'>
                 <div className='general-interests-left'>TickTok</div>
-                <div className='general-interests-right'> {user.tiktok} </div>
+                <div className='general-interests-right'> <a href={`https://www.tiktok.com/@${user.tiktok}`} target="_blank" rel="noreferrer">{user.tiktok}</a> </div>
               </div>}
 
              {user.soundcloud && <div className='general-interests'>
                 <div className='general-interests-left'>Soundcloud</div>
-                <div className='general-interests-right'> {user.soundcloud} </div>
+                <div className='general-interests-right'> <a href={`https://www.soundcloud.com/${user.soundcloud}`} target="_blank" rel="noreferrer">{user.soundcloud}</a> </div>
               </div>}
 
               {user.spotify && <div className='general-interests'>
                 <div className='general-interests-left'>Spotify</div>
-                <div className='general-interests-right'> {user.spotify} </div>
+                <div className='general-interests-right'> <a href={user.spotify} target="_blank" rel="noreferrer">Spotify</a> </div>
               </div>}
 
               {user.pintrest && <div className='general-interests'>
                 <div className='general-interests-left'>Pintrest</div>
-                <div className='general-interests-right'> {user.pintrest} </div>
+                <div className='general-interests-right'> <a href={`https://www.pintrest.com/${user.pintrest}`} target="_blank" rel="noreferrer">{user.pintrest}</a> </div>
               </div>}
 
               {user.github && <div className='general-interests'>
                 <div className='general-interests-left' id='very-bot'>Github</div>
-                <div className='general-interests-right' id='very-bot'> {user.github} </div>
+                <div className='general-interests-right' id='very-bot'> <a href={`https://www.github.com/${user.github}`} target="_blank" rel="noreferrer">{user.github}</a> </div>
               </div>}
 
             </div>
@@ -272,13 +277,15 @@ function User() {
             </div>
 
             <div className='friends-bot'>
-              {loaded && allUsers?.slice(0, 8).map(user =>
+              {loaded && allUsers?.slice(0, 8).map(user => user.id !== +userId &&
                 <div key={user.id} className='profile-friend-card'>
                   <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
                     <div>
                       {user.username}
                     </div>
-                    <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
+                    <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+                      onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
+                    />
                   </NavLink>
                 </div>)}
 
@@ -306,7 +313,9 @@ function User() {
                       <div className='comment-username'>
                         <NavLink className='comment-username' to={`/users/${user.id}`}>{user?.username}</NavLink>
                       </div>
-                      <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
+                      <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+                        onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
+                      />
                     </div>
 
                     <div className='comments-rows-right'>
@@ -315,11 +324,11 @@ function User() {
                       </div>
 
                       <div className='comment-body'>
-                        {comment?.comment_body?.split('\n').map((line, idx) => <div key={idx}>{line}<br /></div>)}
+                        {comment?.comment_body}
                       </div>
 
                       <div>
-                        {sessionUser?.id === comment?.commenter ?
+                        {sessionUser && sessionUser?.id === comment?.commenter ?
                           <div className='comment-buttons'>
                             <NavLink to={`/comments/${comment.id}/edit`}>
                               <button className='comment-edit-button'>Edit</button>
