@@ -33,6 +33,7 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+
 @user_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
 def edit_profile(id):
@@ -71,8 +72,6 @@ def edit_profile(id):
         user.pintrest = form.data['pintrest']
         user.github = form.data['github']
 
-
-
         # user.profile_img = form.data['profile_img']
         # user.profile_name = form.data['profile_name']
         # user.status = form.data['status']
@@ -106,8 +105,26 @@ def edit_profile(id):
     return {'errors': validation_errors(form.errors)}, 401
 
 
-# COMMENT ROUTES ----------------------------------------------------------------
+@user_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_user(id):
+    user = User.query.get(id)
 
+    if not user:
+        return {'errors': ['User not found']}, 404
+    if user.id != current_user.id:
+        return {'errors': ['Unauthorized']}, 401
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return user.to_dict()
+
+
+
+
+
+# COMMENT ROUTES ----------------------------------------------------------------
 @user_routes.route('/<int:id>/comments/new', methods=['POST'])
 @login_required
 def create_comment(id):

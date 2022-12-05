@@ -44,7 +44,7 @@ class User(db.Model, UserMixin):
     #     'UserLink', back_populates='link_user', cascade='all, delete-orphan')
 
     user_blog = db.relationship(
-        'Blog', back_populates='blog_user', cascade="all, delete")
+        'Blog', back_populates='blog_user', cascade="all, delete-orphan")
     # user_commenter = db.relationship(
     #     'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='Comment.commenter')
     # user_commented = db.relationship(

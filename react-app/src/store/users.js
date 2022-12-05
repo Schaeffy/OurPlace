@@ -3,6 +3,7 @@ const LOAD_CURRENT = 'users/LOAD_CURRENT';
 const LOAD_ONE = 'users/LOAD_ONE';
 const UPDATE = 'users/UPDATE';
 const RESET = 'users/RESET';
+const DELETE = 'users/DELETE';
 
 
 const getUsers = (users) => ({
@@ -23,6 +24,13 @@ const update = (user) => ({
 export const resetUser = () => ({
     type: RESET
 })
+
+const remove = (userId) => ({
+    type: DELETE,
+    userId
+})
+
+
 
 //   const initialState = { user: null };
 
@@ -77,6 +85,17 @@ export const updateUser = (user, userId) => async (dispatch) => {
     }
 }
 
+export const deleteUser = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}/delete`, {
+        method: 'DELETE',
+    });
+    if (res.ok) {
+        const deletedUser = await res.json();
+        dispatch(remove(userId))
+        return deletedUser
+    }
+}
+
 export default function usersReducer(state = initialState, action) {
     let newState
     switch (action.type) {
@@ -96,6 +115,14 @@ export default function usersReducer(state = initialState, action) {
         case UPDATE:
             newState = Object.assign({}, state);
             newState.user = action.user;
+            return newState;
+
+        case DELETE:
+            newState = Object.assign({}, state);
+            delete newState.users[action.userId];
+            if (newState.user.id === action.userId) {
+                newState.user = {};
+            }
             return newState;
 
         case RESET:

@@ -47,11 +47,13 @@ const Comments = () => {
                                 <div className='comment-username' id='comments-page-username'>
                                     {/* <NavLink className='comment-username' to={`/users/${user.id}`}>{user.username}</NavLink> */}
                                     {/* <NavLink className='comment-username' to={`/users/${user.id}`}>{allUsers.map(user => user.id === comment.commenter ? user.username : null)}</NavLink> */}
-                                    {allUsers.map(user => user.id === comment.commenter ?
+                                    {allUsers?.map(user => user.id === comment.commenter ?
                                         <div>
                                             <NavLink className='comment-username' to={`/users/${user.id}`}>{user?.username}</NavLink>
                                             <div className='profile-pic' id='comments-page-pic'>
-                                                <img id='comments-profile-pic' src={user?.profile_img ? user?.profile_img : defaultPic} alt='profile-pic' />
+                                                <img id='comments-profile-pic' src={user?.profile_img ? user?.profile_img : defaultPic} alt='profile-pic'
+                                                    onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
+                                                />
                                             </div>
                                         </div>
                                         : null)}
@@ -70,7 +72,7 @@ const Comments = () => {
                                 </div>
 
                                 <div>
-                                    {sessionUser && sessionUser.id === comment.commented ?
+                                    {sessionUser && sessionUser?.id === comment.commented ?
                                     <NavLink to={`/comments/${comment.id}/delete`} id='delete-comment'>
                                     <button id='button2'>Delete</button>
                                     </NavLink>

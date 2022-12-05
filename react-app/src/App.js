@@ -27,6 +27,7 @@ import EditStatus from './components/UserEditForms/EditStatus';
 import AboutPage from './components/About';
 import EditLinks from './components/UserEditForms/EditLinks';
 import EditPhoto from './components/UserEditForms/EditPhoto';
+import DeleteUser from './components/UserEditForms/DeleteUser';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -99,6 +100,10 @@ function App() {
 
         <Route path='/users/:userId/edit' exact >
           <EditProfile />
+        </Route>
+
+        <Route path='/users/:userId/delete' exact >
+          <DeleteUser />
         </Route>
 
         <Route path='/users/:userId/edit-status' exact >

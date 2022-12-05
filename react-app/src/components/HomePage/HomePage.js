@@ -209,6 +209,9 @@ const HomePage = () => {
                                     <div className='profile-edits'>
                                         <NavLink to={`/users/${user.id}/blogs`} id='navlink'>Manage Blog</NavLink>
                                     </div>
+                                    <div className='profile-edits'>
+                                        <NavLink to={`/users/${user.id}/delete`} id='navlink'>Account Settings</NavLink>
+                                    </div>
                                 </div>
                             </div>
 
