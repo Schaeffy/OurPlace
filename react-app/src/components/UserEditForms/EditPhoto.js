@@ -26,7 +26,28 @@ const EditPhoto = () => {
     // const [pintrest, setPintrest] = useState(user?.pintrest)
     // const [github, setGithub] = useState(user?.github)
 
-    const [pic, setPic] = useState(user.profile_img)
+    const [pic, setPic] = useState('')
+    const [status, setStatus] = useState('')
+    const [mood, setMood] = useState('')
+    const [brief, setBrief] = useState('')
+    const [aboutMe, setAboutMe] = useState('')
+    const [meet, setMeet] = useState('')
+    const [general, setGeneral] = useState('')
+    const [music, setMusic] = useState('')
+    const [movies, setMovies] = useState('')
+    const [television, setTelevision] = useState('')
+    const [books, setBooks] = useState('')
+    const [heroes, setHeroes] = useState('')
+    const [instagram, setInstagram] = useState('')
+    const [snapchat, setSnapchat] = useState('')
+    const [tiktok, setTiktok] = useState('')
+    const [twitter, setTwitter] = useState('')
+    const [twitch, setTwitch] = useState('')
+    const [youtube, setYoutube] = useState('')
+    const [soundcloud, setSoundcloud] = useState('')
+    const [spotify, setSpotify] = useState('')
+    const [pintrest, setPintrest] = useState('')
+    const [github, setGithub] = useState('')
 
     const [displayErrors, setDisplayErrors] = useState(false)
     const [errors, setErrors] = useState([])
@@ -47,6 +68,31 @@ const EditPhoto = () => {
     // useEffect(() => {
     //     setPic(user.profile_img)
     // }, [user])
+
+    useEffect(() => {
+        setPic(user?.profile_img)
+        setStatus(user?.status)
+        setMood(user?.mood)
+        setBrief(user?.brief_you)
+        setAboutMe(user?.about_me)
+        setMeet(user?.here_for)
+        setGeneral(user?.general)
+        setMusic(user?.music)
+        setMovies(user?.movies)
+        setTelevision(user?.television)
+        setBooks(user?.books)
+        setHeroes(user?.heroes)
+        setInstagram(user.instagram)
+        setSnapchat(user.snapchat)
+        setTiktok(user.tiktok)
+        setTwitter(user.twitter)
+        setTwitch(user.twitch)
+        setYoutube(user.youtube)
+        setSoundcloud(user.soundcloud)
+        setSpotify(user.spotify)
+        setPintrest(user.pintrest)
+        setGithub(user.github)
+    }, [user])
 
 
     let validate = () => {
@@ -88,7 +134,28 @@ const EditPhoto = () => {
 
         if (!errors.length) {
             const payload = {
-                profile_img: pic
+                profile_img: pic,
+                status,
+                mood,
+                brief_you: brief,
+                about_me: aboutMe,
+                here_for: meet,
+                general,
+                music,
+                movies,
+                television,
+                books,
+                heroes,
+                instagram,
+                snapchat,
+                tiktok,
+                twitter,
+                twitch,
+                youtube,
+                soundcloud,
+                spotify,
+                pintrest,
+                github
             }
             const updatedUser = await dispatch(updateUser(payload, userId)).catch(async (res) => {
                 const data = await res.json();
@@ -110,11 +177,35 @@ const EditPhoto = () => {
         history.goBack()
     }
 
-    const handleRemove = async (e) => {
-        e.preventDefault()
-        await dispatch(updateUser({ profile_img: 'https://i.imgur.com/pEk7MNs.png' }, userId))
-        history.push(`/`)
-    }
+    // const handleRemove = async (e) => {
+    //     e.preventDefault()
+    //     await dispatch(updateUser(
+    //         {
+    //             profile_img: 'https://i.imgur.com/pEk7MNs.png',
+    //             status,
+    //             mood,
+    //             brief_you: brief,
+    //             about_me: aboutMe,
+    //             here_for: meet,
+    //             general,
+    //             music,
+    //             movies,
+    //             television,
+    //             books,
+    //             heroes,
+    //             instagram,
+    //             snapchat,
+    //             tiktok,
+    //             twitter,
+    //             twitch,
+    //             youtube,
+    //             soundcloud,
+    //             spotify,
+    //             pintrest,
+    //             github
+    //         }, userId))
+    //     history.push(`/`)
+    // }
 
 
     return (
@@ -164,11 +255,11 @@ const EditPhoto = () => {
 
                         </div>
                     </form>
-                    <div className='remove-profile-pic'>
+                    {/* <div className='remove-profile-pic'>
                         <h3>Remove Profile Picture</h3>
                         <p>Click the button below to remove your profile picture.</p>
                         <button className='button' id='remove' onClick={handleRemove}>Remove Picture</button>
-                    </div>
+                    </div> */}
                 </div>
 
 

@@ -65,10 +65,14 @@
 
 .general-info {
     margin-left: 10px;
+    white-space: pre-line;
+    word-break: break-word;
 }
 
 .mood {
     margin-top: 10px;
+    white-space: pre-line;
+    word-break: break-word;
 }
 
 

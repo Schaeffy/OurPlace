@@ -47,52 +47,29 @@ def edit_profile(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        if form.data['profile_img']:
-            user.profile_img = form.data['profile_img']
-        if form.data['profile_name']:
-            user.profile_name = form.data['profile_name']
-        if form.data['status']:
-            user.status = form.data['status']
-        if form.data['mood']:
-            user.mood = form.data['mood']
-        if form.data['brief_you']:
-            user.brief_you = form.data['brief_you']
-        if form.data['here_for']:
-            user.here_for = form.data['here_for']
-        if form.data['about_me']:
-            user.about_me = form.data['about_me']
-        if form.data['general']:
-            user.general = form.data['general']
-        if form.data['music']:
-            user.music = form.data['music']
-        if form.data['movies']:
-            user.movies = form.data['movies']
-        if form.data['television']:
-            user.television = form.data['television']
-        if form.data['books']:
-            user.books = form.data['books']
-        if form.data['heroes']:
-            user.heroes = form.data['heroes']
-        if form.data['instagram']:
-            user.instagram = form.data['instagram']
-        if form.data['twitter']:
-            user.twitter = form.data['twitter']
-        if form.data['snapchat']:
-            user.snapchat = form.data['snapchat']
-        if form.data['tiktok']:
-            user.tiktok = form.data['tiktok']
-        if form.data['twitch']:
-            user.twitch = form.data['twitch']
-        if form.data['youtube']:
-            user.youtube = form.data['youtube']
-        if form.data['soundcloud']:
-            user.soundcloud = form.data['soundcloud']
-        if form.data['spotify']:
-            user.spotify = form.data['spotify']
-        if form.data['pintrest']:
-            user.pintrest = form.data['pintrest']
-        if form.data['github']:
-            user.github = form.data['github']
+        user.profile_img = form.data['profile_img']
+        user.profile_name = form.data['profile_name']
+        user.status = form.data['status']
+        user.mood = form.data['mood']
+        user.brief_you = form.data['brief_you']
+        user.here_for = form.data['here_for']
+        user.about_me = form.data['about_me']
+        user.general = form.data['general']
+        user.music = form.data['music']
+        user.movies = form.data['movies']
+        user.television = form.data['television']
+        user.books = form.data['books']
+        user.heroes = form.data['heroes']
+        user.instagram = form.data['instagram']
+        user.twitter = form.data['twitter']
+        user.snapchat = form.data['snapchat']
+        user.tiktok = form.data['tiktok']
+        user.twitch = form.data['twitch']
+        user.youtube = form.data['youtube']
+        user.soundcloud = form.data['soundcloud']
+        user.spotify = form.data['spotify']
+        user.pintrest = form.data['pintrest']
+        user.github = form.data['github']
 
 
 
