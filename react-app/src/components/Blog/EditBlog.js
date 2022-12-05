@@ -41,6 +41,10 @@ const EditBlogEntry = () => {
             validationErrors.push('Please enter some content for your blog entry')
         }
 
+        if (body.length > 9000) {
+            validationErrors.push('Please keep blog entries less than 9000 characters')
+        }
+
         // if (title.length < 3) {
         //     validationErrors.push('Title must be at least 3 character long')
         // }

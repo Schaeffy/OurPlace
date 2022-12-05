@@ -12,7 +12,7 @@ class Blog(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod('users.id')))
     blog_title = db.Column(db.String(100), nullable=False)
-    blog_body = db.Column(db.String, nullable=False)
+    blog_body = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True),
                            server_default=func.current_timestamp())
     updated_at = db.Column(db.DateTime(timezone=True),
