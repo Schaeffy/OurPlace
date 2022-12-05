@@ -34,7 +34,7 @@ def seed_blogs():
         ''',
     )
     blog5 = Blog(
-        user_id=5,
+        user_id=7,
         blog_title="What's done and what's to come",
         blog_body='''What a journey! As I near the end of this program, I'm constantly amazed at how much I've learned.
         This site has been on my mind for quite some time and now that I have the skills to bring it to life, I'm stoked to see it come together.
@@ -43,19 +43,19 @@ def seed_blogs():
         ''',
     )
     blog6 = Blog(
-        user_id=6,
+        user_id=8,
         blog_title="Boba is love, boba is life",
         blog_body='''Salted cheese Oolong crema is bae! Only comes second to Keshi though <3
         Now that I have what I want, it's time for a nap!
         '''
     )
     blog7 = Blog(
-        user_id=7,
+        user_id=5,
         blog_title="Yo, Valo or what?",
         blog_body="Who's down to play Valorant? I'm getting a 5 stack together with some big brain gamers. We beamin!"
     )
     blog8 = Blog(
-        user_id=8,
+        user_id=6,
         blog_title="TFT new set coming out soon",
         blog_body='''Lookin' forward to the new set. Kinda getting tired of all these dragonmancer Nunu slammers and la'Goon squad kiddos.
         Goonies always say die!

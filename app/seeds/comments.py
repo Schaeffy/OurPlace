@@ -25,32 +25,32 @@ def seed_comments():
         comment_body="Hey, I hope you're doing well. it was great seeing you again!"
     )
     comment5 = Comment(
-        commenter=6,
-        commented=7,
+        commenter=8,
+        commented=5,
         comment_body="WHY TELEPORT AND LEAVE ME BEHIND!???"
     )
 
     comment6 = Comment(
-        commenter=7,
-        commented=6,
+        commenter=5,
+        commented=8,
         comment_body="lol my bad"
     )
 
     comment7 = Comment(
-        commenter=8,
-        commented=5,
+        commenter=6,
+        commented=7,
         comment_body="Wow, another bug in the project?"
     )
 
     comment8 = Comment(
-        commenter=8,
-        commented=6,
+        commenter=6,
+        commented=8,
         comment_body="I NEED SOME CSS HELP!"
     )
 
     comment9 = Comment(
-        commenter=5,
-        commented=8,
+        commenter=7,
+        commented=6,
         comment_body="Yo Simon! Can you help me debug my code real quick?"
     )
 
@@ -62,17 +62,17 @@ def seed_comments():
 
     comment11 = Comment(
         commenter=2,
-        commented=6,
+        commented=8,
         comment_body="Kelly, question for me?"
     )
     comment12 = Comment(
-        commenter=5,
+        commenter=7,
         commented=4,
         comment_body="Hey, what kind of keyboard do you use again?"
     )
     comment13 = Comment(
         commenter=4,
-        commented=5,
+        commented=7,
         comment_body="It's called the Moonlander Mark 1. Pretty awesome to use."
     )
     comment14 = Comment(

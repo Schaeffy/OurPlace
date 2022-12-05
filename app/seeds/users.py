@@ -188,10 +188,10 @@ def seed_users():
     db.session.add(bill)
     db.session.add(david)
     db.session.add(john)
-    db.session.add(schaeffer)
-    db.session.add(kelly)
     db.session.add(andrew)
     db.session.add(simon)
+    db.session.add(schaeffer)
+    db.session.add(kelly)
     db.session.commit()
 
 

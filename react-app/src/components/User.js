@@ -277,7 +277,7 @@ function User() {
             </div>
 
             <div className='friends-bot'>
-              {loaded && allUsers?.slice(0, 8).map(user => user.id !== +userId &&
+              {loaded && allUsers?.slice(0, 8).reverse().map(user => user.id !== +userId &&
                 <div key={user.id} className='profile-friend-card'>
                   <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
                     <div>
