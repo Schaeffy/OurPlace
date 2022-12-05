@@ -78,12 +78,30 @@ View and explore the live site here: [**OurPlace**](https://ourplace.onrender.co
 <br>
 
 
+<h3> Comments:</h3>
+
+![image](https://user-images.githubusercontent.com/79663621/205568503-03528700-cc8a-4d7d-a42d-a0162448a602.png)
+
+![image](https://user-images.githubusercontent.com/79663621/205568631-13c2c5c9-f992-49d0-ac88-128371cc1d43.png)
+
+![image](https://user-images.githubusercontent.com/79663621/205568687-b2645122-f931-42ba-a848-2cb2ed335326.png)
+
+
+
+<h4>Details: </h4>
+<ul>
+<li> View Comments </li>
+<li> Create/Edit/Delete Comments </li>
+</ul>
+<br>
+<br>
+
 <h2> Run Locally </h2>
 
 - Clone our repository:
 ```
-git@github.com:keshao728/Genius.git
-https://github.com/keshao728/Genius.git
+git@github.com:Schaeffy/OurPlace.git
+https://github.com/Schaeffy/OurPlace.git
 ```
 - Within your terminal, install dependencies in root folder:
 ```
@@ -114,44 +132,3 @@ npm start
 ```
 <br>
 <br>
-
-<h2> Let's Get Connected! </h2>
-<div>
-<h3> Kelly Shao </h3>
-<a href="https://github.com/keshao728"  target="_blank">
-
-![Github](https://img.shields.io/badge/github-%230077B5.svg?style=for-the-badge&logo=github&logoColor=white)
-</a>
-</div>
-
-
-<br>
-<h3> Schaeffer Ahn </h3>
-
-
-<a href="https://github.com/Schaeffy"  target="_blank">
-
-![Github](https://img.shields.io/badge/github-%230077B5.svg?style=for-the-badge&logo=github&logoColor=white)
-</a>
-
-<br>
-<h3> Simon Tan </h3>
-
-<a href="https://github.com/SimonMTan"  target="_blank">
-
-![Github](https://img.shields.io/badge/github-%230077B5.svg?style=for-the-badge&logo=github&logoColor=white)
-</a>
-
-<br>
-<h3> Andrew Kim </h3>
-
-<a href="https://github.com/k-rewd"  target="_blank">
-
-![Github](https://img.shields.io/badge/github-%230077B5.svg?style=for-the-badge&logo=github&logoColor=white)
-</a>
-<br>
-<br>
-<h2> Have a great day! </h2>
-<a href="https://imgur.com/nVjEQNZ"><img src="https://i.imgur.com/nVjEQNZ.png" title="source: imgur.com" /></a>
-
-
