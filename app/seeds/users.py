@@ -3,6 +3,74 @@ from app.models import db, User, environment, SCHEMA
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
+    jake = User(
+        username='Jake',
+        email='jake@aa.io',
+        password='soundcloudpass',
+        profile_img='https://i.imgur.com/frvevYk.png',
+        status='relaxin',
+        mood='code and chill',
+        brief_you='big brain coder',
+        about_me="I'm Jake and I'm the only one who did SoundCloud and passed. ",
+        here_for="hire me",
+        general="coding, music festivals, good times, good vibes",
+        music='edm',
+        github='jdoofey',
+    )
+    abel = User(
+        username='Abel',
+        email='abel@aa.io',
+        password='iwinulose',
+        profile_img='https://i.imgur.com/a7mxTnp.png',
+        status='watching world cup',
+        mood='stresed and blessed',
+        brief_you='dont be haitin on a Haitian',
+        about_me="Yo. My name is Abel and I'm a software engineer. I love to code and I love to play video games.",
+        here_for="recruiters",
+        general="Football, not soccer",
+        github='abrianvil',
+    )
+    ali = User(
+        username='Ali',
+        email='ali@aa.io',
+        password='globalelite',
+        profile_img='https://i.imgur.com/xSnNu3b.jpg',
+        status='just straight chillin',
+        mood='gamin',
+        brief_you='Global Elite',
+        about_me="Yo! I'm Ali and I think you're pretty cool",
+        here_for="someone as good as me at CS:GO",
+        general="CS GO GOING GONE",
+        music='The Strokes, Pink Floyd, Beach House, Fairuz',
+        github='alkezz',
+    )
+    noah = User(
+        username='Noah',
+        email='noah@aa.io',
+        password='gamer420',
+        profile_img='https://i.imgur.com/JbcfKA6.png',
+        status='playin Darktide',
+        mood='feelin elevated',
+        brief_you='TTT',
+        about_me="It's ya boy, Noah. Software engineer by day, gamer also by day. ",
+        here_for="good vibes, good times, good friends",
+        general="Coding, games, coding games",
+        music='Bob marley, Afro Man',
+        github='B1G-M0N3Y',
+    )
+    gary = User(
+        username='Gary',
+        email='gary@aa.io',
+        password='musicode',
+        profile_img='https://i.imgur.com/MMZXD2S.png',
+        status='writing code, making music',
+        mood='egg',
+        brief_you='18/M/CA',
+        about_me="I'm Gary. I create stuff. Music, web apps, memes.",
+        general="Korean Pride",
+        music='I love all kinds of music. I love making music even more',
+        github='garydsong',
+    )
     tom = User(
         username='Tom',
         email='tom@aa.io',
@@ -54,7 +122,7 @@ def seed_users():
         password='eodwizard',
         profile_img='https://i.imgur.com/1fchQtG.png',
         status='learning, coding, teaching',
-        mood='chilln',
+        mood='feel like building something',
         brief_you='affinity for the old net',
         about_me="I'm David and I teach students how to be software engineers. ",
         general="building programs, learning haskell",
@@ -65,7 +133,7 @@ def seed_users():
         username='John',
         email='john@aa.io',
         password='professorj',
-        profile_img='https://i.imgur.com/aES91zj.jpg',
+        profile_img='https://i.imgur.com/4phI0p7.png',
         status='in the matrix',
         mood='chillin',
         brief_you='husband, father, software engineer',
@@ -134,10 +202,10 @@ def seed_users():
         username='Kelly',
         email='kelly@aa.io',
         password='sleepykitty',
-        profile_img='https://i.imgur.com/0W1cRiK.png',
-        status='on bed',
+        profile_img='https://i.imgur.com/asRVt2K.jpg',
+        status='ur future depends on ur dream, so go to sleep',
         mood='sleepy',
-        brief_you='OwO',
+        brief_you='Whasssup! OwO',
         about_me='An introverted extrovert',
         here_for='My future self',
         general='Sleep',
@@ -184,6 +252,11 @@ def seed_users():
         github='SimonMTan'
     )
 
+    db.session.add(jake)
+    db.session.add(abel)
+    db.session.add(ali)
+    db.session.add(noah)
+    db.session.add(gary)
     db.session.add(tom)
     db.session.add(bill)
     db.session.add(david)

@@ -18,7 +18,18 @@ def validation_errors(validation_errors):
 @comment_routes.route('/')
 def get_all_comments():
     comments = Comment.query.all()
-    return {"comments": [comment.to_dict() for comment in comments]}
+
+    comment_list = []
+
+    for comment in comments:
+        commenter = (User.query.filter(User.id == comment.commenter).first()).to_dict()
+        commented = (User.query.filter(User.id == comment.commented).first()).to_dict()
+        comments_dict = comment.to_dict()
+        comments_dict['commenter'] = commenter
+        comments_dict['commented'] = commented
+        comment_list.append(comments_dict)
+
+    return {"comments": [comment for comment in comment_list]}
 
 @comment_routes.route('/current')
 def get_current_user_comments():

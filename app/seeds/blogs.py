@@ -3,14 +3,14 @@ from app.models import db, User, Blog, Comment, environment, SCHEMA
 
 def seed_blogs():
     blog1 = Blog(
-        user_id=1,
+        user_id=6,
         blog_title="Hey what a cool site",
         blog_body='''Wow! just discovered this site! Looks really similar to something that I built a while back.
         Brings back a lot of memories! I'm going to have to check out the code for this site and see how it compares to mine.
         ''',
     )
     blog2 = Blog(
-        user_id=2,
+        user_id=7,
         blog_title="You Only Line Once",
         blog_body='''If it can be on one line, then it should be on one line! Just kidding.
         I'm not a monster. I do like to keep my code clean and readable, but I also like to keep it short and sweet.
@@ -18,7 +18,7 @@ def seed_blogs():
         ''',
     )
     blog3 = Blog(
-        user_id=3,
+        user_id=8,
         blog_title="Learning a new language is kind of a haskell",
         blog_body=''' Currently learning Haskell and I'm having a lot of fun with it.
         Did you know that Haskell is a purely functional programming language? It was designed for teaching, research, and industry use.
@@ -26,7 +26,7 @@ def seed_blogs():
         '''
     )
     blog4 = Blog(
-        user_id=4,
+        user_id=9,
         blog_title="Dad Life",
         blog_body='''Yo! My son just turned 1! I'm so proud of him. He's growing up so fast. I can't believe it's been a year already.
         I'm glad that I finally finished this program and now I have more time to spend with my family.
@@ -34,7 +34,7 @@ def seed_blogs():
         ''',
     )
     blog5 = Blog(
-        user_id=7,
+        user_id=12,
         blog_title="What's done and what's to come",
         blog_body='''What a journey! As I near the end of this program, I'm constantly amazed at how much I've learned.
         This site has been on my mind for quite some time and now that I have the skills to bring it to life, I'm stoked to see it come together.
@@ -43,19 +43,19 @@ def seed_blogs():
         ''',
     )
     blog6 = Blog(
-        user_id=8,
+        user_id=13,
         blog_title="Boba is love, boba is life",
         blog_body='''Salted cheese Oolong crema is bae! Only comes second to Keshi though <3
         Now that I have what I want, it's time for a nap!
         '''
     )
     blog7 = Blog(
-        user_id=5,
+        user_id=10,
         blog_title="Yo, Valo or what?",
         blog_body="Who's down to play Valorant? I'm getting a 5 stack together with some big brain gamers. We beamin!"
     )
     blog8 = Blog(
-        user_id=6,
+        user_id=11,
         blog_title="TFT new set coming out soon",
         blog_body='''Lookin' forward to the new set. Kinda getting tired of all these dragonmancer Nunu slammers and la'Goon squad kiddos.
         Goonies always say die!

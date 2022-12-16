@@ -151,10 +151,10 @@ const EditProfile = () => {
                     <br />
                     <p>All fields are optional and can be left empty if you want.</p>
                     <div className='errors' id='errors-container'>
-                                {errors.map((error, ind) => (
-                                    <div id='error-message' key={ind}>{error}</div>
-                                ))}
-                            </div>
+                        {errors.map((error, ind) => (
+                            <div id='error-message' key={ind}>{error}</div>
+                        ))}
+                    </div>
                     <form onSubmit={handleSubmit}>
                         <div className="edit-profile-form-button">
                             <button id='button' type="submit">Save</button>
@@ -224,10 +224,10 @@ const EditProfile = () => {
                             <textarea className='edit-profile-textarea' value={heroes} onChange={(e) => setHeroes(e.target.value)}></textarea>
                         </div>
                         <div className='errors' id='errors-container'>
-                                {errors.map((error, ind) => (
-                                    <div id='error-message' key={ind}>{error}</div>
-                                ))}
-                            </div>
+                            {errors.map((error, ind) => (
+                                <div id='error-message' key={ind}>{error}</div>
+                            ))}
+                        </div>
 
                         <div className="edit-profile-form-button">
                             <button id='button' type="submit">Save</button>

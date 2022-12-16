@@ -7,7 +7,7 @@ const Footer = () => {
         <div className='footer'>
             <div className='footer-links'>
                 <NavLink to='/about' id='navlink'>About</NavLink> |
-                <a href='https://github.com/schaeffy' id='navlink'>Github</a>
+                <a href='https://github.com/schaeffy' id='navlink' target="_blank" rel="noreferrer">Github</a>
             </div>
             <div>
                 ©2022 OurPlace.com. A Nostalgia Time Machine. All rights reserved.
