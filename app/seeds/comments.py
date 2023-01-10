@@ -3,86 +3,86 @@ from app.models import db, User, Blog, Comment, environment, SCHEMA
 
 def seed_comments():
     comment1 = Comment(
-        commenter=2,
-        commented=3,
+        commenter=7,
+        commented=8,
         comment_body="Hey, what's up? See you in Mod 1"
     )
     comment2 = Comment(
-        commenter=2,
-        commented=1,
+        commenter=7,
+        commented=6,
         comment_body="Hey Tom!"
     )
 
     comment3 = Comment(
-        commenter=3,
-        commented=2,
+        commenter=8,
+        commented=7,
         comment_body="Hey! Bill! How's it going?"
     )
 
     comment4 = Comment(
-        commenter=3,
-        commented=4,
+        commenter=8,
+        commented=9,
         comment_body="Hey, I hope you're doing well. it was great seeing you again!"
     )
     comment5 = Comment(
-        commenter=8,
-        commented=5,
+        commenter=13,
+        commented=10,
         comment_body="WHY TELEPORT AND LEAVE ME BEHIND!???"
     )
 
     comment6 = Comment(
-        commenter=5,
-        commented=8,
+        commenter=10,
+        commented=13,
         comment_body="lol my bad"
     )
 
     comment7 = Comment(
-        commenter=6,
-        commented=7,
+        commenter=11,
+        commented=12,
         comment_body="Wow, another bug in the project?"
     )
 
     comment8 = Comment(
-        commenter=6,
-        commented=8,
+        commenter=11,
+        commented=13,
         comment_body="I NEED SOME CSS HELP!"
     )
 
     comment9 = Comment(
-        commenter=7,
-        commented=6,
+        commenter=12,
+        commented=11,
         comment_body="Yo Simon! Can you help me debug my code real quick?"
     )
 
     comment10 = Comment(
-        commenter=2,
-        commented=7,
+        commenter=7,
+        commented=12,
         comment_body="You have been boosted!"
     )
 
     comment11 = Comment(
-        commenter=2,
-        commented=8,
+        commenter=7,
+        commented=13,
         comment_body="Kelly, question for me?"
     )
     comment12 = Comment(
-        commenter=7,
-        commented=4,
+        commenter=12,
+        commented=9,
         comment_body="Hey, what kind of keyboard do you use again?"
     )
     comment13 = Comment(
-        commenter=4,
-        commented=7,
+        commenter=9,
+        commented=12,
         comment_body="It's called the Moonlander Mark 1. Pretty awesome to use."
     )
     comment14 = Comment(
-        commenter=1,
-        commented=2,
+        commenter=6,
+        commented=7,
         comment_body="Nice to meet you!"
     )
     comment15 = Comment(
-        commenter=1,
-        commented=3,
+        commenter=6,
+        commented=8,
         comment_body="Thanks for the request!"
     )
 

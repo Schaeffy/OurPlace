@@ -24,7 +24,7 @@ const NavBar = () => {
         <div className='nav-right-container'>
           <div className='nav-right-links'>
             <div className='nav-link'>
-              <a href='https://github.com/Schaeffy/OurPlace'>
+              <a href='https://github.com/Schaeffy/OurPlace' target="_blank" rel="noreferrer">
                 Help
               </a>
 

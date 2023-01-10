@@ -20,7 +20,7 @@ function User() {
   const dispatch = useDispatch();
 
   const comments = useSelector(state => state.comments.comments)
-  const userComments = Object.values(comments)?.filter(comment => comment.commented === +userId)
+  const userComments = Object.values(comments)?.filter(comment => comment.commented.id === +userId)
 
   const users = useSelector(state => state.users.users)
   const allUsers = Object.values(users)
@@ -46,10 +46,10 @@ function User() {
   // }, [userId]);
 
   useEffect(() => {
-    dispatch(getComments())
     dispatch(getBlogs())
     dispatch(getOneUser(userId))
-    dispatch(loadUsers()).then(() => setLoaded(true))
+    dispatch(loadUsers())
+    dispatch(getComments()).then(() => setLoaded(true))
 
     return () => {
       dispatch(resetUser())
@@ -277,7 +277,7 @@ function User() {
             </div>
 
             <div className='friends-bot'>
-              {loaded && allUsers?.slice(0, 8).reverse().map(user => user.id !== +userId &&
+              {loaded && allUsers?.filter(user => user.id !== +userId).reverse().slice(0,8).map(user =>
                 <div key={user.id} className='profile-friend-card'>
                   <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
                     <div>
@@ -307,13 +307,13 @@ function User() {
               {/* {userComments?.map((comment) => (<div>{comment?.comment_body}</div>))} */}
 
               {userComments?.reverse().map((comment) =>
-                allUsers?.map((user) => user.id === comment.commenter ?
+
                   <div className='comments-rows' key={comment.id}>
                     <div className='comments-rows-left'>
                       <div className='comment-username'>
-                        <NavLink className='comment-username' to={`/users/${user.id}`}>{user?.username}</NavLink>
+                        <NavLink className='comment-username' to={`/users/${comment?.commenter.id}`}>{comment?.commenter.username}</NavLink>
                       </div>
-                      <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+                      <img id='profile-friend-pic' src={comment?.commenter.profile_img ? comment?.commenter.profile_img : defaultPic} alt='profile-pic'
                         onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                       />
                     </div>
@@ -328,7 +328,7 @@ function User() {
                       </div>
 
                       <div>
-                        {sessionUser && sessionUser?.id === comment?.commenter ?
+                        {sessionUser && sessionUser?.id === comment?.commenter.id ?
                           <div className='comment-buttons'>
                             <NavLink to={`/comments/${comment.id}/edit`}>
                               <button className='comment-edit-button'>Edit</button>
@@ -343,7 +343,7 @@ function User() {
 
                   </div>
 
-                  : null))}
+                  )}
 
 
             </div>
