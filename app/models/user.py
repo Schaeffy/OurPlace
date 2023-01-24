@@ -50,15 +50,15 @@ class User(db.Model, UserMixin):
     # user_commented = db.relationship(
     #     'Comment', back_populates='commenter', cascade="all, delete", foreign_keys='Comment.commented')
 
-    # requested_rels = db.relationship(
-    #     "Friend_Request",
-    #     foreign_keys="Friend_Request.requesting_user_id",
-    #     back_populates='requesting_user'
+    # requested_friends = db.relationship(
+    #     "FriendshipRequest",
+    #     foreign_keys='friendship_requests.requesting_user_id',
+    #     back_populates='requester'
     # )
-    # received_rels = db.relationship(
-    #     'Friend_Request',
-    #     foreign_keys='Friend_Request.receiving_user_id',
-    #     back_populates='receiving_user'
+    # received_friends = db.relationship(
+    #     'FriendshipRequest',
+    #     foreign_keys='friendship_requests.receiving_user_id',
+    #     back_populates='requested'
     # )
 
     # aspiring_friends = association_proxy('received_rels', 'requesting_user')
