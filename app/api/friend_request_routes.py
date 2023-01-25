@@ -17,17 +17,19 @@ def validation_errors(validation_errors):
 def get_all_requests():
     requests = FriendshipRequest.query.all()
 
-    request_list = []
+    # request_list = []
 
-    for request in requests:
-        requester = (User.query.filter(User.id == request.requesting_user_id).first()).to_dict()
-        requested = (User.query.filter(User.id == request.receiving_user_id).first()).to_dict()
-        requests_dict = request.to_dict()
-        requests_dict['requester'] = requester
-        requests_dict['requested'] = requested
-        request_list.append(requests_dict)
+    # for request in requests:
+    #     requester = (User.query.filter(User.id == request.requesting_user_id).first()).to_dict()
+    #     requested = (User.query.filter(User.id == request.receiving_user_id).first()).to_dict()
+    #     requests_dict = request.to_dict()
+    #     requests_dict['requester'] = requester
+    #     requests_dict['requested'] = requested
+    #     request_list.append(requests_dict)
 
-    return {"requests": [request for request in request_list]}
+    # return {"requests": [request for request in request_list]}
+
+    return {"requests": [request.to_dict() for request in requests]}
 
 # @request_routes.route('/new', methods=['POST'])
 # @login_required

@@ -11,6 +11,8 @@ import defaultPic from '../images/user.png'
 import { getComments, resetComment } from '../../store/comments';
 import { resetSession } from '../../store/session';
 import catThumb from '../images/cat-thumbs.png'
+import { getFriends } from '../../store/friends';
+import { getRequests } from '../../store/requests';
 
 
 const HomePage = () => {
@@ -28,11 +30,14 @@ const HomePage = () => {
     const userComments = Object.values(comments).filter(comment => comment?.commented === sessionUser?.id)
     const allUsers = Object.values(users)
     const [loaded, setLoaded] = useState(false);
+    const userId = sessionUser?.id
     // console.log('uuuuuuuuuuuuuu', users)
 
     useEffect(() => {
-        dispatch(getOneUser(sessionUser?.id))
+        dispatch(getOneUser(userId))
         dispatch(getBlogs())
+        dispatch(getFriends(userId))
+        dispatch(getRequests())
         dispatch(loadUsers()).then(() => setLoaded(true))
         // dispatch(getComments()).then(() => setLoaded(true))
 
@@ -43,6 +48,21 @@ const HomePage = () => {
         }
     }, [dispatch, sessionUser])
 
+    const friends = useSelector(state => state.friends);
+    const allFriends = Object.values(friends);
+    const userFriends = allFriends.filter(friend => Object.values(friend).includes(+userId))
+    const userFriendsIds = userFriends.map(friend => +userId === friend.user1 ? friend.user2 : friend.user1)
+    const friendsInfo = allUsers.filter(user => userFriendsIds.includes(user.id))
+
+
+    const requests = useSelector(state => state.requests);
+    const allRequests = Object.values(requests);
+    console.log('..................',allRequests)
+    // const requestsReceived = allRequests.filter(request => request?.receiving_user_id === +userId)
+    const requestsReceived = allRequests.map(request => request?.receiving_user_id === +userId ? request.requesting_user_id : null).filter(req => req !== null)
+    const requestsSent = allRequests.filter(request => request?.requesting_user_id === +userId ? request.receiving_user_id : null).filter(req => req !== null)
+    const requestedUsers = allUsers.filter(user => requestsReceived.includes(user.id))
+    const sentUsers = allUsers.filter(user => requestsSent.includes(user.id))
 
     // useEffect(()=> {
     //     dispatch(getBlogs()).then(() => setLoaded(true))
@@ -125,7 +145,7 @@ const HomePage = () => {
                                     <img id='cat-thumb' src={catThumb} alt='cat-thumb' />
                                     <div className='announcement-message'>
                                         Hey! Thanks for visiting my site! <br />
-                                        <span style={{ fontWeight: 'bold', color:'#1E40AF' }}>OurPlace</span> is a nostalgia fueled social networking site that I built using an assortment of tools such as React, Redux, Flask, etc. I hope you enjoy it!
+                                        <span style={{ fontWeight: 'bold', color: '#1E40AF' }}>OurPlace</span> is a nostalgia fueled social networking site that I built using an assortment of tools such as React, Redux, Flask, etc. I hope you enjoy it!
                                     </div>
                                 </div>
                             </div>
@@ -384,9 +404,9 @@ const HomePage = () => {
                             </div>
                         </div> */}
 
-                        <div className='profile-friends'>
+                        {/* <div className='profile-friends'>
                             <div className='friends-top' id='friends-bot'>
-                                Cool New People
+                                Your Friends
                             </div>
 
                             <div className='friends-bot' id='friends-bot'>
@@ -403,9 +423,30 @@ const HomePage = () => {
                                                     />
                                                 </NavLink>
                                             </div>
-                                            {/* <div>
-                                                <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic' />
-                                            </div> */}
+                                        </div>
+                                    </div>)}
+                            </div>
+                        </div> */}
+
+                        <div className='profile-friends'>
+                            <div className='friends-top' id='friends-bot'>
+                                Your Friends
+                            </div>
+
+                            <div className='friends-bot' id='friends-bot'>
+                                {friendsInfo.reverse().slice(0, 8)?.map(user =>
+                                    <div key={user.id}>
+                                        <div key={user.id} className='profile-friend-card'>
+                                            <div>
+                                                <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
+                                                    <div>
+                                                        {user.username}
+                                                    </div>
+                                                    <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+                                                        onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
+                                                    />
+                                                </NavLink>
+                                            </div>
                                         </div>
                                     </div>)}
                             </div>
@@ -448,6 +489,63 @@ const HomePage = () => {
 
                             </div>
                         </div> */}
+
+                        <div className='profile-comments'>
+                            <div className='friends-top'>
+                                {`Friend Requests`}
+                            </div>
+
+                            <div className='comments-mid'>
+                                Diplaying <span id='comments-length'>{userComments?.length}</span> of <span id='comments-length'>{userComments.length}</span> comments ({<NavLink id='navlink' to={`/users/${user.id}/comments`}>View all</NavLink>} | {<NavLink id='navlink' to={`/users/${user.id}/comments/new`}>Add Comment</NavLink>})
+                            </div>
+
+                            {/* <div>{`Displaying ${userComments.filter(user => user.id === comment.commenter)}`}</div> */}
+
+                            <div className='comments-bot'>
+                                {/* {userComments?.map((comment) => (<div>{comment?.comment_body}</div>))} */}
+
+                                {userComments?.reverse().map((comment) =>
+
+                                    <div className='comments-rows' key={comment.id}>
+                                        <div className='comments-rows-left'>
+                                            <div className='comment-username'>
+                                                <NavLink className='comment-username' to={`/users/${comment?.commenter.id}`}>{comment?.commenter.username}</NavLink>
+                                            </div>
+                                            <img id='profile-friend-pic' src={comment?.commenter.profile_img ? comment?.commenter.profile_img : defaultPic} alt='profile-pic'
+                                                onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
+                                            />
+                                        </div>
+
+                                        <div className='comments-rows-right'>
+                                            <div className='comment-date'>
+                                                {new Date(comment?.created_at).toLocaleString()}
+                                            </div>
+
+                                            <div className='comment-body'>
+                                                {comment?.comment_body}
+                                            </div>
+
+                                            <div>
+                                                {sessionUser && sessionUser?.id === comment?.commenter.id ?
+                                                    <div className='comment-buttons'>
+                                                        <NavLink to={`/comments/${comment.id}/edit`}>
+                                                            <button className='comment-edit-button'>Edit</button>
+                                                        </NavLink>
+                                                        <NavLink to={`/comments/${comment.id}/delete`} id='delete-comment'>
+                                                            <button className='comment-delete-button'>Delete</button>
+                                                        </NavLink>
+                                                    </div>
+                                                    : null}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                )}
+
+
+                            </div>
+                        </div>
 
                     </div>
 

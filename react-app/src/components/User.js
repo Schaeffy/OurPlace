@@ -6,6 +6,7 @@ import { getComments, getUserComments, resetComment } from '../store/comments';
 import defaultPic from './images/user.png'
 import './User.css'
 import { loadUsers, resetUser, getOneUser } from '../store/users';
+import { getFriends } from '../store/friends';
 
 function User() {
   // const [user, setUser] = useState({});
@@ -49,6 +50,7 @@ function User() {
     dispatch(getBlogs())
     dispatch(getOneUser(userId))
     dispatch(loadUsers())
+    dispatch(getFriends(userId))
     dispatch(getComments()).then(() => setLoaded(true))
 
     return () => {
@@ -57,6 +59,12 @@ function User() {
       dispatch(resetComment())
     }
   }, [dispatch, userId])
+
+  const friends = useSelector(state => state.friends);
+  const allFriends = Object.values(friends);
+  const userFriends = allFriends.filter(friend => Object.values(friend).includes(+userId))
+  const userFriendsIds = userFriends.map(friend => +userId === friend.user1 ? friend.user2 : friend.user1)
+  const friendsInfo = allUsers.filter(user => userFriendsIds.includes(user.id))
 
 
   // useEffect(()=> {
@@ -171,67 +179,67 @@ function User() {
           </div>
 
           {(user.instgram || user.snapchat || user.twitter || user.youtube || user.twitch || user.tiktok || user.soundcloud || user.spotify || user.pintrest || user.github) && (
-          <div className='interests'>
+            <div className='interests'>
 
-            <div className='interests-top'>
-              {`${user.username}'s Links`}
-            </div>
+              <div className='interests-top'>
+                {`${user.username}'s Links`}
+              </div>
 
-            <div className='interests-bot'>
+              <div className='interests-bot'>
 
-              {user.instagram && <div className='general-interests'>
-                <div className='general-interests-left'>Instagram</div>
-                <div className='general-interests-right'> <a href={`https://www.instagram.com/${user.instagram}`} target="_blank" rel="noreferrer">{user.instagram}</a> </div>
-              </div>}
+                {user.instagram && <div className='general-interests'>
+                  <div className='general-interests-left'>Instagram</div>
+                  <div className='general-interests-right'> <a href={`https://www.instagram.com/${user.instagram}`} target="_blank" rel="noreferrer">{user.instagram}</a> </div>
+                </div>}
 
-              {user.snapchat && <div className='general-interests'>
-                <div className='general-interests-left'>Snapchat</div>
-                <div className='general-interests-right'> <a href={`https://www.snapchat.com/add/${user.snapchat}`} target="_blank" rel="noreferrer">{user.snapchat}</a> </div>
-              </div>}
+                {user.snapchat && <div className='general-interests'>
+                  <div className='general-interests-left'>Snapchat</div>
+                  <div className='general-interests-right'> <a href={`https://www.snapchat.com/add/${user.snapchat}`} target="_blank" rel="noreferrer">{user.snapchat}</a> </div>
+                </div>}
 
-              {user.twitter && <div className='general-interests'>
-                <div className='general-interests-left'>Twitter</div>
-                <div className='general-interests-right'> <a href={`https://www.twitter.com/${user.twitter}`} target="_blank" rel="noreferrer">{user.twitter}</a> </div>
-              </div>}
+                {user.twitter && <div className='general-interests'>
+                  <div className='general-interests-left'>Twitter</div>
+                  <div className='general-interests-right'> <a href={`https://www.twitter.com/${user.twitter}`} target="_blank" rel="noreferrer">{user.twitter}</a> </div>
+                </div>}
 
-              {user.youtube && <div className='general-interests'>
-                <div className='general-interests-left'>Youtube</div>
-                <div className='general-interests-right'> <a href={`https://www.youtube.com/@${user.youtube}`} target="_blank" rel="noreferrer">{user.youtube}</a> </div>
-              </div>}
+                {user.youtube && <div className='general-interests'>
+                  <div className='general-interests-left'>Youtube</div>
+                  <div className='general-interests-right'> <a href={`https://www.youtube.com/@${user.youtube}`} target="_blank" rel="noreferrer">{user.youtube}</a> </div>
+                </div>}
 
-              {user.twitch && <div className='general-interests'>
-                <div className='general-interests-left'>Twitch</div>
-                <div className='general-interests-right'> <a href={`https://www.twitch.tv/${user.twitch}`} target="_blank" rel="noreferrer">{user.twitch}</a> </div>
-              </div>}
+                {user.twitch && <div className='general-interests'>
+                  <div className='general-interests-left'>Twitch</div>
+                  <div className='general-interests-right'> <a href={`https://www.twitch.tv/${user.twitch}`} target="_blank" rel="noreferrer">{user.twitch}</a> </div>
+                </div>}
 
-              {user.tiktok && <div className='general-interests'>
-                <div className='general-interests-left'>TickTok</div>
-                <div className='general-interests-right'> <a href={`https://www.tiktok.com/@${user.tiktok}`} target="_blank" rel="noreferrer">{user.tiktok}</a> </div>
-              </div>}
+                {user.tiktok && <div className='general-interests'>
+                  <div className='general-interests-left'>TickTok</div>
+                  <div className='general-interests-right'> <a href={`https://www.tiktok.com/@${user.tiktok}`} target="_blank" rel="noreferrer">{user.tiktok}</a> </div>
+                </div>}
 
-             {user.soundcloud && <div className='general-interests'>
-                <div className='general-interests-left'>Soundcloud</div>
-                <div className='general-interests-right'> <a href={`https://www.soundcloud.com/${user.soundcloud}`} target="_blank" rel="noreferrer">{user.soundcloud}</a> </div>
-              </div>}
+                {user.soundcloud && <div className='general-interests'>
+                  <div className='general-interests-left'>Soundcloud</div>
+                  <div className='general-interests-right'> <a href={`https://www.soundcloud.com/${user.soundcloud}`} target="_blank" rel="noreferrer">{user.soundcloud}</a> </div>
+                </div>}
 
-              {user.spotify && <div className='general-interests'>
-                <div className='general-interests-left'>Spotify</div>
-                <div className='general-interests-right'> <a href={user.spotify} target="_blank" rel="noreferrer">Spotify</a> </div>
-              </div>}
+                {user.spotify && <div className='general-interests'>
+                  <div className='general-interests-left'>Spotify</div>
+                  <div className='general-interests-right'> <a href={user.spotify} target="_blank" rel="noreferrer">Spotify</a> </div>
+                </div>}
 
-              {user.pintrest && <div className='general-interests'>
-                <div className='general-interests-left'>Pintrest</div>
-                <div className='general-interests-right'> <a href={`https://www.pintrest.com/${user.pintrest}`} target="_blank" rel="noreferrer">{user.pintrest}</a> </div>
-              </div>}
+                {user.pintrest && <div className='general-interests'>
+                  <div className='general-interests-left'>Pintrest</div>
+                  <div className='general-interests-right'> <a href={`https://www.pintrest.com/${user.pintrest}`} target="_blank" rel="noreferrer">{user.pintrest}</a> </div>
+                </div>}
 
-              {user.github && <div className='general-interests'>
-                <div className='general-interests-left' id='very-bot'>Github</div>
-                <div className='general-interests-right' id='very-bot'> <a href={`https://www.github.com/${user.github}`} target="_blank" rel="noreferrer">{user.github}</a> </div>
-              </div>}
+                {user.github && <div className='general-interests'>
+                  <div className='general-interests-left' id='very-bot'>Github</div>
+                  <div className='general-interests-right' id='very-bot'> <a href={`https://www.github.com/${user.github}`} target="_blank" rel="noreferrer">{user.github}</a> </div>
+                </div>}
 
-            </div>
+              </div>
 
-          </div>)}
+            </div>)}
 
         </div>
 
@@ -273,11 +281,11 @@ function User() {
             </div>
 
             <div className='friend-count'>
-              <span id='friend-count-username'>{user.username}</span> has <span id='friend-count'>{allUsers?.length}</span> friends.
+              <span id='friend-count-username'>{user.username}</span> has <span id='friend-count'>{friendsInfo?.length}</span> friends.
             </div>
 
-            <div className='friends-bot'>
-              {loaded && allUsers?.filter(user => user.id !== +userId).reverse().slice(0,8).map(user =>
+            {/* <div className='friends-bot'>
+              {loaded && allUsers?.filter(user => user.id !== +userId).reverse().slice(0, 8).map(user =>
                 <div key={user.id} className='profile-friend-card'>
                   <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
                     <div>
@@ -288,8 +296,22 @@ function User() {
                     />
                   </NavLink>
                 </div>)}
+            </div> */}
 
+            <div className='friends-bot'>
+              {loaded && friendsInfo?.reverse().slice(0, 8).map(user =>
+                <div key={user.id} className='profile-friend-card'>
+                  <NavLink className='cool-username' id='navlink' to={`/users/${user.id}`}>
+                    <div>
+                      {user.username}
+                    </div>
+                    <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+                      onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
+                    />
+                  </NavLink>
+                </div>)}
             </div>
+
           </div>
 
           <div className='profile-comments'>
@@ -308,42 +330,42 @@ function User() {
 
               {userComments?.reverse().map((comment) =>
 
-                  <div className='comments-rows' key={comment.id}>
-                    <div className='comments-rows-left'>
-                      <div className='comment-username'>
-                        <NavLink className='comment-username' to={`/users/${comment?.commenter.id}`}>{comment?.commenter.username}</NavLink>
-                      </div>
-                      <img id='profile-friend-pic' src={comment?.commenter.profile_img ? comment?.commenter.profile_img : defaultPic} alt='profile-pic'
-                        onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
-                      />
+                <div className='comments-rows' key={comment.id}>
+                  <div className='comments-rows-left'>
+                    <div className='comment-username'>
+                      <NavLink className='comment-username' to={`/users/${comment?.commenter.id}`}>{comment?.commenter.username}</NavLink>
                     </div>
-
-                    <div className='comments-rows-right'>
-                      <div className='comment-date'>
-                        {new Date(comment?.created_at).toLocaleString()}
-                      </div>
-
-                      <div className='comment-body'>
-                        {comment?.comment_body}
-                      </div>
-
-                      <div>
-                        {sessionUser && sessionUser?.id === comment?.commenter.id ?
-                          <div className='comment-buttons'>
-                            <NavLink to={`/comments/${comment.id}/edit`}>
-                              <button className='comment-edit-button'>Edit</button>
-                            </NavLink>
-                            <NavLink to={`/comments/${comment.id}/delete`} id='delete-comment'>
-                              <button className='comment-delete-button'>Delete</button>
-                            </NavLink>
-                          </div>
-                          : null}
-                      </div>
-                    </div>
-
+                    <img id='profile-friend-pic' src={comment?.commenter.profile_img ? comment?.commenter.profile_img : defaultPic} alt='profile-pic'
+                      onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
+                    />
                   </div>
 
-                  )}
+                  <div className='comments-rows-right'>
+                    <div className='comment-date'>
+                      {new Date(comment?.created_at).toLocaleString()}
+                    </div>
+
+                    <div className='comment-body'>
+                      {comment?.comment_body}
+                    </div>
+
+                    <div>
+                      {sessionUser && sessionUser?.id === comment?.commenter.id ?
+                        <div className='comment-buttons'>
+                          <NavLink to={`/comments/${comment.id}/edit`}>
+                            <button className='comment-edit-button'>Edit</button>
+                          </NavLink>
+                          <NavLink to={`/comments/${comment.id}/delete`} id='delete-comment'>
+                            <button className='comment-delete-button'>Delete</button>
+                          </NavLink>
+                        </div>
+                        : null}
+                    </div>
+                  </div>
+
+                </div>
+
+              )}
 
 
             </div>

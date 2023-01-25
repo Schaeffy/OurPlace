@@ -65,8 +65,8 @@ const friendsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL:
             newState = {};
-            console.log('-----------------',action.friends)
-            console.log('-----------------',action.friends.friends)
+            // console.log('-----------------',action.friends)
+            // console.log('-----------------',action.friends.friends)
             action.friends.friends.forEach(friend => {
                 newState[friend.id] = friend;
             });

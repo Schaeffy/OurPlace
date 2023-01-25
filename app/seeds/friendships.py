@@ -18,11 +18,32 @@ def seed_friendships():
         user1_id=3,
         user2_id=12
     )
+    friendship5 = Friendship(
+        user1_id=6,
+        user2_id=2
+    )
+    friendship6 = Friendship(
+        user1_id=6,
+        user2_id=5
+    )
+    friendship7 = Friendship(
+        user1_id=12,
+        user2_id=6
+    )
+    friendship8 = Friendship(
+        user1_id=11,
+        user2_id=6
+    )
+
 
     db.session.add(friendship1)
     db.session.add(friendship2)
     db.session.add(friendship3)
     db.session.add(friendship4)
+    db.session.add(friendship5)
+    db.session.add(friendship6)
+    db.session.add(friendship7)
+    db.session.add(friendship8)
 
     db.session.commit()
 

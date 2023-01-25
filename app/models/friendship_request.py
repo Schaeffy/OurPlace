@@ -42,7 +42,9 @@ class FriendshipRequest(db.Model):
 
     def to_dict(self):
         return {
+            "id": self.id,
             "requesting_user_id": self.requesting_user_id,
-            "receiving_user_id": self.receiving_user_id
+            "receiving_user_id": self.receiving_user_id,
+            "created_at": self.created_at
             # "status": self.status
         }

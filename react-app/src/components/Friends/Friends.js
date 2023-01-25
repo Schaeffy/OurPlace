@@ -17,12 +17,12 @@ const Friends = () => {
     const allFriends = Object.values(friends);
     const userFriends = allFriends.filter(friend => Object.values(friend).includes(+userId))
     const userFriendsIds = userFriends.map(friend => +userId === friend.user1 ? friend.user2 : friend.user1)
-    console.log('ALL USERS', allUsers)
-    console.log(allFriends)
-    console.log('user friends', userFriends)
-    console.log(userFriendsIds)
+    // console.log('ALL USERS', allUsers)
+    // console.log(allFriends)
+    // console.log('user friends', userFriends)
+    // console.log(userFriendsIds)
     const friendsInfo = allUsers.filter(user => userFriendsIds.includes(user.id))
-    console.log('FRIEND INFO', friendsInfo)
+    // console.log('FRIEND INFO', friendsInfo)
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ const Friends = () => {
                         Friends
                     </div>
                     <div className="users-list-bot">
-                        {friendsInfo?.map(friend => (
+                        {friendsInfo?.reverse().map(friend => (
                             <div key={friend.id} className="users-cards">
                                 <NavLink className='cool-username' id='navlink' to={`/users/${friend.id}`}>
                                     <div>

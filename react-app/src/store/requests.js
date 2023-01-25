@@ -64,7 +64,7 @@ const requestsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL:
             newState = {};
-            action.requests.forEach(request => {
+            action.requests.requests.forEach(request => {
                 newState[request.id] = request;
             });
             return newState;
