@@ -4,13 +4,16 @@ import session from './session'
 import blogReducer from './blog';
 import commentReducer from './comments';
 import usersReducer from './users';
+import requestsReducer from './requests';
+import friendsReducer from './friends';
 
 const rootReducer = combineReducers({
   session,
   blogs:blogReducer,
   comments:commentReducer,
-  users: usersReducer
-
+  users: usersReducer,
+  requests: requestsReducer,
+  friends: friendsReducer
 });
 
 

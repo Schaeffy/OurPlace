@@ -28,6 +28,7 @@ import AboutPage from './components/About';
 import EditLinks from './components/UserEditForms/EditLinks';
 import EditPhoto from './components/UserEditForms/EditPhoto';
 import DeleteUser from './components/UserEditForms/DeleteUser';
+import Friends from './components/Friends/Friends';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -116,6 +117,10 @@ function App() {
 
         <Route path ='/users/:userId/edit-photo' exact >
           <EditPhoto />
+        </Route>
+
+        <Route path='/users/:userId/friends' exact >
+          <Friends />
         </Route>
 
         <Route path='/users/:userId/comments' exact >

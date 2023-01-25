@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, request, jsonify
 from flask_login import login_required, current_user
 from app.models import User
-from ..models import db, User, Blog, Comment
-from ..forms import CommentForm, BlogForm, ProfileForm
+from ..models import db, User, Blog, Comment, Friendship, FriendshipRequest
+from ..forms import CommentForm, BlogForm, ProfileForm, FriendForm, RequestForm
 
 
 user_routes = Blueprint('users', __name__)
@@ -194,3 +194,48 @@ def get_user_blogs(id):
 #         db.session.commit()
 #         return blog.to_dict()
 #     return {'errors': validation_errors(form.errors)}, 401
+
+
+@user_routes.route('/<int:id>/befriend', methods=['POST'])
+@login_required
+def create_request():
+    form = RequestForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        request = FriendshipRequest(
+            requesting_user_id=current_user.id,
+            receiving_user_id=form.data['receiving_user_id']
+        )
+        db.session.add(request)
+        db.session.commit()
+        return request.to_dict()
+    return {'errors': validation_errors(form.errors)}, 401
+
+
+
+@user_routes.route('/<int:id>/unfriend', methods=['DELETE'])
+@login_required
+def delete_friend(id):
+    friend = Friendship.query.get(id)
+    db.session.delete(friend)
+    db.session.commit()
+    return friend.to_dict()
+
+@user_routes.route('/<int:id>/friends')
+# @login_required
+def get_all_friends(id):
+    friends = Friendship.query.filter((Friendship.user1_id == id) | (Friendship.user2_id == id)).all()
+
+    # friend_list = []
+
+    # for friend in friends:
+    #     user1_id = (User.query.filter(User.id == friend.user1_id).first()).to_dict()
+    #     user2_id = (User.query.filter(User.id == friend.user2_id).first()).to_dict()
+    #     friends_dict = friend.to_dict()
+    #     friends_dict['user1'] = user1_id
+    #     friends_dict['user2'] = user2_id
+    #     friend_list.append(friends_dict)
+
+    # return {"friends": [friend for friend in friend_list]}
+
+    return {"friends": [friend.to_dict() for friend in friends]}

@@ -218,7 +218,7 @@ const HomePage = () => {
                             <div className='home-mood'>
                                 <div className='view-my'>
                                     <span>View My: </span>
-                                    <NavLink to={`/users/${user.id}`} id='navlink'>Profile</NavLink> | <NavLink to={`/users/${user.id}/blogs`} id='navlink'>Blogs</NavLink> | <NavLink to={`/users/${user.id}/comments`} id='navlink'>Comments</NavLink>
+                                    <NavLink to={`/users/${user.id}`} id='navlink'>Profile</NavLink> | <NavLink to={`/users/${user.id}/blogs`} id='navlink'>Blogs</NavLink> | <NavLink to={`/users/${user.id}/comments`} id='navlink'>Comments</NavLink> | <NavLink to={`/users/${user.id}/friends`} id='navlink'>Friends</NavLink>  |  <NavLink to={`/requests`} id='navlink'>Friend Requests</NavLink>
                                 </div>
                                 <div className='my-url'>
                                     {/* <span>My URL: </span> */}
@@ -230,7 +230,7 @@ const HomePage = () => {
 
                         {/* <div className='contact'>
                             <div className='contact-top'>
-                                {`Contacting ${user.username}`}
+                                {`Notifications`}
                             </div>
                             <div className='contact-bot'>
                                 <div>Some stuff</div>
