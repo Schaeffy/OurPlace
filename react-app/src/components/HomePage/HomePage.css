@@ -186,7 +186,7 @@
 
 #friends-bot{
     border: 1px solid #ffcc99;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .cool-username {

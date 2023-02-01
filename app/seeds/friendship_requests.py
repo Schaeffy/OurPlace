@@ -8,7 +8,7 @@ def seed_friendship_requests():
         receiving_user_id=11,
     )
     friend_request2 = FriendshipRequest(
-        requesting_user_id=12,
+        requesting_user_id=7,
         receiving_user_id=6,
     )
     friend_request3 = FriendshipRequest(
@@ -31,5 +31,5 @@ def undo_friendship_requests():
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.friendship_request RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute('TRUNCATE friendship_request RESTART IDENTITY CASCADE;')
+        db.session.execute('DELETE FROM friendship_requests')
     db.session.commit()

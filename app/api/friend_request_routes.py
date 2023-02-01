@@ -6,12 +6,14 @@ from ..forms import RequestForm, FriendForm
 
 request_routes = Blueprint('requests', __name__)
 
+
 def validation_errors(validation_errors):
     errorMessages = []
     for field in validation_errors:
         for error in validation_errors[field]:
             errorMessages.append(f'{field} : {error}')
     return errorMessages
+
 
 @request_routes.route('/')
 def get_all_requests():
@@ -46,7 +48,8 @@ def get_all_requests():
 #         return request.to_dict()
 #     return {'errors': validation_errors(form.errors)}, 401
 
-@request_routes.route('/', methods=['DELETE'])
+
+@request_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_request(id):
     request = FriendshipRequest.query.get(id)
@@ -55,17 +58,14 @@ def delete_request(id):
     return request.to_dict()
 
 
-# @request_routes.route('/', methods=['POST'])
-# @login_required
-# def create_friendship():
-#     form = FriendForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         friend = Friendship(
-#             user1_id=form.data['user1_id'],
-#             user2_id=form.data['user2_id']
-#         )
-#         db.session.add(friend)
-#         db.session.commit()
-#         return friend.to_dict()
-#     return {'errors': validation_errors(form.errors)}, 401
+@request_routes.route('/<int:id>', methods=['POST'])
+@login_required
+def create_friendship(id):
+
+    friend = Friendship(
+        user1_id=current_user.id,
+        user2_id=id
+    )
+    db.session.add(friend)
+    db.session.commit()
+    return friend.to_dict()

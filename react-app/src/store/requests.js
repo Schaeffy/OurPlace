@@ -1,6 +1,7 @@
 const LOAD_ALL = 'requests/LOAD_ALL';
 const CREATE = 'requests/CREATE';
 const REMOVE = 'requests/REMOVE';
+const RESET = 'requests/RESET';
 
 const loadAll = (requests) => ({
     type: LOAD_ALL,
@@ -16,6 +17,10 @@ const create = (request, userId) => ({
 const remove = (requestId) => ({
     type: REMOVE,
     requestId
+});
+
+export const resetRequests = () => ({
+    type: RESET
 });
 
 export const getRequests = () => async (dispatch) => {
@@ -46,7 +51,7 @@ export const createRequest = (userId) => async (dispatch) => {
 }
 
 export const deleteRequest = (requestId) => async (dispatch) => {
-    const res = await fetch(`/api/requests`, {
+    const res = await fetch(`/api/requests/${requestId}`, {
         method: 'DELETE'
     });
 
@@ -76,6 +81,8 @@ const requestsReducer = (state = initialState, action) => {
             newState = { ...state };
             delete newState[action.requestId];
             return newState;
+        case RESET:
+            return initialState;
         default:
             return state;
     }

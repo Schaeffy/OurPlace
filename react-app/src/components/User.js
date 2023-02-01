@@ -16,6 +16,8 @@ function User() {
 
   const sessionUser = useSelector(state => state.session.user);
 
+  const sessionUserId = sessionUser.id
+
   const blogs = useSelector(state => state.blogs.blogs)
   const userBlogs = Object.values(blogs)?.filter(blog => blog.user_id === +userId)
   const dispatch = useDispatch();
@@ -25,6 +27,12 @@ function User() {
 
   const users = useSelector(state => state.users.users)
   const allUsers = Object.values(users)
+
+  const friends = useSelector(state => state.friends);
+  const allFriends = Object.values(friends);
+  const userFriends = allFriends.filter(friend => Object.values(friend).includes(+userId))
+  const userFriendsIds = userFriends.map(friend => +userId === friend.user1 ? friend.user2 : friend.user1)
+  const friendsInfo = allUsers.filter(user => userFriendsIds.includes(user.id))
 
   // console.log(userBlogs)
 
@@ -59,12 +67,6 @@ function User() {
       dispatch(resetComment())
     }
   }, [dispatch, userId])
-
-  const friends = useSelector(state => state.friends);
-  const allFriends = Object.values(friends);
-  const userFriends = allFriends.filter(friend => Object.values(friend).includes(+userId))
-  const userFriendsIds = userFriends.map(friend => +userId === friend.user1 ? friend.user2 : friend.user1)
-  const friendsInfo = allUsers.filter(user => userFriendsIds.includes(user.id))
 
 
   // useEffect(()=> {
@@ -134,6 +136,18 @@ function User() {
             <div id='profile-url'>OurPlace URL:</div>
             <div id='profile-url-url'>{`https://ourplace.com/users/${user.id}`}</div>
           </div>
+
+          {!userFriendsIds.includes(sessionUserId) ?
+            <div className='url-container'>
+              <div id='profile-url'>Send Friend Request</div>
+            </div>
+            :
+            <div className='url-container'>
+              <div id='profile-url'>Unfriend</div>
+            </div>
+          }
+
+
 
           <div className='interests'>
 
@@ -281,7 +295,7 @@ function User() {
             </div>
 
             <div className='friend-count'>
-              <span id='friend-count-username'>{user.username}</span> has <span id='friend-count'>{friendsInfo?.length}</span> friends.
+              <span id='friend-count-username'>{user.username}</span> has <span id='friend-count'>{friendsInfo?.length}</span> friends. (<NavLink id='navlink' to={`/users/${user.id}/friends`}>View all friends</NavLink>)
             </div>
 
             {/* <div className='friends-bot'>

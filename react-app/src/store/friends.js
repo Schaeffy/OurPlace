@@ -1,20 +1,26 @@
 const LOAD_ALL = 'friends/LOAD_ALL';
 const CREATE = 'friends/CREATE';
 const REMOVE = 'friends/REMOVE';
+const RESET = 'friends/RESET';
 
 const loadAll = (friends) => ({
     type: LOAD_ALL,
     friends
 });
 
-const create = (userId) => ({
+const create = (friend, userId) => ({
     type: CREATE,
+    friend,
     userId
 });
 
 const remove = (userId) => ({
     type: REMOVE,
     userId
+});
+
+export const resetFriends = () => ({
+    type: RESET
 });
 
 export const getFriends = (userId) => async (dispatch) => {
@@ -30,7 +36,7 @@ export const getFriends = (userId) => async (dispatch) => {
 };
 
 export const createFriend = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/requests`, {
+    const res = await fetch(`/api/requests/${userId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -39,7 +45,7 @@ export const createFriend = (userId) => async (dispatch) => {
 
     if (res.ok) {
         const friend = await res.json();
-        dispatch(create(friend, userId));
+        dispatch(create(userId));
         return friend;
     }
 }
@@ -73,12 +79,15 @@ const friendsReducer = (state = initialState, action) => {
             return newState;
         case CREATE:
             newState = { ...state };
+            // console.log('+++++++++++++++++++',action.friend)
             newState[action.friend.id] = action.friend;
             return newState;
         case REMOVE:
             newState = { ...state };
             delete newState[action.friendId];
             return newState;
+        case RESET:
+            return initialState;
         default:
             return state;
     }

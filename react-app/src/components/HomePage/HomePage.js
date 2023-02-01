@@ -11,8 +11,10 @@ import defaultPic from '../images/user.png'
 import { getComments, resetComment } from '../../store/comments';
 import { resetSession } from '../../store/session';
 import catThumb from '../images/cat-thumbs.png'
-import { getFriends } from '../../store/friends';
-import { getRequests } from '../../store/requests';
+import { getFriends, createFriend, deleteFriend, resetFriends } from '../../store/friends';
+import { getRequests, createRequest, deleteRequest, resetRequests } from '../../store/requests';
+import DeleteRequest from '../Friends/DeleteRequest';
+import AcceptRequest from '../Friends/AcceptRequest';
 
 
 const HomePage = () => {
@@ -33,6 +35,24 @@ const HomePage = () => {
     const userId = sessionUser?.id
     // console.log('uuuuuuuuuuuuuu', users)
 
+    const friends = useSelector(state => state.friends);
+    const allFriends = Object.values(friends);
+    const userFriends = allFriends.filter(friend => Object.values(friend).includes(+userId))
+    const userFriendsIds = userFriends.map(friend => +userId === friend.user1 ? friend.user2 : friend.user1)
+    const friendsInfo = allUsers.filter(user => userFriendsIds.includes(user.id))
+
+
+    const requests = useSelector(state => state.requests);
+    const allRequests = Object.values(requests);
+    console.log('..................', allRequests)
+    // const requestsReceived = allRequests.filter(request => request?.receiving_user_id === +userId)
+    const requestsReceived = allRequests.map(request => request?.receiving_user_id === +userId ? request.requesting_user_id : null).filter(req => req !== null)
+    const requestsSent = allRequests.filter(request => request?.requesting_user_id === +userId ? request.receiving_user_id : null).filter(req => req !== null)
+    const requestedUsers = allUsers.filter(user => requestsReceived.includes(user.id))
+    const sentUsers = allUsers.filter(user => requestsSent.includes(user.id))
+
+    const [requestId, setRequestId] = useState(1)
+
     useEffect(() => {
         dispatch(getOneUser(userId))
         dispatch(getBlogs())
@@ -44,25 +64,15 @@ const HomePage = () => {
         return () => {
             dispatch(resetUser())
             dispatch(resetBlog())
+            dispatch(resetRequests())
+            dispatch(resetFriends())
             // dispatch(resetComment())
         }
     }, [dispatch, sessionUser])
 
-    const friends = useSelector(state => state.friends);
-    const allFriends = Object.values(friends);
-    const userFriends = allFriends.filter(friend => Object.values(friend).includes(+userId))
-    const userFriendsIds = userFriends.map(friend => +userId === friend.user1 ? friend.user2 : friend.user1)
-    const friendsInfo = allUsers.filter(user => userFriendsIds.includes(user.id))
 
 
-    const requests = useSelector(state => state.requests);
-    const allRequests = Object.values(requests);
-    console.log('..................',allRequests)
-    // const requestsReceived = allRequests.filter(request => request?.receiving_user_id === +userId)
-    const requestsReceived = allRequests.map(request => request?.receiving_user_id === +userId ? request.requesting_user_id : null).filter(req => req !== null)
-    const requestsSent = allRequests.filter(request => request?.requesting_user_id === +userId ? request.receiving_user_id : null).filter(req => req !== null)
-    const requestedUsers = allUsers.filter(user => requestsReceived.includes(user.id))
-    const sentUsers = allUsers.filter(user => requestsSent.includes(user.id))
+    // console.log(requestedUsers)
 
     // useEffect(()=> {
     //     dispatch(getBlogs()).then(() => setLoaded(true))
@@ -434,7 +444,7 @@ const HomePage = () => {
                             </div>
 
                             <div className='friends-bot' id='friends-bot'>
-                                {friendsInfo.reverse().slice(0, 8)?.map(user =>
+                                {friendsInfo?.reverse().slice(0, 8)?.map(user =>
                                     <div key={user.id}>
                                         <div key={user.id} className='profile-friend-card'>
                                             <div>
@@ -496,48 +506,44 @@ const HomePage = () => {
                             </div>
 
                             <div className='comments-mid'>
-                                Diplaying <span id='comments-length'>{userComments?.length}</span> of <span id='comments-length'>{userComments.length}</span> comments ({<NavLink id='navlink' to={`/users/${user.id}/comments`}>View all</NavLink>} | {<NavLink id='navlink' to={`/users/${user.id}/comments/new`}>Add Comment</NavLink>})
+                                You have <span id='comments-length'>{requestsReceived.length}</span> friend requests ({<NavLink id='navlink' to={`/requests`}>View all</NavLink>})
                             </div>
 
-                            {/* <div>{`Displaying ${userComments.filter(user => user.id === comment.commenter)}`}</div> */}
-
                             <div className='comments-bot'>
-                                {/* {userComments?.map((comment) => (<div>{comment?.comment_body}</div>))} */}
 
-                                {userComments?.reverse().map((comment) =>
+
+                                {requestedUsers?.reverse().slice(0, 8).map((comment) =>
 
                                     <div className='comments-rows' key={comment.id}>
                                         <div className='comments-rows-left'>
                                             <div className='comment-username'>
-                                                <NavLink className='comment-username' to={`/users/${comment?.commenter.id}`}>{comment?.commenter.username}</NavLink>
+                                                <NavLink className='comment-username' to={`/users/${comment?.id}`}>{comment?.username}</NavLink>
                                             </div>
-                                            <img id='profile-friend-pic' src={comment?.commenter.profile_img ? comment?.commenter.profile_img : defaultPic} alt='profile-pic'
+                                            <img id='profile-friend-pic' src={comment?.profile_img ? comment?.profile_img : defaultPic} alt='profile-pic'
                                                 onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                                             />
                                         </div>
+                                        {allRequests.map(request => request.requesting_user_id === comment.id && request.receiving_user_id === userId ?
+                                            <div className='comments-rows-right' key={request.id}>
+                                                <div className='comment-date'>
+                                                    {/* {new Date((requestsReceived.filter(req => req.requesting_user_id === comment.id)).created_at).toLocaleString()} */}
+                                                    {new Date(request.created_at).toLocaleString()}
+                                                </div>
 
-                                        <div className='comments-rows-right'>
-                                            <div className='comment-date'>
-                                                {new Date(comment?.created_at).toLocaleString()}
-                                            </div>
+                                                <div className='comment-body'>
+                                                    <h4>Friend Request</h4>
+                                                </div>
 
-                                            <div className='comment-body'>
-                                                {comment?.comment_body}
-                                            </div>
-
-                                            <div>
-                                                {sessionUser && sessionUser?.id === comment?.commenter.id ?
-                                                    <div className='comment-buttons'>
-                                                        <NavLink to={`/comments/${comment.id}/edit`}>
-                                                            <button className='comment-edit-button'>Edit</button>
-                                                        </NavLink>
-                                                        <NavLink to={`/comments/${comment.id}/delete`} id='delete-comment'>
-                                                            <button className='comment-delete-button'>Delete</button>
-                                                        </NavLink>
-                                                    </div>
-                                                    : null}
-                                            </div>
-                                        </div>
+                                                <div>
+                                                    {sessionUser && sessionUser?.id === request?.receiving_user_id ?
+                                                        <div className='comment-buttons'>
+                                                                <AcceptRequest requesterId={comment.id} requestId={request.id}/>
+                                                                <DeleteRequest id={request.id}/>
+                                                        </div>
+                                                        : null}
+                                                </div>
+                                            </div> : null
+                                        ) }
 
                                     </div>
 

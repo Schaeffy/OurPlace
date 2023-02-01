@@ -53,5 +53,5 @@ def undo_friendships():
         db.session.execute(
             f"TRUNCATE table {SCHEMA}.friendship RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute('TRUNCATE friendship RESTART IDENTITY CASCADE;')
+        db.session.execute("DELETE FROM friendships")
     db.session.commit()

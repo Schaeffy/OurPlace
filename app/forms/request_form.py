@@ -7,6 +7,6 @@ class RequestForm(FlaskForm):
 
     def to_dict(self):
         return {
-            'requester_id': self.requester_id.data,
-            'requested_id': self.requested_id.data,
+            'receiving_user_id': self.receiving_user_id.data,
+            'requesting_user_id:': self.requesting_user_id.data
         }
