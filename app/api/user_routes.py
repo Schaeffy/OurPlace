@@ -216,8 +216,11 @@ def create_request():
 @user_routes.route('/<int:id>/unfriend', methods=['DELETE'])
 @login_required
 def delete_friend(id):
-    friendship = Friendship.query.filter((Friendship.user1_id == id and Friendship.user2_id == current_user.id) | (Friendship.user1_id == current_user.id and Friendship.user2_id == id)).first()
-    print('---------------------',friendship)
+    friendship = Friendship.query.filter(
+        (Friendship.user1_id == id) & (Friendship.user2_id == current_user.id) |
+        (Friendship.user1_id == current_user.id) & (Friendship.user2_id == id)
+    ).first()
+    print('----------------------------', friendship)
     db.session.delete(friendship)
     db.session.commit()
     return {"message": "Friendship deleted"}

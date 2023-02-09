@@ -48,8 +48,8 @@ const DeleteUser = () => {
         <div className="blog-form-container">
             <div className="blog-form">
                 <h2>Delete Your Account</h2>
-                <br />
                 <form onSubmit={handleSubmit}>
+                <br />
                     <div id='delete-message'>Are you sure you want to delete your account?</div>
                     <div className='blog-form-buttons'>
                         <button id='button' type="submit">Delete</button>
