@@ -144,6 +144,9 @@ function User() {
             :
             <div className='url-container'>
               <div id='profile-url'>Unfriend</div>
+              <div id='profile-url'>
+                <NavLink id='profile-url-navlink' to={`/users/${userId}/unfriend`}>Remove Friend</NavLink>
+              </div>
             </div>
           }
 

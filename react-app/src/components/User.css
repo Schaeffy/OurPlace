@@ -109,7 +109,19 @@
 #profile-url-url {
     font-size: 90%;
     margin-left: 10px;
+    text-decoration: none;
 }
+
+#profile-url-navlink {
+    font-size: 90%;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+#profile-url-navlink:hover {
+    color:#FF6600
+}
+
 
 .interests {
     display: flex;

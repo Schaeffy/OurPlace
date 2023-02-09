@@ -44,7 +44,7 @@ const HomePage = () => {
 
     const requests = useSelector(state => state.requests);
     const allRequests = Object.values(requests);
-    console.log('..................', allRequests)
+    // console.log('..................', allRequests)
     // const requestsReceived = allRequests.filter(request => request?.receiving_user_id === +userId)
     const requestsReceived = allRequests.map(request => request?.receiving_user_id === +userId ? request.requesting_user_id : null).filter(req => req !== null)
     const requestsSent = allRequests.filter(request => request?.requesting_user_id === +userId ? request.receiving_user_id : null).filter(req => req !== null)

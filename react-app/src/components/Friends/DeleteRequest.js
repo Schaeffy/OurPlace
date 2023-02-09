@@ -7,7 +7,7 @@ export default function DeleteRequest ({id}) {
     const history = useHistory()
 
     const handleDelete = async (e) => {
-        console.log(id)
+        // console.log(id)
         e.preventDefault()
         await dispatch(deleteRequest(id))
     }

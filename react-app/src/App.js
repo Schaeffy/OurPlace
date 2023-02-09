@@ -29,6 +29,8 @@ import EditLinks from './components/UserEditForms/EditLinks';
 import EditPhoto from './components/UserEditForms/EditPhoto';
 import DeleteUser from './components/UserEditForms/DeleteUser';
 import Friends from './components/Friends/Friends';
+import FriendRequests from './components/Friends/Requests';
+import Unfriend from './components/Friends/DeleteFriend';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -77,6 +79,10 @@ function App() {
           <AboutPage />
           </Route>
 
+        <Route path='/requests' exact={true} >
+          <FriendRequests />
+        </Route>
+
 
         <Route path='/blogs' exact={true} >
           <Blogs />
@@ -121,6 +127,10 @@ function App() {
 
         <Route path='/users/:userId/friends' exact >
           <Friends />
+        </Route>
+
+        <Route path='/users/:userId/unfriend' exact >
+          <Unfriend />
         </Route>
 
         <Route path='/users/:userId/comments' exact >

@@ -61,7 +61,6 @@ def delete_request(id):
 @request_routes.route('/<int:id>', methods=['POST'])
 @login_required
 def create_friendship(id):
-
     friend = Friendship(
         user1_id=current_user.id,
         user2_id=id

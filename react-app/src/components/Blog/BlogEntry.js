@@ -17,7 +17,7 @@ const BlogEntry = () => {
     const dispatch = useDispatch()
     const blog = useSelector(state => state.blogs.singleBlog)
     const blogUser = Object.values(users).filter(user => user.id === blog?.user_id)[0]
-    console.log('blogUser', blogUser)
+    // console.log('blogUser', blogUser)
     // const allBlogs = Object.values(blogs)
 
     useEffect(() => {

@@ -23,11 +23,11 @@ const EditComment = () => {
     }, [dispatch, commentId])
 
     const comment = useSelector(state => state.comments?.singleComment)
-    console.log('comment', comment)
+    // console.log('comment', comment)
 
     // const [body, setBody] = useState(comment.comment_body)
     const [body, setBody] = useState('')
-    console.log('body', body)
+    // console.log('body', body)
     const [loaded, setLoaded] = useState(false)
 
     const [displayErrors, setDisplayErrors] = useState(false)
@@ -37,7 +37,7 @@ const EditComment = () => {
         setBody(comment.comment_body)
     }, [comment])
 
-    console.log('new body', body)
+    // console.log('new body', body)
 
 
     let validate = () => {

@@ -88,7 +88,7 @@ const SignUpForm = () => {
   if (user) {
     return <Redirect to='/' />;
   }
-  console.log(errors)
+  // console.log(errors)
 
   return (
     <>
