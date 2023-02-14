@@ -198,18 +198,14 @@ def get_user_blogs(id):
 
 @user_routes.route('/<int:id>/befriend', methods=['POST'])
 @login_required
-def create_request():
-    form = RequestForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        request = FriendshipRequest(
-            requesting_user_id=current_user.id,
-            receiving_user_id=form.data['receiving_user_id']
-        )
-        db.session.add(request)
-        db.session.commit()
-        return request.to_dict()
-    return {'errors': validation_errors(form.errors)}, 401
+def create_request(id):
+    request = FriendshipRequest(
+        requesting_user_id=current_user.id,
+        receiving_user_id=id
+    )
+    db.session.add(request)
+    db.session.commit()
+    return request.to_dict()
 
 
 

@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getFriends } from '../../store/friends';
 import { loadUsers, resetUser, getOneUser } from '../../store/users';
-import '../Users.css';
 import defaultPic from '../images/user.png'
-import { deleteFriend } from '../../store/friends';
+import { createRequest } from '../../store/requests';
+import './Friends.css'
 
-const Unfriend = () => {
+const SendRequest = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     // const users = useSelector(state => state.users.users)
@@ -28,9 +28,9 @@ const Unfriend = () => {
     //     dispatch(loadUsers()).then(() => setLoaded(true))
     // }, [dispatch, userId]);
 
-    const handleUnfriend = async (e) => {
+    const handleRequest = async (e) => {
         e.preventDefault()
-        await dispatch(deleteFriend(userId))
+        await dispatch(createRequest(userId))
         // await dispatch(getBlogs())
         // await dispatch(resetBlog())
         history.goBack()
@@ -41,14 +41,14 @@ const Unfriend = () => {
     return (
         <div className="users-container">
             <div className="users-inner-container">
-                <h2>Remove Friend</h2>
+                <h2>Add Friend</h2>
                 <br />
                 <div>
-                    Are you sure you want to remove this person as a Friend?
+                    Are you sure you want to add this person as a Friend? They will be able to accept or decline your request.
                 </div>
                 <br />
 
-                <button onClick={handleUnfriend}>Remove Friend</button>
+                <button onClick={handleRequest}>Send Request</button>
                 <button id='cancel-button' onClick={() => history.goBack()}>Cancel</button>
 
             </div>
@@ -56,4 +56,4 @@ const Unfriend = () => {
     );
 }
 
-export default Unfriend;
+export default SendRequest;

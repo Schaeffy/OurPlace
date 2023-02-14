@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams, Redirect } from 'react-router-dom'
 import { resetSession } from '../../store/session'
 import { getOneUser, updateUser, resetUser } from '../../store/users'
+// import { s3, get_unique_filename, upload_file_to_s3 } from '../'
 import defaultPic from '../images/user.png'
 import './Edit.css'
 
@@ -10,6 +11,11 @@ const EditPhoto = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { userId } = useParams()
+
+    const [file, setFile] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+    const [url, setUrl] = useState(null);
 
     const user = useSelector(state => state.users.user)
 

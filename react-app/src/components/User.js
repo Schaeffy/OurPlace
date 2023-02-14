@@ -7,6 +7,7 @@ import defaultPic from './images/user.png'
 import './User.css'
 import { loadUsers, resetUser, getOneUser } from '../store/users';
 import { getFriends } from '../store/friends';
+import { getRequests, createRequest, deleteRequest, resetRequests } from '../store/requests';
 
 function User() {
   // const [user, setUser] = useState({});
@@ -34,6 +35,19 @@ function User() {
   const userFriendsIds = userFriends.map(friend => +userId === friend.user1 ? friend.user2 : friend.user1)
   const friendsInfo = allUsers.filter(user => userFriendsIds.includes(user.id))
 
+
+  const requests = useSelector(state => state.requests);
+  const allRequests = Object.values(requests);
+  // console.log('..................', allRequests)
+  // const requestsReceived = allRequests.filter(request => request?.receiving_user_id === +userId)
+  const requestsReceived = allRequests.map(request => request?.receiving_user_id === +sessionUserId ? request.requesting_user_id : null).filter(req => req !== null)
+  const requestsSent = allRequests.map(request => request?.requesting_user_id === +sessionUserId ? request.receiving_user_id : null).filter(req => req !== null)
+  const requestedUsers = allUsers.filter(user => requestsReceived.includes(user.id))
+  const sentUsers = allUsers.filter(user => requestsSent.includes(user.id))
+
+  console.log('----------------',requestsReceived)
+  console.log(requestsSent)
+
   // console.log(userBlogs)
 
 
@@ -59,6 +73,7 @@ function User() {
     dispatch(getOneUser(userId))
     dispatch(loadUsers())
     dispatch(getFriends(userId))
+    dispatch(getRequests())
     dispatch(getComments()).then(() => setLoaded(true))
 
     return () => {
@@ -137,11 +152,22 @@ function User() {
             <div id='profile-url-url'>{`https://ourplace.com/users/${user.id}`}</div>
           </div>
 
-          {!userFriendsIds.includes(sessionUserId) ?
+          {!userFriendsIds.includes(+sessionUserId) && !requestsReceived.includes(+userId) &&
             <div className='url-container'>
-              <div id='profile-url'>Send Friend Request</div>
+              <div id='profile-url'>Add Friend</div>
+                <NavLink id='profile-url-navlink' to={`/users/${userId}/befriend`}> Send Friend Request </NavLink>
             </div>
-            :
+          }
+
+          {(!userFriendsIds.includes(+sessionUserId) && requestsReceived.includes(+userId)) &&
+            <div className='url-container'>
+              <div id='profile-url'>Add Friend</div>
+                <NavLink id='profile-url-navlink' to={`/requests`}> Request Pending </NavLink>
+            </div>
+          }
+
+          {
+            userFriendsIds.includes(+sessionUserId) &&
             <div className='url-container'>
               <div id='profile-url'>Unfriend</div>
               <div id='profile-url'>

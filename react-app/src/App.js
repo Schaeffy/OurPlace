@@ -31,6 +31,7 @@ import DeleteUser from './components/UserEditForms/DeleteUser';
 import Friends from './components/Friends/Friends';
 import FriendRequests from './components/Friends/Requests';
 import Unfriend from './components/Friends/DeleteFriend';
+import SendRequest from './components/Friends/SendRequest.';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -131,6 +132,10 @@ function App() {
 
         <Route path='/users/:userId/unfriend' exact >
           <Unfriend />
+        </Route>
+
+        <Route path='/users/:userId/befriend' exact >
+          <SendRequest />
         </Route>
 
         <Route path='/users/:userId/comments' exact >

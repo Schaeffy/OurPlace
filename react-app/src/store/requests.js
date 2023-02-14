@@ -45,7 +45,7 @@ export const createRequest = (userId) => async (dispatch) => {
 
     if (res.ok) {
         const newRequest = await res.json();
-        dispatch(create(newRequest, userId));
+        dispatch(create(userId));
         return newRequest;
     }
 }
