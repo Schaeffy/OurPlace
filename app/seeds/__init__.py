@@ -4,6 +4,7 @@ from .comments import seed_comments, undo_comments
 from .blogs import seed_blogs, undo_blogs
 from .friendships import seed_friendships, undo_friendships
 from .friendship_requests import seed_friendship_requests, undo_friendship_requests
+from .profile_pics import undo_profile_pic
 
 from app.models.db import db, environment, SCHEMA
 
@@ -40,4 +41,5 @@ def undo():
     undo_blogs()
     undo_friendships()
     undo_friendship_requests()
+    undo_profile_pic()
     # Add other undo functions here

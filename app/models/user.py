@@ -69,6 +69,8 @@ class User(db.Model, UserMixin):
     # friend_2 = db.relationship(
     #     'Friend', foreign_keys='Friend.user_2_id', back_populates='user_2')
 
+    profile_pic = db.relationship("ProfilePic", back_populates="user", cascade="all")
+
     @property
     def password(self):
         return self.hashed_password
@@ -108,4 +110,5 @@ class User(db.Model, UserMixin):
             "soundcloud": self.soundcloud,
             "spotify": self.spotify,
             "pintrest": self.pintrest,
+            "profile_pic": self.profile_pic[-1].to_dict() if self.profile_pic else None
         }

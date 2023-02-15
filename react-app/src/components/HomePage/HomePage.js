@@ -219,7 +219,7 @@ const HomePage = () => {
 
                             <div className='home-general'>
                                 <div className='profile-pic'>
-                                    <img id='profile-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+                                    <img id='profile-pic' src={user?.profile_pic?.url ?user?.profile_pic?.url : defaultPic} alt='profile-pic'
                                         onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                                     />
                                 </div>
