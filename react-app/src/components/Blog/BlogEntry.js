@@ -35,7 +35,7 @@ const BlogEntry = () => {
         <div className='blog-container'>
             <div className='blog-profile'>
                 <div className='blog-profile-pic'>
-                    <img className='blog-profile-img' src={blogUser?.profile_img ? blogUser?.profile_img : defaultPic} alt='' />
+                    <img className='blog-profile-img' src={blogUser?.profile_pic?.url ? blogUser?.profile_pic?.url : defaultPic} alt='' />
                 </div>
                 <div className='blog-profile-info'>
                     <div className='published'>

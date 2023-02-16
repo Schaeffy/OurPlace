@@ -48,7 +48,6 @@ def edit_profile(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        user.profile_img = form.data['profile_img']
         user.profile_name = form.data['profile_name']
         user.status = form.data['status']
         user.mood = form.data['mood']

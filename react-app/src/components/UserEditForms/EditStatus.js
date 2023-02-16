@@ -49,7 +49,6 @@ const EditStatus = () => {
     }, [dispatch, userId])
 
     useEffect(() => {
-        setPic(user?.profile_img)
         setStatus(user?.status)
         setMood(user?.mood)
         setBrief(user?.brief_you)
@@ -103,7 +102,6 @@ const EditStatus = () => {
 
         if (!errors.length) {
             const payload = {
-                profile_img: pic,
                 status,
                 mood,
                 brief_you: brief,

@@ -4,7 +4,7 @@ from .comments import seed_comments, undo_comments
 from .blogs import seed_blogs, undo_blogs
 from .friendships import seed_friendships, undo_friendships
 from .friendship_requests import seed_friendship_requests, undo_friendship_requests
-from .profile_pics import undo_profile_pic
+from .profile_pics import seed_profile_pics, undo_profile_pic
 
 from app.models.db import db, environment, SCHEMA
 
@@ -29,6 +29,7 @@ def seed():
     seed_blogs()
     seed_friendships()
     seed_friendship_requests()
+    seed_profile_pics()
 
     # Add other seed functions here
 

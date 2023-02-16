@@ -81,7 +81,7 @@ const FriendRequests = () => {
                                     <div className='comment-username'>
                                         <NavLink className='comment-username' to={`/users/${comment?.id}`}>{comment?.username}</NavLink>
                                     </div>
-                                    <img id='profile-friend-pic' src={comment?.profile_img ? comment?.profile_img : defaultPic} alt='profile-pic'
+                                    <img id='profile-friend-pic' src={comment?.profile_pic?.url ? comment?.profile_pic?.url : defaultPic} alt='profile-pic'
                                         onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                                     />
                                 </div>

@@ -45,7 +45,7 @@ const Friends = () => {
                                     <div>
                                         {friend.username}
                                     </div>
-                                    <img id='profile-friend-pic' src={friend.profile_img ? friend.profile_img : defaultPic} alt='profile-pic'
+                                    <img id='profile-friend-pic' src={friend.profile_pic?.url ? friend.profile_pic?.url : defaultPic} alt='profile-pic'
                                         onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                                     />
                                 </NavLink>

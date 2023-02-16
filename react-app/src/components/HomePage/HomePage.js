@@ -112,7 +112,7 @@ const HomePage = () => {
                                                         <div>
                                                             {user?.username}
                                                         </div>
-                                                        <img id='profile-friend-pic' src={user?.profile_img ? user?.profile_img : defaultPic} alt='profile-pic'
+                                                        <img id='profile-friend-pic' src={user?.profile_pic?.url ? user?.profile_pic?.url : defaultPic} alt='profile-pic'
                                                             onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                                                         />
                                                     </NavLink>
@@ -219,7 +219,7 @@ const HomePage = () => {
 
                             <div className='home-general'>
                                 <div className='profile-pic'>
-                                    <img id='profile-pic' src={user?.profile_pic?.url ?user?.profile_pic?.url : defaultPic} alt='profile-pic'
+                                    <img id='profile-pic' src={user?.profile_pic?.url ? user?.profile_pic?.url : defaultPic} alt='profile-pic'
                                         onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                                     />
                                 </div>
@@ -452,7 +452,7 @@ const HomePage = () => {
                                                     <div>
                                                         {user.username}
                                                     </div>
-                                                    <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+                                                    <img id='profile-friend-pic' src={user?.profile_pic?.url ? user?.profile_pic?.url : defaultPic} alt='profile-pic'
                                                         onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                                                     />
                                                 </NavLink>
@@ -519,7 +519,7 @@ const HomePage = () => {
                                             <div className='comment-username'>
                                                 <NavLink className='comment-username' to={`/users/${comment?.id}`}>{comment?.username}</NavLink>
                                             </div>
-                                            <img id='profile-friend-pic' src={comment?.profile_img ? comment?.profile_img : defaultPic} alt='profile-pic'
+                                            <img id='profile-friend-pic' src={comment?.profile_pic?.url ? comment?.profile_pic?.url : defaultPic} alt='profile-pic'
                                                 onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                                             />
                                         </div>

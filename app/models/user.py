@@ -14,7 +14,6 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    profile_img = db.Column(db.String(255), nullable=True)
     profile_name = db.Column(db.String(100))
     status = db.Column(db.String(100))
     mood = db.Column(db.String(100))
@@ -87,7 +86,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'profile_img': self.profile_img,
             "profile_name": self.profile_name,
             "status": self.status,
             "mood": self.mood,

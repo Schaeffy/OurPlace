@@ -93,7 +93,7 @@ const Comments = () => {
                                         <div key={user.id}>
                                             <NavLink className='comment-username' to={`/users/${comment.commenter.id}`}>{comment.commenter.username}</NavLink>
                                             <div className='profile-pic' id='comments-page-pic'>
-                                                <img id='comments-profile-pic' src={comment.commenter?.profile_img ? comment.commenter?.profile_img : defaultPic} alt='profile-pic'
+                                                <img id='comments-profile-pic' src={comment.commenter?.profile_pic?.url ? comment.commenter?.profile_pic?.url : defaultPic} alt='profile-pic'
                                                     onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                                                 />
                                             </div>

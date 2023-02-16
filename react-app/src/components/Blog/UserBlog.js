@@ -36,7 +36,7 @@ const UserBlog = () => {
                     {user?.username}
                 </div>
                 <div className='blog-profile-pic'>
-                    <img className='blog-profile-img' src={user?.profile_img ? user?.profile_img : defaultPic} alt='' />
+                    <img className='blog-profile-img' src={user?.profile_pic?.url ? user?.profile_pic?.url : defaultPic} alt='' />
                 </div>
                 <div className='blog-profile-info'>
                     <div className='blog-profile-details'>

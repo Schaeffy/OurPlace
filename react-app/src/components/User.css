@@ -227,7 +227,7 @@
     flex-wrap: wrap;
     justify-content: flex-start;
     text-align: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .friend-count {

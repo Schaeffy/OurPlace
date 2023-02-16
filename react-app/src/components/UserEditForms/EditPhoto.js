@@ -61,15 +61,15 @@ import './Edit.css'
 //     const regex = new RegExp("http(|s):.*\.(jpg|png|jpeg|gif)")
 
 
-//     useEffect(() => {
-//         dispatch(getOneUser(userId)).then(() => setLoaded(true))
+    // useEffect(() => {
+    //     dispatch(getOneUser(userId)).then(() => setLoaded(true))
 
-//         return () => {
-//             dispatch(resetUser())
-//             // dispatch(getOneUser(userId))
-//             // dispatch(resetSession())
-//         }
-//     }, [dispatch, userId])
+    //     return () => {
+    //         dispatch(resetUser())
+    //         // dispatch(getOneUser(userId))
+    //         // dispatch(resetSession())
+    //     }
+    // }, [dispatch, userId])
 
 //     // useEffect(() => {
 //     //     setPic(user.profile_img)
@@ -280,8 +280,26 @@ import './Edit.css'
 
 const EditPhoto = () => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
+    const dispatch = useDispatch()
+
+
+    // const user = useSelector(state => state.session.user)
+    const user = useSelector(state => state.users.user)
+    const { userId } = useParams()
+
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
+    const [loaded, setLoaded] = useState(false)
+
+        useEffect(() => {
+        dispatch(getOneUser(userId)).then(() => setLoaded(true))
+
+        return () => {
+            dispatch(resetUser())
+            // dispatch(getOneUser(userId))
+            // dispatch(resetSession())
+        }
+    }, [dispatch, userId])
 
 
     const handleSubmit = async (e) => {
@@ -300,14 +318,19 @@ const EditPhoto = () => {
         if (res.ok) {
             await res.json();
             setImageLoading(false);
-            history.push("/images");
+            history.push("/");
         }
         else {
             setImageLoading(false);
             // a real app would probably use more advanced
             // error handling
-            console.log("error");
+            // console.log("error");
         }
+    }
+
+        const handleCancel = async (e) => {
+        e.preventDefault()
+        history.goBack()
     }
 
     const updateImage = (e) => {
@@ -315,17 +338,67 @@ const EditPhoto = () => {
         setImage(file);
     }
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={updateImage}
-            />
-            <button type="submit">Submit</button>
-            {(imageLoading)&& <p>Loading...</p>}
-        </form>
+
+    return (loaded &&
+        <>
+            <div className="edit-profile-container">
+                <div className="edit-pic-form-container">
+                    <h2>Add or Edit Your Profile Picture</h2>
+                    <br />
+                    <p>Profile picture is optional.</p>
+                    <form id='edit-pic-form' onSubmit={handleSubmit}>
+
+                        <div className='pics-form-left'>
+                            <div className="edit-profile-form-input">
+                                <div id='form-label'>
+                                    {/* <label id="form-label">Profile Picture</label> */}
+                                </div>
+                                <div className='profile-img-edit-container'>
+                                    <img className='profile-img-edit' src={user?.profile_pic.url ? user?.profile_pic.url : defaultPic} alt="profile" />
+                                </div>
+                                {/* <div id='add-link-text'>
+                                    Enter an image link. <br />
+                                    It should be a https link that ends in .jpg, .png, or .gif
+                                </div> */}
+                                <div>
+
+                                    <input className='edit-image-input' type="file" accept="image/*" onChange={updateImage}></input>
+                                </div>
+                            {(imageLoading) && <p>Loading...</p>}
+                            </div>
+                            <div className="edit-pic-button">
+                                <button id='button' type="submit">Save</button>
+                                <button id='button' onClick={handleCancel}>Cancel</button>
+                            </div>
+                        </div>
+                        <div className='right-side-container'>
+                            <div className='pic-rules-container'>
+                                <div className='pic-rules'>
+                                    <div>Square pictures work best</div>
+                                    <div>No explicit content</div>
+                                </div>
+
+                            </div>
+                            {/* <div className='errors' id='errors-container'>
+                                {errors.map((error, ind) => (
+                                    <div id='error-message' key={ind}>{error}</div>
+                                ))}
+                            </div> */}
+
+                        </div>
+                    </form>
+                    {/* <div className='remove-profile-pic'>
+                        <h3>Remove Profile Picture</h3>
+                        <p>Click the button below to remove your profile picture.</p>
+                        <button className='button' id='remove' onClick={handleRemove}>Remove Picture</button>
+                    </div> */}
+                </div>
+
+
+            </div>
+        </>
     )
+
 }
 
 export default EditPhoto;

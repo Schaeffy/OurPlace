@@ -4,7 +4,6 @@ from wtforms.validators import DataRequired, ValidationError
 
 
 class ProfileForm(FlaskForm):
-    profile_img = StringField('profile_img')
     profile_name = StringField('profile_name')
     status = StringField('status')
     mood = StringField('mood')
@@ -31,7 +30,6 @@ class ProfileForm(FlaskForm):
 
     def to_dict(self):
         return {
-            'profile_img': self.profile_img.data,
             'profile_name': self.profile_name.data,
             'status': self.status.data,
             'mood': self.mood.data,

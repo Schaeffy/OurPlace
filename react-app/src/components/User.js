@@ -113,7 +113,7 @@ function User() {
 
           <div className='general'>
             <div className='profile-pic'>
-              <img id='profile-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+              <img id='profile-pic' src={user.profile_pic?.url ? user.profile_pic?.url : defaultPic} alt='profile-pic'
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = defaultPic;
@@ -152,7 +152,7 @@ function User() {
             <div id='profile-url-url'>{`https://ourplace.com/users/${user.id}`}</div>
           </div>
 
-          {!userFriendsIds.includes(+sessionUserId) && !requestsReceived.includes(+userId) &&
+          {!userFriendsIds.includes(+sessionUserId) && !requestsReceived.includes(+userId) && (+sessionUserId !== +userId) &&
             <div className='url-container'>
               <div id='profile-url'>Add Friend</div>
                 <NavLink id='profile-url-navlink' to={`/users/${userId}/befriend`}> Send Friend Request </NavLink>
@@ -348,7 +348,7 @@ function User() {
                     <div>
                       {user.username}
                     </div>
-                    <img id='profile-friend-pic' src={user.profile_img ? user.profile_img : defaultPic} alt='profile-pic'
+                    <img id='profile-friend-pic' src={user.profile_pic?.url ? user.profile_pic?.url : defaultPic} alt='profile-pic'
                       onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                     />
                   </NavLink>
@@ -378,7 +378,7 @@ function User() {
                     <div className='comment-username'>
                       <NavLink className='comment-username' to={`/users/${comment?.commenter.id}`}>{comment?.commenter.username}</NavLink>
                     </div>
-                    <img id='profile-friend-pic' src={comment?.commenter.profile_img ? comment?.commenter.profile_img : defaultPic} alt='profile-pic'
+                    <img id='profile-friend-pic' src={comment?.commenter.profile_pic?.url ? comment?.commenter.profile_pic?.url : defaultPic} alt='profile-pic'
                       onError={(e) => { e.target.onerror = null; e.target.src = defaultPic }}
                     />
                   </div>
