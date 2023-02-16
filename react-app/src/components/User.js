@@ -45,8 +45,8 @@ function User() {
   const requestedUsers = allUsers.filter(user => requestsReceived.includes(user.id))
   const sentUsers = allUsers.filter(user => requestsSent.includes(user.id))
 
-  console.log('----------------',requestsReceived)
-  console.log(requestsSent)
+  // console.log('----------------',requestsReceived)
+  // console.log(requestsSent)
 
   // console.log(userBlogs)
 
