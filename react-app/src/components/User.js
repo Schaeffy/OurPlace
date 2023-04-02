@@ -17,7 +17,7 @@ function User() {
 
   const sessionUser = useSelector(state => state.session.user);
 
-  const sessionUserId = sessionUser.id
+  const sessionUserId = sessionUser?.id
 
   const blogs = useSelector(state => state.blogs.blogs)
   const userBlogs = Object.values(blogs)?.filter(blog => blog.user_id === +userId)
